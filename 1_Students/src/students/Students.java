@@ -51,7 +51,6 @@ public class Students {
      */
     public static void main(String[] args) {
         Scanner scan = new Scanner(System.in);
-        
         // Ask for total number of students
         int numStudents;
         String input;
@@ -70,7 +69,6 @@ public class Students {
         } while(numStudents < 1);
         System.out.println("");
         
-        //TODO - handle bad input
         // define array to hold the students and populate it
         Student[] students = new Student[numStudents];
         String firstName;
@@ -97,18 +95,38 @@ public class Students {
             System.out.println(student.toString());
         }
         
-        
         // Allow for editing the database of students 
-        
-        int index;
-        //String input;
+        int index = 0;
         do {
-            input = scan.nextLine();
-            System.out.println(input);
-            index = 5;
-        } while(index >= 0);
+            System.out.format("Enter a student index from the database"
+                    + " to change it(int between 1 and %d): ", students.length);
+            input = scan.next();
+            if(!isInteger(input)) { // make sure the input is integer
+                System.out.print("Inproper input, please enter integer: ");
+                continue;
+            } else {
+                index = Integer.parseInt(input) - 1; //Students' indecies start from 1, but Java arrays from 0
+                if(index  < 0 || index > students.length-1){ // make sure the index is correct
+                    System.out.format("Invalid index, enter int between 1 and %d): ", students.length);
+                    continue;
+                }
+            }
+            // if we reach here we have proper index
+            System.out.print("new first name:");
+            firstName = scan.next();
+            students[index].setFirstName(firstName);
+            
+            System.out.print("new last name:");
+            lastName = scan.next();
+            students[index].setLastName(lastName);
+            
+            System.out.println("\nThe group now contains:");
+            for(Student student : students){
+                System.out.println(student.toString());
+            }
+        } while(index != -1);
 
-       
+        scan.close();
     }
     
     public static boolean isInteger(String input) {
