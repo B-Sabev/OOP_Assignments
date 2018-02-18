@@ -6,7 +6,7 @@
 package hangman;
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public enum GameState {
     TRY_AGAIN, WIN, LOSE

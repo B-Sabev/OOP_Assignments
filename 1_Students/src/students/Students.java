@@ -73,7 +73,7 @@ public class Students {
             System.out.format("Enter a student index from the database"
                     + " to change it(int between 1 and %d) -1 to stop: ", students.length);
             try{ // if input is integer
-                index = scan.nextInt()-1;
+                index = scan.nextInt()-1; // sustract 1 from the index, java array starts from 0
                 if(index >= 0 && index < students.length){
                     // if we reach here we have proper index
                     System.out.print("new first name:");
@@ -88,12 +88,14 @@ public class Students {
                     for(Student student : students){
                         System.out.println(student.toString());
                     } 
+                } else if(index == -2) {
+                    System.out.println("Exiting...");
                 } else {
-                    System.out.format("Index must be between 1 and %d", students.length);
+                    System.out.format("Index must be between 1 and %d\n", students.length);
                 }
             }catch(Exception e){
                 System.out.println("Index must be integer > 1");
-                index = -2;
+                index = 0;
                 scan.next();
             }
         } while(index != -2); //user input is substacted with -1, stop when entered -1

@@ -20,7 +20,7 @@ public class Student {
         return this.firstName + " " + this.lastName + ", s" + this.number;
     }
    
-    // Setters and getters
+    // Setters and getters, number doesn't have setter so it can't be modified
     public String getFirstName() {
         return firstName;
     }
