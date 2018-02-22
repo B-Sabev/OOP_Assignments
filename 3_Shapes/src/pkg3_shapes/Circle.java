@@ -74,7 +74,21 @@ public class Circle implements Shape, Comparable<Circle>{
         this.x += dx;
         this.y += dy;
     }
-
+    
+    
+    /*
+    sort - sorts the objects in the array. This command has one optional argument. The argument
+x indicates sorting on the left most point from small to large. With argument y the objects
+are sorted such that the one with a smaller bottom point precedes objects that are higher
+in a drawing. Without argument the objects are sorted on their area from small to large.
+    
+    x - sort leftmost from small to large
+    y - sort smaller bottom point to larger bottom point
+    _ - sort area small to large
+    
+    */
+    
+    
     @Override
     public int compareTo(Circle o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

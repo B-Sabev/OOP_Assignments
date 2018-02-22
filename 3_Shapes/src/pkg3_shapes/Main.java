@@ -5,6 +5,8 @@
  */
 package pkg3_shapes;
 
+import java.lang.reflect.Array;
+
 /**
  *
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
@@ -33,6 +35,10 @@ public class Main {
         System.out.println(c.getX());
         System.out.println(c.getArea());
         System.out.println(c.getBottomBorder());
+        
+        ShapeComperator comperator = new ShapeComperator();
+
+        //Array.sort(some_array, comperator);
         
        
     }
