@@ -21,29 +21,8 @@ public class Main {
      */
     public static void main(String[] args) {
        
-        // Array of shapes
-        // asking the user for input
-        // performing the action
         
-        
-        
-        Shape[] shapes = {new Circle(4,4,2),
-                          new Rectangle(1,2,5,7),
-                          new Rectangle(2,1,5,5),
-                          new Rectangle(3,0,5,9)
-        };
-        
-        for(Shape sh : shapes){
-            System.out.println(sh.toString());
-        }
-        
-        Shape[] subset = Arrays.copyOfRange(shapes, 1, shapes.length);
       
-      
-        ShapeComperator comperator = new ShapeComperator(SortingMode.Y);
-        Arrays.sort(shapes, comperator);
-
-       
     }
     
     
