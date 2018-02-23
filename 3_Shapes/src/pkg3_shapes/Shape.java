@@ -7,7 +7,7 @@ package pkg3_shapes;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public interface Shape {
 

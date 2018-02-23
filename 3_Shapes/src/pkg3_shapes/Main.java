@@ -20,14 +20,12 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+       
+        // Array of shapes
+        // asking the user for input
+        // performing the action
         
-        // TODO add the command line user interaction
-        /*
-        Read with scan.nextLine()
-        Split into spaces
-        Check if the first string is a valid command with switch()
-        Execute command on case:
-        */
+        
         
         Shape[] shapes = {new Circle(4,4,2),
                           new Rectangle(1,2,5,7),
@@ -39,18 +37,12 @@ public class Main {
             System.out.println(sh.toString());
         }
         
-        
-        
-        String[] fruits = new String[] {"Pineapple","Apple", "Orange", "Banana"};
+        Shape[] subset = Arrays.copyOfRange(shapes, 1, shapes.length);
+      
+      
         ShapeComperator comperator = new ShapeComperator(SortingMode.Y);
-        
         Arrays.sort(shapes, comperator);
-        Arrays.sort(fruits);
-        
-        System.out.println("\n\n");
-        for(Shape sh : shapes){
-            System.out.println(sh.toString());
-        }
+
        
     }
     

@@ -9,7 +9,7 @@ import java.util.Locale;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class Circle implements Shape{
     
