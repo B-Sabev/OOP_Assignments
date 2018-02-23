@@ -10,8 +10,7 @@ package pkg3_shapes;
  * @author Borislav
  */
 public interface Shape {
-    
-    // should i add other methods here?
+
     double getLeftBorder();
     double getRightBorder();
     double getTopBorder();

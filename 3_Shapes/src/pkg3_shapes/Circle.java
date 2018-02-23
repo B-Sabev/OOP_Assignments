@@ -5,11 +5,13 @@
  */
 package pkg3_shapes;
 
+import java.util.Locale;
+
 /**
  *
  * @author Borislav
  */
-public class Circle implements Shape, Comparable<Circle>{
+public class Circle implements Shape{
     
     // x,y coord of the center and r as radius
     private double x;
@@ -75,23 +77,8 @@ public class Circle implements Shape, Comparable<Circle>{
         this.y += dy;
     }
     
-    
-    /*
-    sort - sorts the objects in the array. This command has one optional argument. The argument
-x indicates sorting on the left most point from small to large. With argument y the objects
-are sorted such that the one with a smaller bottom point precedes objects that are higher
-in a drawing. Without argument the objects are sorted on their area from small to large.
-    
-    x - sort leftmost from small to large
-    y - sort smaller bottom point to larger bottom point
-    _ - sort area small to large
-    
-    */
-    
-    
     @Override
-    public int compareTo(Circle o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String toString(){
+    return String.format(Locale.US, "Circle r=%.2f, center at (%.2f,%.2f), area=%.2f", this.r, this.x, this.y, getArea());
     }
-    
 }
