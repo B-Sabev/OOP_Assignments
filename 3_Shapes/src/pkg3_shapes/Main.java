@@ -21,8 +21,21 @@ public class Main {
      */
     public static void main(String[] args) {
        
+        View view = new View();
+        view.userInteraction();
+        
         
       
+    }
+    
+    public static double[] subset(double[] array, int i1, int i2){
+        assert i2 > i1 : "Last index must be bigger than first";
+        double[] subarray = new double[i2-i1];
+        for(int i=i1;i<i2;i++){
+            subarray[i-i1] = array[i];
+        }
+        return subarray;
+        
     }
     
     
