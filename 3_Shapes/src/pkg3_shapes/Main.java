@@ -5,11 +5,6 @@
  */
 package pkg3_shapes;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import pkg3_shapes.ShapeComperator.SortingMode;
-
 /**
  *
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
@@ -23,21 +18,7 @@ public class Main {
        
         View view = new View();
         view.userInteraction();
-        
-        
       
     }
-    
-    public static double[] subset(double[] array, int i1, int i2){
-        assert i2 > i1 : "Last index must be bigger than first";
-        double[] subarray = new double[i2-i1];
-        for(int i=i1;i<i2;i++){
-            subarray[i-i1] = array[i];
-        }
-        return subarray;
-        
-    }
-    
-    
     
 }
