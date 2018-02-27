@@ -5,6 +5,8 @@
  */
 package pkg4_gametest;
 
+import pkg4_gametest.Field.FieldState;
+
 /**
  *
  * @author Borislav
@@ -15,10 +17,11 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Board board = new Board();
-       board.play(0, Field.FieldState.X);
-       board.play(1, Field.FieldState.O);
-       System.out.println(board.toString());
+       Game game = new Game(new Board(), new HumanPlayer(), new ComputerPlayer());
+       System.out.println(game.getBoard().toString());
+       game.getBoard().play(0, FieldState.X);
+       System.out.println(game.getBoard());
+       
     }
     
 }

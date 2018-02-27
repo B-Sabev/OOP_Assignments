@@ -10,30 +10,37 @@ package pkg4_gametest;
  * @author Borislav
  */
 public class ComputerPlayer implements Player{
+    
+    public String name;
+    public Field.FieldState color;
+    
+    @Override
+    public int play() {
+        // implement the play method
+        return 0;
+    }
+    
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.name;
     }
 
     @Override
-    public void setName() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public Field.FieldState getColor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.color;
+    }
+    
+    @Override
+    public void setColor(Field.FieldState color) {
+        this.color = color;
     }
 
-    @Override
-    public void setColor() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int play() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
     
 }

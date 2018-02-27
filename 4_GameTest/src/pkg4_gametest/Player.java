@@ -14,9 +14,8 @@ import pkg4_gametest.Field.FieldState;
 public interface Player {
     
     String getName();
-    void setName();
+    void setName(String name);
     FieldState getColor();
-    void setColor();
-    int play();
-    
+    void setColor(FieldState color);
+    int play();  
 }
