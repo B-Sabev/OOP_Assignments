@@ -5,6 +5,8 @@
  */
 package pkg4_gametest;
 
+import pkg4_gametest.Field.FieldState;
+
 /**
  *
  * @author Borislav
@@ -27,13 +29,37 @@ public class Board {
         return startBoard;    
     }
     
-    // copy
-    // winning
-    // play
-    // toString
+    public boolean winning(){
+        // check rows cols and diagonals for winning position
+        return false;
+    }
     
+    public Field[][] copy(){
+        Field[][] copyBoard = new Field[this.board.length][this.board[0].length];
+        for(int i=0; i<this.board.length; i++)
+            System.arraycopy(this.board[i], 0, copyBoard[i], 0, this.board[0].length);
+        return copyBoard; 
+    }
     
+    public void play(int col, FieldState playerMark){
+        // check for every row accross this column, insert the player mark on the first empty
+        for(int i=Board.NROW-1; i>= 0;i--){
+            if(this.board[i][col].getState().equals(FieldState.EMPTY)){
+                this.board[i][col].setState(playerMark);
+                break;
+            }
+        }
+    }
     
-    
-    
+    @Override
+    public String toString(){
+        StringBuilder boardString = new StringBuilder();
+        for(int i=0; i<Board.NROW; i++){
+            for(int j=0; j<Board.NCOL; j++){
+                boardString.append(this.board[i][j].toString()).append(" ");
+            }    
+            boardString.append("\n");
+        }
+        return boardString.toString();         
+    } 
 }
