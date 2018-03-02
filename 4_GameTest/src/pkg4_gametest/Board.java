@@ -5,14 +5,14 @@
  */
 package pkg4_gametest;
 
-import pkg4_gametest.Field.FieldState;
+import pkg4_gametest.Field.Color;
 
 /**
  *
  * @author Borislav
  */
 public class Board {
-    // for the connect 4 game
+    // Connect 4 game
     public Field[][] board;
     public static int NROW = 6;
     public static int NCOL = 7;
@@ -41,17 +41,19 @@ public class Board {
         return copyBoard; 
     }
     
-    public void play(int col, FieldState playerMark){
+    public void play(int col, Color playerColor){
         // check for every row accross this column, insert the player mark on the first empty
-        for(int i=Board.NROW-1; i>= 0;i--){
-            if(this.board[i][col].getState().equals(FieldState.EMPTY)){
-                this.board[i][col].setState(playerMark);
-                break;
+        if(col >= 0 && col < Board.NCOL){ // if col is valid
+            for(int i=Board.NROW-1; i>= 0;i--){
+                if(this.board[i][col].getState().equals(Color.EMPTY)){
+                    this.board[i][col].setState(playerColor);
+                    break;
+                }
             }
         }
+        
     }
    
-    
     @Override
     public String toString(){
         StringBuilder boardString = new StringBuilder();

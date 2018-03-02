@@ -11,39 +11,39 @@ package pkg4_gametest;
  */
 public class Field {
     
-    public static enum FieldState { EMPTY, X, O };
-    public FieldState state;
+    public static enum Color { RED, YELLOW, EMPTY};
+    public Color state;
 
-    public Field(FieldState state) {
+    public Field(Color state) {
         this.state = state;
     }
 
     public Field() {
-        this.state = FieldState.EMPTY;
+        this.state = Color.EMPTY;
     }
 
-    public FieldState getState() {
+    public Color getState() {
         return state;
     }
 
-    public void setState(FieldState state) {
+    public void setState(Color state) {
         this.state = state;
     }
     
-    public FieldState other(){
-        if(state.equals(FieldState.O))
-            return FieldState.X;
-        if(state.equals(FieldState.X)){
-            return FieldState.O;
+    public Color other(){
+        if(state.equals(Color.RED))
+            return Color.YELLOW;
+        if(state.equals(Color.YELLOW)){
+            return Color.RED;
         }
-        return FieldState.EMPTY;    
+        return Color.EMPTY;    
     }
     
     @Override
     public String toString(){
-        if(state.equals(FieldState.O))
+        if(state.equals(Color.YELLOW))
             return "O";
-        if(state.equals(FieldState.X)){
+        if(state.equals(Color.RED)){
             return "X";
         }
         return "_"; 

@@ -5,17 +5,18 @@
  */
 package pkg4_gametest;
 
-import pkg4_gametest.Field.Color;
+import java.util.Scanner;
 
 /**
  *
  * @author Borislav
  */
-public interface Player {
+public class Connect4TUI {
     
-    String getName();
-    void setName(String name);
-    Color getColor();
-    void setColor(Color color);
-    int play();  
+    private HumanPlayer user;      // the Players
+    private ComputerPlayer computer;
+
+    private Game game;
+    private Scanner in;
+    
 }

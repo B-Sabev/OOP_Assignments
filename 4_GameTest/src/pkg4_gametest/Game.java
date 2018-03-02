@@ -16,6 +16,15 @@ public class Game {
     public Player player2;
     public Player nextPlayer;
 
+    public Game(Player player1, Player player2) {
+        this.board = new Board();
+        this.player1 = player1;
+        this.player2 = player2;
+        this.nextPlayer = player1; //by default player1 is the first
+    }
+    
+    
+
     public Board getBoard() {
         return board;
     }
@@ -46,13 +55,6 @@ public class Game {
 
     public void setNextPlayer(Player nextPlayer) {
         this.nextPlayer = nextPlayer;
-    }
-
-    public Game(Board board, Player player1, Player player2) {
-        this.board = new Board();
-        this.player1 = player1;
-        this.player2 = player2;
-        this.nextPlayer = player1; // by default the first player
     }
     
     public void playTurn(){

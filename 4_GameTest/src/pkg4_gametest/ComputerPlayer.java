@@ -12,7 +12,12 @@ package pkg4_gametest;
 public class ComputerPlayer implements Player{
     
     public String name;
-    public Field.FieldState color;
+    public Field.Color color;
+
+    public ComputerPlayer(Field.Color color) {
+        this.name = "ComputerPlayer";
+        this.color = color;
+    }
     
     @Override
     public int play() {
@@ -32,12 +37,12 @@ public class ComputerPlayer implements Player{
     }
 
     @Override
-    public Field.FieldState getColor() {
+    public Field.Color getColor() {
         return this.color;
     }
     
     @Override
-    public void setColor(Field.FieldState color) {
+    public void setColor(Field.Color color) {
         this.color = color;
     }
 

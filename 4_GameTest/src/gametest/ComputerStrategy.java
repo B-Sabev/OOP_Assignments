@@ -3,19 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package pkg4_gametest;
-
-import pkg4_gametest.Field.Color;
+package gametest;
 
 /**
  *
  * @author Borislav
  */
-public interface Player {
-    
-    String getName();
-    void setName(String name);
-    Color getColor();
-    void setColor(Color color);
-    int play();  
+public class ComputerStrategy implements PlayerStrategy {
+
+    @Override
+    public int play() {
+        return 0;
+    }
 }

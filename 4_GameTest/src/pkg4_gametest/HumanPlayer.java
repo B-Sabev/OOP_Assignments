@@ -5,7 +5,7 @@
  */
 package pkg4_gametest;
 
-import pkg4_gametest.Field.FieldState;
+import pkg4_gametest.Field.Color;
 
 /**
  *
@@ -14,9 +14,13 @@ import pkg4_gametest.Field.FieldState;
 public class HumanPlayer implements Player{
     
     public String name;
-    public FieldState color;
-    
-    
+    public Color color;
+
+    public HumanPlayer(String name, Color color) {
+        this.name = name;
+        this.color = color;
+    }
+
     @Override
     public int play() {
         // TODO ask user for input
@@ -35,12 +39,12 @@ public class HumanPlayer implements Player{
     }
 
     @Override
-    public FieldState getColor() {
+    public Color getColor() {
         return this.color;
     }
     
     @Override
-    public void setColor(FieldState color) {
+    public void setColor(Color color) {
         this.color = color;
     }
 
