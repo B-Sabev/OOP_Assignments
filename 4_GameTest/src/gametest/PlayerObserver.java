@@ -7,8 +7,8 @@ package gametest;
 
 /**
  *
- * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ * @author Borislav
  */
-public interface PlayerStrategy {
-    int play();  
+public interface PlayerObserver {
+    public void update( HumanStrategy strategy, int ncol);
 }

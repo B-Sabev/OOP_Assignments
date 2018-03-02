@@ -17,42 +17,20 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        Player[] players = new Player[2];
-        players[0] = new Player("Boris", Field.RED, new HumanStrategy());
-        players[1] = new Player("Aida", Field.YELLOW, new HumanStrategy());
-        
-        Game game = new Game(players);
-        
-        for(int i =0; i<4;i++){
-            game.playTurn();
-            System.out.println(game.getBoard().toString());
-        }
-        
-        
+        (new Connect4TUI()).playGame();
         
         
         /*
         TODO
-            implement play in HumanStrategy and ComputeStrategy 
-            winnable in Board
-        
-        
-            MVC controller
-                model - specify core aspects of the game
-                view - independently of how these are presented 
-                controller - to a user or how a 
-user interacts with them 
-        
-            View - create Connect4TUI, init all players and the game, make nessesary presentation
-            
-            
-        
-        
-        
-        
-        
-        */
-       
+        implement play in HumanStrategy and ComputeStrategy
+        winnable in Board
+        MVC controller
+        model - specify core aspects of the game
+        view - independently of how these are presented
+        controller - to a user or how a
+        user interacts with them
+        View - create Connect4TUI, init all players and the game, make nessesary presentation
+         */
        
     }
     

@@ -7,11 +7,11 @@ package gametest;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class Board {
     // Connect 4 game
-    public Field[][] board;
+    private Field[][] board;
     public static int NROW = 6;
     public static int NCOL = 7;
 

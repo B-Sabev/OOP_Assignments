@@ -11,9 +11,20 @@ package gametest;
  */
 public class HumanStrategy implements PlayerStrategy {
 
+    private PlayerObserver controller;
+    private int colToPlay;
+
     @Override
     public int play() {
-        return 0;
+        return this.colToPlay;
+    }
+    
+    public void setColToPlay(int colToPlay){
+        this.colToPlay = colToPlay;
+    }
+    
+    public void register(PlayerObserver controller) {
+        this.controller = controller;
     }
     
 }

@@ -37,4 +37,5 @@ public class Player {
     public PlayerStrategy getStrategy() {
         return strategy;
     }
+    
 }

@@ -56,4 +56,11 @@ public class Game {
         return this.nextPlayer == 0 ? 1 : 0;
     }
     
+    public int winner(){
+        // if the board is in the winning position, nextPlayer is loser
+        if(this.board.winning())
+            return otherPlayer();
+        return -1;
+    }
+    
 }
