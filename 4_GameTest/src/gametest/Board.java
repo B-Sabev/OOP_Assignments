@@ -18,6 +18,12 @@ public class Board {
     public Board() {
         this.board = initBoard();
     }
+
+    public Board(Field[][] board) {
+        this.board = board;
+    }
+    
+    
     
     public final Field[][] initBoard(){
         Field[][] startBoard = new Field[Board.NROW][Board.NCOL];
@@ -102,6 +108,20 @@ public class Board {
             }
         }
         
+    }
+    
+    public boolean colIsFull(int col){
+        for(int i=0;i<Board.NROW;i++)
+            if(this.board[i][col].equals(Field.EMPTY))
+                return false;
+        return true;
+    }
+        
+    public boolean isFull(){
+        for(int i=0;i<Board.NCOL;i++)
+            if(!colIsFull(i))
+                return false;
+        return true;
     }
    
     @Override

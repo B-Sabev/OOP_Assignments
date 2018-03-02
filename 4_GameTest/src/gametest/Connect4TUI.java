@@ -9,7 +9,7 @@ import java.util.Scanner;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class Connect4TUI {
     
@@ -30,11 +30,23 @@ public class Connect4TUI {
         this.game = new Game(new Player[]{this.user, this.computer});
         PlayerController control = new PlayerController((HumanStrategy)this.user.getStrategy(), this.in);
         while(!this.game.getBoard().winning()){
+            
+            // print the board
             System.out.println(this.game.getBoard().toString());
-            if(game.getNextPlayer() == 0)
+            
+            
+            // update depending on user or computer
+            if(game.getNextPlayer() == 0){
                 control.update((HumanStrategy)this.user.getStrategy(), Board.NCOL);
-            else 
+            }
+            else {
+                // give ComputerStrategy a copy of the board
+                control.updateComputer((ComputerStrategy)this.computer.getStrategy(), this.game.getBoard().copy());
                 System.out.println("Computer played: ");
+            }
+            
+            
+            // play turn
             this.game.playTurn();
         }
         

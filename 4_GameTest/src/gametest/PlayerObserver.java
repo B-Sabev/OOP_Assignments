@@ -7,7 +7,7 @@ package gametest;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public interface PlayerObserver {
     public void update( HumanStrategy strategy, int ncol);

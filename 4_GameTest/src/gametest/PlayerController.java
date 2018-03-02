@@ -9,11 +9,11 @@ import java.util.Scanner;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class PlayerController implements PlayerObserver{
     
-    private Scanner in;
+    private final Scanner in;
 
     public PlayerController( HumanStrategy strategy, Scanner in ) {
         this.in = in;
@@ -24,6 +24,10 @@ public class PlayerController implements PlayerObserver{
     public void update( HumanStrategy strategy, int ncol ) {
         int colToPlay = readColToPlay( ncol );
         strategy.setColToPlay(colToPlay);
+    }
+    
+    public void updateComputer( ComputerStrategy strategy, Field[][] board) {
+        strategy.getCopyOfBoard(board);
     }
     
     private int readColToPlay( int ncol ) {

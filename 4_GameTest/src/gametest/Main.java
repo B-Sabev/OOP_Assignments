@@ -8,7 +8,7 @@ package gametest;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class Main {
 
@@ -17,19 +17,26 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        (new Connect4TUI()).playGame();
+        //(new Connect4TUI()).playGame();
+        Board board = new Board();
+        ComputerStrategy strategy = new ComputerStrategy(board);
+        Board[] new_boards = strategy.genPossibleBoards(Field.YELLOW);
+        for(Board b : new_boards)
+            System.out.println(b.toString());
         
         
         /*
         TODO
-        implement play in HumanStrategy and ComputeStrategy
-        winnable in Board
-        MVC controller
-        model - specify core aspects of the game
-        view - independently of how these are presented
-        controller - to a user or how a
-        user interacts with them
-        View - create Connect4TUI, init all players and the game, make nessesary presentation
+            winnable in Board
+            implement play in ComputerStrategy
+            make Connect4TUI pretty
+            Game, accept different turns, or create construct differently in Connect4TUI
+        
+            game stops if board is completely filled
+            refuse to play col if it is already filled
+       
+            When you have spare time you can add features like choosing who has the first turn, reading the name
+            of the human player, playing another game, quitting a game, getting a hint, and undo the last move.
          */
        
     }

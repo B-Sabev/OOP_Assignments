@@ -7,12 +7,12 @@ package gametest;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class Player {
     
-    private final String name;
-    private final Field color;
+    private String name;
+    private Field color;
     private PlayerStrategy strategy;
 
     public Player(String name, Field color, PlayerStrategy strategy) {
@@ -20,22 +20,34 @@ public class Player {
         this.color = color;
         this.strategy = strategy; 
     }
-    
-    // getters for everything, setter only for strategy
+
+    public Player(PlayerStrategy strategy) {
+        this.strategy = strategy;
+        this.name = "";
+        this.color = Field.EMPTY;
+    }
+
     public void setStrategy(PlayerStrategy strategy) {
         this.strategy = strategy;
+    }
+    
+    public PlayerStrategy getStrategy() {
+        return strategy;
     }
    
     public String getName() {
         return name;
+    }
+    
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Field getColor() {
         return color;
     }
 
-    public PlayerStrategy getStrategy() {
-        return strategy;
+    public void setColor(Field color) {
+        this.color = color;
     }
-    
 }
