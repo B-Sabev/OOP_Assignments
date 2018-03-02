@@ -17,17 +17,18 @@ public class Main {
      */
     public static void main(String[] args) {
         
-        //(new Connect4TUI()).playGame();
+        (new Connect4TUI()).playGame();
+        
+        /*
         Board board = new Board();
         ComputerStrategy strategy = new ComputerStrategy(board);
         Board[] new_boards = strategy.genPossibleBoards(Field.YELLOW);
         for(Board b : new_boards)
             System.out.println(b.toString());
-        
+        */
         
         /*
         TODO
-            winnable in Board
             implement play in ComputerStrategy
             make Connect4TUI pretty
             Game, accept different turns, or create construct differently in Connect4TUI

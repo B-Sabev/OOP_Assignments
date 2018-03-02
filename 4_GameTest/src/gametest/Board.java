@@ -36,8 +36,8 @@ public class Board {
     public boolean winning(){
         // check rows cols and diagonals for winning position
         Field[][] rowColDiags = new Field[4][4];
-        for(int i=0; i<Board.NROW-3; i++){
-            for(int j=0; j<Board.NCOL-3; j++){
+        for(int i=0; i<Board.NROW; i++){
+            for(int j=0; j<Board.NCOL; j++){
                 // this.board[i][j] - take the row, col and diag and compare
                 if(!this.board[i][j].equals(Field.EMPTY)){ // if it is empty, no need to check
                     rowColDiags = getRowColDiags(i,j);
