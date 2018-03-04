@@ -16,21 +16,35 @@ public class Game {
     private Player[] players;
     private int nextPlayer;
 
+    /**
+     * Constructor only only for players
+     * @param players
+     */
     public Game(Player[] players) {
         this.board = new Board();
         this.players = players;
         this.nextPlayer = 0; //by default player1 is the first
     }
 
+    /**
+     * Constructor that allows to set which player goes first
+     * @param players
+     * @param nextPlayer
+     */
+    public Game(Player[] players, int nextPlayer) {
+        this.board = new Board();
+        this.players = players;
+        this.nextPlayer = nextPlayer;
+    }
+
     public Player[] getPlayers() {
         return players;
     }
-
     public void setPlayers(Player[] players) {
         this.players = players;
     }
     
-    public Board getBoard() {
+    Board getBoard() {
         return board;
     }
 
@@ -42,6 +56,11 @@ public class Game {
         return nextPlayer;
     }
     
+    /**
+     * Ask the controller of the next player to play
+     * play the move on the board
+     * give turn to the next player
+     */
     public void playTurn(){
         if(!this.board.winning()){
             // ask the player for col to play
@@ -56,6 +75,10 @@ public class Game {
         return this.nextPlayer == 0 ? 1 : 0;
     }
     
+    /**
+     * Checks who is the winner
+     * @return the index of the winner, or -1 if it is not a winning position
+     */
     public int winner(){
         // if the board is in the winning position, nextPlayer is loser
         if(this.board.winning())

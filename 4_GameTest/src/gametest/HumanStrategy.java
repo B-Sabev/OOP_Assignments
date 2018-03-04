@@ -14,6 +14,10 @@ public class HumanStrategy implements PlayerStrategy {
     private PlayerObserver controller;
     private int colToPlay;
 
+    /**
+     * 
+     * @return int for what column to play
+     */
     @Override
     public int play() {
         return this.colToPlay;
@@ -23,6 +27,7 @@ public class HumanStrategy implements PlayerStrategy {
         this.colToPlay = colToPlay;
     }
     
+    @Override
     public void register(PlayerObserver controller) {
         this.controller = controller;
     }

@@ -10,7 +10,7 @@ package gametest;
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public enum Field {
-    
+   
     RED, YELLOW, EMPTY;
     
     public Field other(){

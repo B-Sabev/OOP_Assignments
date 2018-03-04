@@ -10,5 +10,11 @@ package gametest;
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public interface PlayerStrategy {
+
+    /**
+     *
+     * @return
+     */
     int play();  
+    void register(PlayerObserver controller);
 }

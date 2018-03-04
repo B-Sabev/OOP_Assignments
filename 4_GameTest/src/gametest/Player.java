@@ -21,10 +21,16 @@ public class Player {
         this.strategy = strategy; 
     }
 
+    public Player(String name, PlayerStrategy strategy) {
+        this.name = name;
+        this.strategy = strategy;
+        this.color = Field.RED;
+    }
+ 
     public Player(PlayerStrategy strategy) {
         this.strategy = strategy;
         this.name = "";
-        this.color = Field.EMPTY;
+        this.color = Field.RED;
     }
 
     public void setStrategy(PlayerStrategy strategy) {
