@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author Borislav
  */
-public class Constant extends Expression{
+public class Constant extends NoArgsExpression{
     
     private double value;
 
@@ -29,7 +29,7 @@ public class Constant extends Expression{
     
     @Override
     public double eval(Map<String, Double> store) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.value;
     }
 
     @Override

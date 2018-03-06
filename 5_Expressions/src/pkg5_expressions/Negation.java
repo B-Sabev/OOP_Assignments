@@ -6,7 +6,7 @@
 package pkg5_expressions;
 
 import java.util.Map;
-
+import pkg5_expressions.NoArgsExpression;
 /**
  *
  * @author Borislav
@@ -19,7 +19,7 @@ public class Negation extends SingleArgExpression{
 
     @Override
     public double eval(Map<String, Double> store) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return - super.getArg().eval(store);
     }
 
     @Override
@@ -29,7 +29,12 @@ public class Negation extends SingleArgExpression{
 
     @Override
     public String toString(){
-        return "-(" + super.getArg().toString()+")";
+        // if it is a NoArgsExpression print without brackets, else include brackets
+        if(super.getArg().getClass().getSuperclass() == NoArgsExpression.class)
+            return "-" + super.getArg().toString();
+        else 
+            return "(-" + super.getArg().toString()+")";
+        
     }
     
 }

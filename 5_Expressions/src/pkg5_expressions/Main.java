@@ -4,6 +4,8 @@
  * and open the template in the editor.
  */
 package pkg5_expressions;
+import java.util.HashMap;
+import java.util.Map;
 import static pkg5_expressions.ExpressionFactory.*;
 /**
  *
@@ -15,8 +17,12 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Expression x = mul(neg(con(10)), add(var("x"), var("y")));
+       Expression x = mul(con(10), add(var("x"), var("y")));
+       Map<String, Double> store = new HashMap<>();
+       store.put("x", 12.);
+       store.put("y", 3.);
        
+       System.out.println(x.eval(store));
        
        System.out.println(x.toString());
        

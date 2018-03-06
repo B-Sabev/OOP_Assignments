@@ -19,7 +19,7 @@ public class Add extends DoubleArgsExpression{
 
     @Override
     public double eval(Map<String, Double> store) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return super.getArg1().eval(store) + super.getArg2().eval(store);
     }
 
     @Override
@@ -29,7 +29,7 @@ public class Add extends DoubleArgsExpression{
 
     @Override
     public String toString() {
-        return super.getArg1().toString() + " + " + super.getArg2().toString();
+        return String.format("(%s + %s)", super.getArg1().toString(), super.getArg2().toString());
     }
     
 }
