@@ -45,6 +45,7 @@ public class Connect4TUI {
             this.game.playTurn();
         }
         reportWin();
+        playAgain();
     }
     
     /**
@@ -112,6 +113,23 @@ public class Connect4TUI {
         else {
             computerControl.update(this.computer.getStrategy(), this.game.getBoard().copy());
         }
+    }
+    
+     /**
+     * Prompts the user to play the game again.
+     */
+    public void playAgain() {
+        System.out.println("Would you like to play another game? (y or n)");
+        String replay = in.next();
+        if (replay.equals("y") || replay.equals("Y") ) {
+            playGame();
+        } else if (replay.equals("n") || replay.equals("N")) {
+            System.out.println("Thank you for playing!");
+            System.exit(0);
+        }
+//        else {
+//            System.out.println("Please enter a valid choice.");
+//        }
     }
     
 }
