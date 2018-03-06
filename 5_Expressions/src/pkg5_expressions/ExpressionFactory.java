@@ -11,8 +11,24 @@ package pkg5_expressions;
  */
 public class ExpressionFactory {
     
-    public static Expression con(double x){
-        return new Constant(x);
+    public static Expression con(double value){
+        return new Constant(value);
+    }
+    
+    public static Expression var(String name){
+        return new Variable(name);
+    }
+    
+    public static Expression neg(Expression arg){
+        return new Negation(arg);
+    }
+    
+    public static Expression add(Expression arg1, Expression arg2){
+        return new Add(arg1, arg2);
+    }
+    
+    public static Expression mul(Expression arg1, Expression arg2){
+        return new Multiply(arg1, arg2);
     }
     
 }

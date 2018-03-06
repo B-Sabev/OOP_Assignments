@@ -5,10 +5,41 @@
  */
 package pkg5_expressions;
 
+import java.util.Map;
+
 /**
  *
  * @author Borislav
  */
-public class Variable {
+public class Variable extends Expression{
+    
+    private String name;
+
+    public Variable(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public double eval(Map<String, Double> store) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Expression optimize() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    @Override
+    public String toString(){
+        return this.name;
+    }
     
 }
