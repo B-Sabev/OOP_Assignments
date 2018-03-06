@@ -24,7 +24,28 @@ public class Multiply extends DoubleArgsExpression{
 
     @Override
     public Expression optimize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // if both are const return their product
+        if(super.getArg1().isConstant() && super.getArg2().isConstant())
+            return new Constant(super.getArg1().eval(null) 
+                              * super.getArg2().eval(null));
+        
+        // if only arg1 is constant
+        if(super.getArg1().isConstant()){
+            if(super.getArg1().eval(null) == 0) // equal to 0, return 0
+                return new Constant(0.0);
+            if(super.getArg1().eval(null) == 1) // equal to 1, return arg2
+                return super.getArg2();
+        }
+        
+        // if only arg2 is constant 
+        if(super.getArg2().isConstant()){
+            if(super.getArg2().eval(null) == 0) // equal to 0, return 0
+                return new Constant(0.0);
+            if(super.getArg2().eval(null) == 1) // equal to 1, return arg1
+                return super.getArg1();
+        }
+        // if there is no way to reduce it, return the expression itself
+        return this;
     }
     
     @Override

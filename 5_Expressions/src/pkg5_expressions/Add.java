@@ -24,7 +24,18 @@ public class Add extends DoubleArgsExpression{
 
     @Override
     public Expression optimize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        // if both are const return their sum
+        if(super.getArg1().isConstant() && super.getArg2().isConstant())
+            return new Constant(super.getArg1().eval(null) 
+                              + super.getArg2().eval(null));
+        // if arg1 is constant and equal to 0, return arg2
+        if(super.getArg1().isConstant() && super.getArg1().eval(null) == 0)
+            return super.getArg2();
+        // if arg2 is constant and equal to 0, return arg1
+        if(super.getArg2().isConstant() && super.getArg2().eval(null) == 0)
+            return super.getArg1();
+        // if there is no way to reduce it, return the expression itself
+        return this;
     }
 
     @Override

@@ -17,4 +17,8 @@ public abstract class Expression {
     
     public abstract Expression optimize();
     
+    public boolean isConstant(){
+        return this.getClass() == Constant.class;
+    }
+    
 }

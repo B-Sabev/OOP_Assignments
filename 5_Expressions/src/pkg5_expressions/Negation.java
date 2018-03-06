@@ -24,7 +24,10 @@ public class Negation extends SingleArgExpression{
 
     @Override
     public Expression optimize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(super.getArg().isConstant()) // if constant, return its negative
+            return new Constant(-super.getArg().eval(null));
+        else
+            return this;
     }
 
     @Override

@@ -34,4 +34,5 @@ public abstract class DoubleArgsExpression extends Expression{
     public void setArg2(Expression arg2) {
         this.arg2 = arg2;
     }
+    
 }

@@ -34,7 +34,7 @@ public class Variable extends NoArgsExpression{
 
     @Override
     public Expression optimize() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this;
     }
     
     @Override
