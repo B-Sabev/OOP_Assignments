@@ -9,7 +9,7 @@ import java.util.Map;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class Add extends DoubleArgsExpression{
 
@@ -35,7 +35,7 @@ public class Add extends DoubleArgsExpression{
         if(super.getArg2().isConstant() && super.getArg2().eval(null) == 0)
             return super.getArg1();
         // if there is no way to reduce it, return the expression itself
-        return this;
+        return new Add(super.getArg1().optimize(), super.getArg2().optimize());
     }
 
     @Override

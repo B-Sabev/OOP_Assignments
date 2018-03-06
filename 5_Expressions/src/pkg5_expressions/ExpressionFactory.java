@@ -7,7 +7,7 @@ package pkg5_expressions;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class ExpressionFactory {
     

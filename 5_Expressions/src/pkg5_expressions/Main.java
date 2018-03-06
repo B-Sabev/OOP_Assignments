@@ -10,7 +10,7 @@ import java.util.Map;
 import static pkg5_expressions.ExpressionFactory.*;
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class Main {
 
@@ -28,6 +28,7 @@ public class Main {
        expressions.add( mul(var("y"), con(0)) );
        expressions.add( neg(var("x")) );
        expressions.add( neg(add(con(10), con(20))));
+       expressions.add( add(add(con(10), con(20)), add(con(10), con(20))));
        
        
        Map<String, Double> store = new HashMap<>();
@@ -39,18 +40,20 @@ public class Main {
            System.out.println("toString: " + e.toString());
            System.out.println("eval:     " + e.eval(store));
            System.out.println("optimize: " + e.optimize());
+           System.out.println();
        }
        
        
        
        /*
        TODO 
-            - implement optimize
+            - problem with optimize, some form of recursion required
             - write the test class
        
         Optional
             - add more expressions 
             - Add all extra constructors into the Static Package
+            - parse expressions from the command line
        */
     }
     
