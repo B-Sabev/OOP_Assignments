@@ -3,19 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package gametest;
-
-
+package pkg5_expressions;
+import static pkg5_expressions.ExpressionFactory.*;
 /**
  *
- * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ * @author Borislav
  */
 public class Main {
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {       
-        (new Connect4TUI()).playGame();
-    }  
+    public static void main(String[] args) {
+       Expression x = new Multiply(con(10), con(20));
+       
+       
+       System.out.println(x.toString());
+    }
+    
 }
