@@ -45,7 +45,7 @@ public class Multiply extends DoubleArgsExpression{
                 return super.getArg1();
         }
         // if there is no way to reduce it, return the expression itself
-        return this;
+        return new Multiply(super.getArg1().optimize(), super.getArg2().optimize()).optimize();
     }
     
     @Override

@@ -27,16 +27,19 @@ public class Negation extends SingleArgExpression{
         if(super.getArg().isConstant()) // if constant, return its negative
             return new Constant(-super.getArg().eval(null));
         else
-            return this;
+            return new Negation(super.getArg().optimize());
     }
 
     @Override
     public String toString(){
+        ///*
         // if it is a NoArgsExpression print without brackets, else include brackets
         if(super.getArg().getClass().getSuperclass() == NoArgsExpression.class)
             return "-" + super.getArg().toString();
         else 
             return "(-" + super.getArg().toString()+")";
+        // */
+        //return "(-" + super.getArg().toString()+")";
         
     }
     
