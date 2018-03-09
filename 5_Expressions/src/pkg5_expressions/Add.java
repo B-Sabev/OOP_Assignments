@@ -6,6 +6,7 @@
 package pkg5_expressions;
 
 import java.util.Map;
+import static pkg5_expressions.Constant.isConstant;
 
 /**
  *
@@ -25,13 +26,13 @@ public class Add extends DoubleArgsExpression{
     @Override
     public Expression optimize() {
         // if both are const eval the expression
-        if(super.getArg1().isConstant() && super.getArg2().isConstant())
+        if(isConstant(super.getArg1()) && isConstant(super.getArg2()))
             return new Constant(this.eval(null));
         // if arg1 is constant and equal to 0, return arg2
-        if(super.getArg1().isConstant() && super.getArg1().eval(null) == 0)
+        if(isConstant(super.getArg1()) && super.getArg1().eval(null) == 0)
             return super.getArg2();
         // if arg2 is constant and equal to 0, return arg1
-        if(super.getArg2().isConstant() && super.getArg2().eval(null) == 0)
+        if(isConstant(super.getArg2()) && super.getArg2().eval(null) == 0)
             return super.getArg1();
         // if there is no way to reduce it, return the expression itself with optimized args
         return new Add(super.getArg1().optimize(), super.getArg2().optimize()).optimize();

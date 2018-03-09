@@ -13,7 +13,8 @@ public abstract class SingleArgExpression extends Expression{
     
     private Expression arg;
 
-    public SingleArgExpression(Expression e) {
+    protected SingleArgExpression(Expression e) {
+        super();
         this.arg = e;
     }
 
@@ -24,6 +25,4 @@ public abstract class SingleArgExpression extends Expression{
     public void setArg(Expression arg) {
         this.arg = arg;
     }
-    
-    
 }

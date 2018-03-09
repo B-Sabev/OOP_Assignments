@@ -6,7 +6,8 @@
 package pkg5_expressions;
 
 import java.util.Map;
-import pkg5_expressions.NoArgsExpression;
+import static pkg5_expressions.Constant.isConstant;
+import static pkg5_expressions.Variable.isVariable;
 /**
  *
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
@@ -24,7 +25,7 @@ public class Negation extends SingleArgExpression{
 
     @Override
     public Expression optimize() {
-        if(super.getArg().isConstant()) // if constant, return its negative
+        if(isConstant(super.getArg())) // if constant, return its negative
             return new Constant(-super.getArg().eval(null));
         else                            // else optimize its argument
             return new Negation(super.getArg().optimize());
@@ -32,15 +33,11 @@ public class Negation extends SingleArgExpression{
 
     @Override
     public String toString(){
-        ///*
-        // if it is a NoArgsExpression print without brackets, else include brackets
-        if(super.getArg().getClass().getSuperclass() == NoArgsExpression.class)
+        // if it's an expression without arguments print without brackets, else include brackets
+        if(isConstant(super.getArg()) || isVariable(super.getArg()))
             return "-" + super.getArg().toString();
         else 
             return "(-" + super.getArg().toString()+")";
-        // */
-        //return "(-" + super.getArg().toString()+")";
-        
     }
     
 }
