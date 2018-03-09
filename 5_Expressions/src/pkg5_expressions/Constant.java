@@ -27,6 +27,12 @@ public class Constant extends NoArgsExpression{
         this.value = value;
     }
     
+    
+    // Replace the old method with this one
+    public static boolean isConstant(Object o){
+        return o.getClass() == Constant.class;
+    }
+    
     @Override
     public double eval(Map<String, Double> store) {
         return this.value;

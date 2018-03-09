@@ -13,8 +13,9 @@ public abstract class DoubleArgsExpression extends Expression{
     
     private Expression arg1;
     private Expression arg2;
-
-    public DoubleArgsExpression(Expression arg1, Expression arg2) {
+    
+    // should I use protected ???
+    protected DoubleArgsExpression(Expression arg1, Expression arg2) {
         this.arg1 = arg1;
         this.arg2 = arg2;
     }

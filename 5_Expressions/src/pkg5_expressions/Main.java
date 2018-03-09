@@ -18,7 +18,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-       Expression x = add(var("x"), var("y"));
+      
        
        ArrayList<Expression> expressions = new ArrayList<>();
        expressions.add( mul(con(10), con(20)) );
@@ -44,11 +44,13 @@ public class Main {
            System.out.println("optimize: " + e.optimize());
            System.out.println();
        }
-       
+       System.out.println(store.toString());
        
        
        /*
        TODO 
+            - Try the program with Expression as Interface and
+                the other 3 as classes implementing the Expression
             - write the test class
        
         Optional

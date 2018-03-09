@@ -26,7 +26,7 @@ public class Negation extends SingleArgExpression{
     public Expression optimize() {
         if(super.getArg().isConstant()) // if constant, return its negative
             return new Constant(-super.getArg().eval(null));
-        else
+        else                            // else optimize its argument
             return new Negation(super.getArg().optimize());
     }
 

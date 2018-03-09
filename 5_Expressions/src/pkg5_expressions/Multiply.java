@@ -24,10 +24,9 @@ public class Multiply extends DoubleArgsExpression{
 
     @Override
     public Expression optimize() {
-        // if both are const return their product
+        // if both are const eval them
         if(super.getArg1().isConstant() && super.getArg2().isConstant())
-            return new Constant(super.getArg1().eval(null) 
-                              * super.getArg2().eval(null));
+            return new Constant(this.eval(null));
         
         // if only arg1 is constant
         if(super.getArg1().isConstant()){
@@ -44,7 +43,7 @@ public class Multiply extends DoubleArgsExpression{
             if(super.getArg2().eval(null) == 1) // equal to 1, return arg1
                 return super.getArg1();
         }
-        // if there is no way to reduce it, return the expression itself
+        // if there is no way to reduce it, optimize its arguments
         return new Multiply(super.getArg1().optimize(), super.getArg2().optimize()).optimize();
     }
     
