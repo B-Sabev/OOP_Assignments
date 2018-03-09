@@ -33,6 +33,9 @@ public class Main {
        expressions.add( add( add(add(con(10),con(10)), add(add(add(con(10), con(20)), add(con(10), con(20))), con(10))), con(10)));
        expressions.add( mul(con(20), neg(add(mul(con(20), con(10)),add(con(20), con(10))))) );
        
+       
+       expressions.add( mul(var("x"), var("y")) );
+       
        Map<String, Double> store = new HashMap<>();
        store.put("x", 12.);
        store.put("y", 3.);

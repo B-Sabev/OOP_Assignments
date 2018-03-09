@@ -6,6 +6,8 @@
 package pkg5_expressions;
 
 import java.util.Map;
+import static pkg5_expressions.Constant.isConstant;
+import static pkg5_expressions.Variable.isVariable;
 
 /**
  *
@@ -25,11 +27,11 @@ public class Multiply extends DoubleArgsExpression{
     @Override
     public Expression optimize() {
         // if both are const eval them
-        if(super.getArg1().isConstant() && super.getArg2().isConstant())
+        if(isConstant(super.getArg1()) && isConstant(super.getArg2()))
             return new Constant(this.eval(null));
         
         // if only arg1 is constant
-        if(super.getArg1().isConstant()){
+        if(isConstant(super.getArg1())){
             if(super.getArg1().eval(null) == 0) // equal to 0, return 0
                 return new Constant(0.0);
             if(super.getArg1().eval(null) == 1) // equal to 1, return arg2
@@ -37,12 +39,17 @@ public class Multiply extends DoubleArgsExpression{
         }
         
         // if only arg2 is constant 
-        if(super.getArg2().isConstant()){
+        if(isConstant(super.getArg2())){
             if(super.getArg2().eval(null) == 0) // equal to 0, return 0
                 return new Constant(0.0);
             if(super.getArg2().eval(null) == 1) // equal to 1, return arg1
                 return super.getArg1();
         }
+        
+        // if both are variables, there is no way to optimize it further
+        if(isVariable(super.getArg1()) && isVariable(super.getArg2()) )
+            return this;
+        
         // if there is no way to reduce it, optimize its arguments
         return new Multiply(super.getArg1().optimize(), super.getArg2().optimize()).optimize();
     }

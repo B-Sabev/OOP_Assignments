@@ -11,11 +11,12 @@ import java.util.Map;
  *
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
-public class Variable extends NoArgsExpression{
+public class Variable extends Expression{
     
     private String name;
 
     public Variable(String name) {
+        super();
         this.name = name;
     }
 
@@ -25,6 +26,10 @@ public class Variable extends NoArgsExpression{
 
     public void setName(String name) {
         this.name = name;
+    }
+    
+    public static boolean isVariable(Object o){
+        return o.getClass() == Variable.class;
     }
 
     @Override

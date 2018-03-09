@@ -11,11 +11,12 @@ import java.util.Map;
  *
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
-public class Constant extends NoArgsExpression{
+public class Constant extends Expression{
     
     private double value;
 
     public Constant(double value) {
+        super();
         this.value = value;
     }
 
@@ -27,8 +28,6 @@ public class Constant extends NoArgsExpression{
         this.value = value;
     }
     
-    
-    // Replace the old method with this one
     public static boolean isConstant(Object o){
         return o.getClass() == Constant.class;
     }
