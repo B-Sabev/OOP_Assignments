@@ -25,10 +25,15 @@ public class Negation extends SingleArgExpression{
 
     @Override
     public Expression optimize() {
+        
+        
         if(isConstant(super.getArg())) // if constant, return its negative
             return new Constant(-super.getArg().eval(null));
-        else                            // else optimize its argument
-            return new Negation(super.getArg().optimize());
+        
+        if(!this.isReducable())
+            return this;
+        
+        return new Negation(super.getArg().optimize()).optimize();
     }
 
     @Override
@@ -42,7 +47,6 @@ public class Negation extends SingleArgExpression{
     
     @Override
     public boolean isReducable(){
-        return getArg().isReducable();
+        return super.getArg().isReducable() || isConstant(super.getArg());
     }
-    
 }

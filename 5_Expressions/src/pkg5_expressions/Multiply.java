@@ -24,46 +24,48 @@ public class Multiply extends DoubleArgsExpression{
         return super.getArg1().eval(store) * super.getArg2().eval(store);
     }
     
-    
-    
     @Override
-    public Expression optimize() {
-        // if both are const eval them
-        if(isConstant(super.getArg1()) && isConstant(super.getArg2()))
-            return new Constant(this.eval(null));
-        
-        // if only arg1 is constant
+    public Expression optimize(){ 
+        // the first is constant
         if(isConstant(super.getArg1())){
-            if(super.getArg1().eval(null) == 0) // equal to 0, return 0
-                return new Constant(0.0);
-            if(super.getArg1().eval(null) == 1) // equal to 1, return arg2
+            // both const - eval
+            if(isConstant(super.getArg2()))
+                return new Constant(this.eval(null));
+            
+            // if 0, return 0, if 1 return the first arg
+            if(super.getArg1().eval(null) == 0)
+                return new Constant(0.);
+            else if (super.getArg1().eval(null) == 1)
                 return super.getArg2().optimize();
+            else if(this.isReducable())
+                return new Multiply(super.getArg1(), super.getArg2().optimize()).optimize();
+            else 
+                return new Multiply(super.getArg1(), super.getArg2().optimize());
         }
-        
-        // if only arg2 is constant 
+         // the second is constant
         if(isConstant(super.getArg2())){
-            if(super.getArg2().eval(null) == 0) // equal to 0, return 0
-                return new Constant(0.0);
-            if(super.getArg2().eval(null) == 1) // equal to 1, return arg1
+            // both const is already checked for
+            // if 0, return 0, if 1 return the first arg
+            if(super.getArg2().eval(null) == 0)
+                return new Constant(0.);
+            else if (super.getArg2().eval(null) == 1)
                 return super.getArg1().optimize();
+            else if(this.isReducable())
+                return new Multiply(super.getArg1().optimize(), super.getArg2()).optimize();
+            else
+                return new Multiply(super.getArg1(), super.getArg2().optimize());
         }
         
-        // if both are variables, there is no way to optimize it further
-        if(isVariable(super.getArg1()) && isVariable(super.getArg2()) )
+         if(!this.isReducable())
             return this;
         
-        // if there is no way to reduce it, optimize its arguments
-        return new Multiply(super.getArg1().optimize(), super.getArg2().optimize());
+        // if nothing else, optimize the arugments and the expression on its way back
+        return new Multiply(super.getArg1().optimize(), super.getArg2().optimize()).optimize();
     }
     
     @Override
     public String toString() {
         return String.format("(%s * %s)", super.getArg1().toString(), super.getArg2().toString());
-    }
-    
-    @Override
-    public boolean isReducable(){
-        return super.getArg1().isReducable() && super.getArg2().isReducable();
     }
     
 }

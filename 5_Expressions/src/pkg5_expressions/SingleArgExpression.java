@@ -17,6 +17,11 @@ public abstract class SingleArgExpression extends Expression{
         super();
         this.arg = e;
     }
+    
+    @Override
+    public boolean isReducable(){
+        return this.arg.isReducable();
+    }
 
     public Expression getArg() {
         return arg;

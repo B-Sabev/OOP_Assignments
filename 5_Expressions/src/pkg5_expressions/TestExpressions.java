@@ -37,11 +37,13 @@ public class TestExpressions {
        expressions.add( mul(var("y"), con(1)) );
        expressions.add( mul(var("y"), con(0)) );
        expressions.add( neg(var("x")) );
-       expressions.add( mul(var("x"), var("y")) );   
+       expressions.add( mul(var("x"), var("y")) ); 
+       expressions.add( add(var("x"), con(0)));
+       expressions.add( add(con(0), var("y")));
        expressions.add( add(add(con(10), con(20)), add(con(20), con(10))));
        expressions.add( neg(add(con(10), con(20))));
        expressions.add( add(con(10), con(20)) );
-       expressions.add( add(neg(con(10)), neg(con(20))));
+       expressions.add( add(con(10), neg(con(20))));
        expressions.add( add( add(add(con(10),con(10)), add(add(add(con(10), con(20)), add(con(10), con(20))), con(10))), con(10)));
        expressions.add( mul(con(20), neg(add(mul(con(20), con(10)),add(con(20), con(10))))) );   
        expressions.add( add(con(0), add(con(20), con(10))));
