@@ -23,7 +23,9 @@ public class Multiply extends DoubleArgsExpression{
     public double eval(Map<String, Double> store) {
         return super.getArg1().eval(store) * super.getArg2().eval(store);
     }
-
+    
+    
+    
     @Override
     public Expression optimize() {
         // if both are const eval them
@@ -35,7 +37,7 @@ public class Multiply extends DoubleArgsExpression{
             if(super.getArg1().eval(null) == 0) // equal to 0, return 0
                 return new Constant(0.0);
             if(super.getArg1().eval(null) == 1) // equal to 1, return arg2
-                return super.getArg2();
+                return super.getArg2().optimize();
         }
         
         // if only arg2 is constant 
@@ -43,7 +45,7 @@ public class Multiply extends DoubleArgsExpression{
             if(super.getArg2().eval(null) == 0) // equal to 0, return 0
                 return new Constant(0.0);
             if(super.getArg2().eval(null) == 1) // equal to 1, return arg1
-                return super.getArg1();
+                return super.getArg1().optimize();
         }
         
         // if both are variables, there is no way to optimize it further
@@ -51,12 +53,17 @@ public class Multiply extends DoubleArgsExpression{
             return this;
         
         // if there is no way to reduce it, optimize its arguments
-        return new Multiply(super.getArg1().optimize(), super.getArg2().optimize()).optimize();
+        return new Multiply(super.getArg1().optimize(), super.getArg2().optimize());
     }
     
     @Override
     public String toString() {
         return String.format("(%s * %s)", super.getArg1().toString(), super.getArg2().toString());
+    }
+    
+    @Override
+    public boolean isReducable(){
+        return super.getArg1().isReducable() && super.getArg2().isReducable();
     }
     
 }

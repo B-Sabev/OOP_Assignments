@@ -40,4 +40,9 @@ public class Negation extends SingleArgExpression{
             return "(-" + super.getArg().toString()+")";
     }
     
+    @Override
+    public boolean isReducable(){
+        return getArg().isReducable();
+    }
+    
 }

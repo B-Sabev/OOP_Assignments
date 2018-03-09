@@ -18,15 +18,23 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-      
-       (new TestExpressions()).test();
+        
+        /*
+        ArrayList<String> s = new ArrayList<>();
+        
+        s.add("Something");
+        s.add("Something else");
        
+        s.get(s.size()-1);
+        */
+        
+       Expression e = add(add(con(10), con(20)), add(con(10), con(20)));
+       System.out.println(e.toString());
+       e.optimize();
+       (new TestExpressions()).test();
        
        /*
        TODO 
-            - Try the program with Expression as Interface and
-                the other 3 as classes implementing the Expression
-            - write the test class
        
         Optional
             - add more expressions 

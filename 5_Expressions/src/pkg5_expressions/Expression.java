@@ -20,5 +20,6 @@ public abstract class Expression {
     public abstract String toString();
     public abstract double eval(Map<String, Double> store);
     public Expression optimize(){ return this; }
+    public boolean isReducable(){ return false; }
  
 }
