@@ -100,7 +100,8 @@ public class TestExpressions {
     
     
     public Expression parseExpression(){
-        System.out.println("Example: add(mul(2, 3), x)\n");
+        //System.out.println("Example: add(mul(2, 3), x)\n");
+        System.out.println("Example: add(2, 3)\n");
         System.out.print("Please input the expression you wish to evaluate:  ");
         scan.nextLine();
         String exp = scan.nextLine();
@@ -109,14 +110,56 @@ public class TestExpressions {
         Scanner s = new Scanner(exp);
         s.useDelimiter("\\s+|(?=\\()|(?=\\))|(?=,)|(?<=\\()|(?<=\\)|(?<=,))");
         ArrayList<String> tokens = new ArrayList<>();
+        Expression result = null;
+        int firstValue = Integer.parseInt(s.findInLine("[0-9]*"));
+        int secondValue = Integer.parseInt(s.findInLine("[0-9]*"));
         while (s.hasNext()) {
-            tokens.add(s.next());
+            System.out.println(s.next());
+      
         }
+        if (tokens.get(0).equals("add")) {
+            //result = add();
+            //result = firstValue + secondValue;  //not right
+            result = add(firstValue, secondValue);
+        }
+        
+//    public Add(Expression arg1, Expression arg2) {
+//        super(arg1, arg2);
+//    }
+//            if(tokens.get(tokens.indexOf("add"))) {
+//                
+//            }
+            //tokens.add(s.next());
+//            String target = tokens.get(0);
+//            
+//            for (Expression e : tokens) {
+//                if (target.equals("add")) {
+//                    result = tokens.add( add(tokens.get(0)));
+//                    break;
+//                }
+//            }
+//            
+
+        
+        //result = 
+
+//        ArrayList<Integer> arrayOfInts = new ArrayList<Integer>();
+//        for (Object str : tokens) {
+//            arrayOfInts.add(Integer.parseInt((String) str));
+//        }        
+//        if(tokens.get(2) instanceof String){
+//            int i = (int)tokens.get(2);
+//        }
+//        if (tokens.get(0) == "add") {
+//            result = tokens.get(2) + tokens.get(4);
+//        }
         System.out.print("\n");
+//        expressions.add( mul(con(10), con(20)) );
+//        expressions.add( mul(con(1), var("x")) );
         
         
-        
-        return new Constant(10);
+        return result;
+        //return new Constant(10);
     }
     
     public String printTestExpression(Expression e){
