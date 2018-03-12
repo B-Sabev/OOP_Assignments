@@ -30,12 +30,10 @@ public class Main {
             for(int j=0;j<N;j++)
                 System.out.println(game.getBoard()[i][j] + "at position " + "("+i+", "+j+")");
         
-        // Use this for manhattan
-        // number - get real position, get true position, compute manhattan, add to all the rest
-        //ind -> correct position
-        //(ind-1) / 3, (ind-1) % 3
+        
         
         System.out.println();
+        game.eval();
         
         
         /*

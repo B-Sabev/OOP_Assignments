@@ -194,6 +194,28 @@ public class SlidingGame implements Configuration{
     public int compareTo(Configuration o) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public double eval() {
+        // implement the manhatan heuristic
+        
+        // Use this for manhattan
+        // number - get real position, get true position, compute manhattan, add to all the rest
+        //ind -> correct position
+        //(ind-1) / 3, (ind-1) % 3
+        int num;
+        double total_dist = 0;
+        for(int i=0; i<N; i++){
+            for(int j=0; j<N; j++){
+                num = this.board[i][j];
+                int solve_i = (num-1) / 3;
+                int solve_j = (num-1) % 3;
+                double dist = manhattan_dist(i,j,solve_i,solve_j);
+                total_dist += dist;   
+            }
+        }
+        return total_dist;
+    }
     
     
 }

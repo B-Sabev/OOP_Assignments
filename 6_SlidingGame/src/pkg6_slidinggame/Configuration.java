@@ -21,5 +21,6 @@ public interface Configuration extends Comparable<Configuration>{
     public default List<Configuration> pathFromRoot(){
         return new ArrayList<>(); // there is no path because this is root
     }
+    public abstract double eval();
     
 }
