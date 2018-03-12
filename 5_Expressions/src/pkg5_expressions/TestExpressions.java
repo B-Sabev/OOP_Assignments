@@ -20,10 +20,8 @@ public class TestExpressions {
     
     private ArrayList<Expression> exprs;
     private Map<String, Double> store;
-    private Scanner scan;
 
     public TestExpressions() {
-        scan = new Scanner(System.in); 
         exprs = null;
         store = null;
     }
@@ -68,98 +66,6 @@ public class TestExpressions {
         for(Expression e : this.exprs){
             System.out.println(printTestExpression(e));
         }
-    }
-    
-    
-    public void runUserLoop() {
-        boolean run = true;
-        int choice;
-
-        while (run) {
-            System.out.print("\nWould you like to evaluate your own expression(1), see examples(2), or quit(3)?  ");
-            choice = this.scan.nextInt();
-            System.out.print("\n");
-
-            switch (choice) {
-                case 1:
-                    Expression e = parseExpression();
-                    System.out.println(printTestExpression(e));
-                    break;
-                case 2:
-                    test();
-                    break;
-                case 3:
-                    run = false;
-                    System.exit(0);
-                default:
-                    System.out.println("Invalid choice, please select 1-3");
-                    break;
-            }
-        }
-    }
-    
-    
-    public Expression parseExpression(){
-        //System.out.println("Example: add(mul(2, 3), x)\n");
-        System.out.println("Example: add(2, 3)\n");
-        System.out.print("Please input the expression you wish to evaluate:  ");
-        scan.nextLine();
-        String exp = scan.nextLine();
-        System.out.print(exp);
-        System.out.print("\n");
-        Scanner s = new Scanner(exp);
-        s.useDelimiter("\\s+|(?=\\()|(?=\\))|(?=,)|(?<=\\()|(?<=\\)|(?<=,))");
-        ArrayList<String> tokens = new ArrayList<>();
-        Expression result = null;
-        int firstValue = Integer.parseInt(s.findInLine("[0-9]*"));
-        int secondValue = Integer.parseInt(s.findInLine("[0-9]*"));
-        while (s.hasNext()) {
-            System.out.println(s.next());
-      
-        }
-        if (tokens.get(0).equals("add")) {
-            //result = add();
-            //result = firstValue + secondValue;  //not right
-            result = add(firstValue, secondValue);
-        }
-        
-//    public Add(Expression arg1, Expression arg2) {
-//        super(arg1, arg2);
-//    }
-//            if(tokens.get(tokens.indexOf("add"))) {
-//                
-//            }
-            //tokens.add(s.next());
-//            String target = tokens.get(0);
-//            
-//            for (Expression e : tokens) {
-//                if (target.equals("add")) {
-//                    result = tokens.add( add(tokens.get(0)));
-//                    break;
-//                }
-//            }
-//            
-
-        
-        //result = 
-
-//        ArrayList<Integer> arrayOfInts = new ArrayList<Integer>();
-//        for (Object str : tokens) {
-//            arrayOfInts.add(Integer.parseInt((String) str));
-//        }        
-//        if(tokens.get(2) instanceof String){
-//            int i = (int)tokens.get(2);
-//        }
-//        if (tokens.get(0) == "add") {
-//            result = tokens.get(2) + tokens.get(4);
-//        }
-        System.out.print("\n");
-//        expressions.add( mul(con(10), con(20)) );
-//        expressions.add( mul(con(1), var("x")) );
-        
-        
-        return result;
-        //return new Constant(10);
     }
     
     public String printTestExpression(Expression e){
