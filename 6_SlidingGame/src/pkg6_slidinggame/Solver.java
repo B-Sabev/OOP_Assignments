@@ -5,6 +5,7 @@
  */
 package pkg6_slidinggame;
 
+import java.util.LinkedList;
 import java.util.Queue;
 
 /**
@@ -18,6 +19,8 @@ public class Solver {
 
     public Solver(Configuration g) {
         // init toExamine and add g as a start value
+        toExamine = new LinkedList<>(); // may need to change to PriorityQueue when going for best first
+        toExamine.add(g);
     }
     
     

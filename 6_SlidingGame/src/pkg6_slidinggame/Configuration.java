@@ -5,6 +5,7 @@
  */
 package pkg6_slidinggame;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -18,7 +19,7 @@ public interface Configuration extends Comparable<Configuration>{
     public abstract Collection<Configuration> successors();
     public abstract boolean isSolution();
     public default List<Configuration> pathFromRoot(){
-        throw new UnsupportedOperationException( "pathFromRoot: not supported yet.");
+        return new ArrayList<>(); // there is no path because this is root
     }
     
 }
