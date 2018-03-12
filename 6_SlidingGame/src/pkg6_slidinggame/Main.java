@@ -7,6 +7,7 @@ package pkg6_slidinggame;
 
 import java.util.Collection;
 import java.util.List;
+import static pkg6_slidinggame.SlidingGame.N;
 
 /**
  *
@@ -18,32 +19,45 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        int[] start = {9,2,3,4,1,6,7,8,5};
-        
+       
+        int[] start = {1,4,7,
+                       2,5,8,
+                       3,6,9};
         SlidingGame game = new SlidingGame(start);
         System.out.println(game.toString());
         
-        System.out.println("Successors");
+        for(int i=0; i<N; i++)
+            for(int j=0;j<N;j++)
+                System.out.println(game.getBoard()[i][j] + "at position " + "("+i+", "+j+")");
         
-        Collection<Configuration> successors = game.successors();
-        for(Configuration s : successors){
-            System.out.println(s.toString());
-            
-            SlidingGame g = (SlidingGame) s;
-            System.out.println(g.pathFromRoot());
-        }
+        // Use this for manhattan
+        // number - get real position, get true position, compute manhattan, add to all the rest
+        //ind -> correct position
+        //(ind-1) / 3, (ind-1) % 3
+        
+        System.out.println();
         
         
-        
+        /*
         Solver solver = new Solver(game);
         System.out.println(solver.solve());
+        List<Configuration> path = solver.getPath();
+        
+        System.out.println("Print path");
+        for(Configuration p : path)
+            System.out.println(p.toString());
+        */
+        
+        
         /*
             TODO
-                - test pathFromRoot
-        
-        
-        */
+                - Solver - keep track of visited to prevent cycles
+                - compare visited with a HashSet
+                - use best first search by implementing Manhattan distance as heuristic
+                    - implement CompareTo with the manhattan value
+                    - change to PriorityQueue
+                - change the puzzle to 4x4
+        */ 
     }
     
 }

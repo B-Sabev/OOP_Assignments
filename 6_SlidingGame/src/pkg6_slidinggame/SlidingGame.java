@@ -31,8 +31,25 @@ public class SlidingGame implements Configuration{
         board = new int[N][N];
         fillBoard(start);
         this.parent = parent;
-    } 
-    
+    }
+    /*
+    public int[][] board1Dto2D(int[] board1D){
+        assert board1D.length == N * N : "Length of specified board incorrect";
+        int[][] board2D = new int[N][N];
+        int ind = 0;
+        for(int i=0; i<N; i++){
+            for(int j=0; j<N; j++){
+                board2D[i][j] = board1D[ind];
+                if(board1D[ind] == HOLE){
+                    holeX = j;
+                    holeY = i;
+                }
+                ind++;  
+            }
+        }
+        return board2D;
+    }
+    */
     public final void fillBoard(int[] start){
         assert start.length == N * N : "Length of specified board incorrect";
         for (int p = 0; p < start.length; p++) {
@@ -61,7 +78,7 @@ public class SlidingGame implements Configuration{
         StringBuilder s = new StringBuilder();
         for(int i=0; i<N; i++){
             for(int j=0; j<N; j++)
-                if(i == this.holeY && j == this.holeX)
+                if(i == this.holeX && j == this.holeY)
                     s.append("_ ");
                 else 
                     s.append(board[i][j]).append(" ");  
@@ -150,7 +167,9 @@ public class SlidingGame implements Configuration{
         path.add(this.parent);
         return path;
     }
-
+    
+    
+    
     @Override
     public boolean equals(Object o) {
         if(o.getClass() == this.getClass()){
