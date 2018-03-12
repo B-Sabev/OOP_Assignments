@@ -30,7 +30,7 @@ public class SlidingGame implements Configuration{
     public SlidingGame(int[] start, Configuration parent) {
         board = new int[N][N];
         fillBoard(start);
-        parent = parent;
+        this.parent = parent;
     } 
     
     public final void fillBoard(int[] start){
@@ -42,6 +42,18 @@ public class SlidingGame implements Configuration{
                 holeY = p / N;
             }
         }
+    }
+    
+    public int[] flattenBoard(){
+        // Makes this.board as a 1d array, same as start
+        int[] flatBoard = new int[N*N];
+        int ind = 0;
+        for(int i=0;i<N;i++)
+            for(int j=0;j<N;j++){
+                flatBoard[ind] = this.board[j][i];
+                ind++;
+            }
+        return flatBoard;
     }
     
     @Override
@@ -83,9 +95,26 @@ public class SlidingGame implements Configuration{
     public Collection<Configuration> successors() {
         Collection<Configuration> successors = new ArrayList<>();
         Move[] moves = Move.getMoves();
+        int[] flat_board;
+        int[] dxdy;
+        int oldHoleInd, newHoleInd;
+        
         for(int i=0; i<moves.length; i++){
             if(isValidMove(moves[i])){
-                // execute the move and add it to successors
+                flat_board = flattenBoard();
+                // make the move
+                dxdy = moves[i].toIndex();
+                oldHoleInd = holeX + N * holeY;
+                newHoleInd = holeX + dxdy[0] + N * (holeY + dxdy[1]);
+                
+                
+                // swap 2 values 
+                int temp = flat_board[oldHoleInd]; // current hole
+                flat_board[oldHoleInd] = flat_board[newHoleInd];
+                flat_board[newHoleInd] = temp;
+                
+                // add new board to successors
+                successors.add(new SlidingGame(flat_board, this));
             }
         }
         return successors;

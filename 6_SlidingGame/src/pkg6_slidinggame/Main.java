@@ -5,6 +5,8 @@
  */
 package pkg6_slidinggame;
 
+import java.util.Collection;
+
 /**
  *
  * @author Borislav
@@ -16,16 +18,16 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        int[] start = {4,9,7,2,1,8,3,6,5};
+        int[] start = {1,2,3,4,9,6,7,8,5};
         
         SlidingGame game = new SlidingGame(start);
         System.out.println(game.toString());
         
-        System.out.println(game.isSolution());
+        System.out.println("Successors");
         
-        Move[] moves = Move.getMoves();
-        for(int i=0; i<4; i++){
-            System.out.println("Move " + moves[i] + " is " + game.isValidMove(moves[i]));
+        Collection<Configuration> successors = game.successors();
+        for(Configuration s : successors){
+            System.out.println(s.toString());
         }
     }
     
