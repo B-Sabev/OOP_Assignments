@@ -21,19 +21,20 @@ public class Main {
     public static void main(String[] args) {
        
         int[] start = {1,4,7,
-                       2,5,8,
-                       3,6,9};
+                       2,5,6,
+                       3,9,8};
         SlidingGame game = new SlidingGame(start);
         System.out.println(game.toString());
         
+        /*
         for(int i=0; i<N; i++)
             for(int j=0;j<N;j++)
                 System.out.println(game.getBoard()[i][j] + "at position " + "("+i+", "+j+")");
-        
+        */
         
         
         System.out.println();
-        game.eval();
+        System.out.println(game.eval());
         
         
         /*
@@ -51,9 +52,6 @@ public class Main {
             TODO
                 - Solver - keep track of visited to prevent cycles
                 - compare visited with a HashSet
-                - use best first search by implementing Manhattan distance as heuristic
-                    - implement CompareTo with the manhattan value
-                    - change to PriorityQueue
                 - change the puzzle to 4x4
         */ 
     }

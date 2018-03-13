@@ -192,29 +192,28 @@ public class SlidingGame implements Configuration{
 
     @Override
     public int compareTo(Configuration o) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return this.eval() - o.eval();
     }
 
     @Override
-    public double eval() {
-        // implement the manhatan heuristic
-        
-        // Use this for manhattan
-        // number - get real position, get true position, compute manhattan, add to all the rest
-        //ind -> correct position
-        //(ind-1) / 3, (ind-1) % 3
-        int num;
-        double total_dist = 0;
+    public int eval() {
+        int num, dist, total_dist=0;
+        int solve_i, solve_j;
         for(int i=0; i<N; i++){
             for(int j=0; j<N; j++){
                 num = this.board[i][j];
-                int solve_i = (num-1) / 3;
-                int solve_j = (num-1) % 3;
-                double dist = manhattan_dist(i,j,solve_i,solve_j);
+                solve_i = (num-1) / 3; // get the position the number should be in
+                solve_j = (num-1) % 3;
+                dist = manhattanDist(i,j,solve_i,solve_j); // compute dist
                 total_dist += dist;   
             }
         }
         return total_dist;
+    }
+
+    private int manhattanDist(int x1, int y1, int x2, int y2) {
+        // compute the manhattan dist 
+        return Math.abs(x1-x2) + Math.abs(y1-y2); 
     }
     
     
