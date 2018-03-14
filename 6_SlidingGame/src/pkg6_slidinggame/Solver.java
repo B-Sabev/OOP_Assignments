@@ -7,7 +7,11 @@ import java.util.*;
 /**
  * A class that implements a breadth-first search algorithm
  * for finding the Configurations for which the isSolution predicate holds
- * @author Pieter Koopman, Sjaak Smetsers
+ * 
+ * 
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ * modified the provided code from:
+ * author Pieter Koopman, Sjaak Smetsers
  * @version 1.5
  * @date 25-02-2017
  */
@@ -15,7 +19,7 @@ public class Solver
 {
    // A queue for maintaining graphs that are not visited yet.
     Queue<Configuration> toExamine;
-    ArrayList<Configuration> visited;
+    Collection<Configuration> visited;
     Configuration solution;
 
     public Solver( Configuration g ) {
@@ -23,7 +27,7 @@ public class Solver
         toExamine = new PriorityQueue<>();
         toExamine.add(g);
         solution = null;
-        visited = new ArrayList<>();
+        visited = new HashSet<>();
     }
 
     /**

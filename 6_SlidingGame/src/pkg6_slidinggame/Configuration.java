@@ -3,7 +3,9 @@ package pkg6_slidinggame;
 /**
  * An interface for representing nodes in a state space.
  * 
- * @author Sjaak Smetsers
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ * modified the provided code from:
+ * author Sjaak Smetsers
  * @version 1.3
  * @date 25-02-2017
  */
@@ -45,4 +47,7 @@ public interface Configuration extends Comparable<Configuration> {
     }
     
     public abstract int eval();
+    
+    @Override
+    public abstract int hashCode();
 }

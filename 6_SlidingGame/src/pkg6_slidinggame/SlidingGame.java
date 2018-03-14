@@ -6,11 +6,15 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author Pieter Koopman, Sjaak Smetsers
- * @version 1.3
- * @date 07-03-2016
  * A template implementation of a sliding game 
  * implementing the Graph interface
+ * 
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ * modified the provided code written by:
+ * author Pieter Koopman, Sjaak Smetsers
+ * @version 1.3
+ * @date 07-03-2016
+ * 
  */
 public class SlidingGame implements Configuration {
 
@@ -22,12 +26,6 @@ public class SlidingGame implements Configuration {
     private int[][] board;
     private int holeX, holeY;
     private Configuration parent;
-
-    public int[][] getBoard() {
-        return board;
-    }
-    
-    
 
     /**
      * A constructor that initializes the board with the specified array
@@ -56,7 +54,14 @@ public class SlidingGame implements Configuration {
     }
     
     
+    // CLEAN-UP methods from here...
     
+    
+    
+    public int[][] getBoard() {
+        return board;
+    }
+  
     public final void fillBoard(int[] start){
         assert start.length == N * N : "Length of specified board incorrect";
 
@@ -209,6 +214,13 @@ public class SlidingGame implements Configuration {
     private static int manhattanDist(int x1, int y1, int x2, int y2) {
         // compute the manhattan dist 
         return Math.abs(x1-x2) + Math.abs(y1-y2); 
+    }
+    
+    
+    @Override
+    public int hashCode(){
+        // implement the hashCode
+        return 0;
     }
 
 }

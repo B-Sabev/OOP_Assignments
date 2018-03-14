@@ -6,8 +6,7 @@ import java.util.List;
 
 
 /**
- *
- * @author Sjaak Smetsers
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class Main
 {
@@ -27,7 +26,7 @@ public class Main
         /*
         TODO
             - add our names
-            - implement visited as a HashSet to speed up comparison
+            - implement the HashCode
             - maybe rework pathFromRoot to include the object itself
             - write View class - print the start state, then solve and present the whole path
             - re-organize methods

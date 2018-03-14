@@ -1,7 +1,10 @@
 package pkg6_slidinggame;
 
 /**
- * @author Sjaak Smetsers
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ * 
+ * modified the provided code from:
+ * author Sjaak Smetsers
  * @version 1.2
  * @date 28-02-2015
  * 
