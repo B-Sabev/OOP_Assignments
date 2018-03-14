@@ -1,26 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg6_slidinggame;
+
+/**
+ * An interface for representing nodes in a state space.
+ * 
+ * @author Sjaak Smetsers
+ * @version 1.3
+ * @date 25-02-2017
+ */
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-/**
- *
- * @author Borislav
- */
-public interface Configuration extends Comparable<Configuration>{
-    
+public interface Configuration extends Comparable<Configuration> {
+   /**
+     * To obtain the parent of the current configuration, i.e.
+     * the configuration which had this as one of its successors
+     *
+     * @return a reference to the parent
+     */
     public abstract Configuration parent();
-    public abstract Collection<Configuration> successors();
-    public abstract boolean isSolution();
-    public default List<Configuration> pathFromRoot(){
-        return new ArrayList<>(); // there is no path because this is root
-    }
-    public abstract int eval();
     
+    /**
+     * To obtain the successors for a specific configuration
+     *
+     * @return a collection of configurations containing the successors
+     */
+    public abstract Collection<Configuration> successors();
+
+    /**
+     * For marking final / solution configurations.
+     * 
+     * @return true if a this is a solution, false otherwise
+     */
+    public abstract boolean isSolution();
+        
+    /**
+     * To build a path from the root configuration to the current one.
+     *
+     * @return a list of successive configurations from the root to 'this'
+     */
+    public default List<Configuration> pathFromRoot(){
+        return new ArrayList<>();
+    }
+    
+    public abstract int eval();
 }

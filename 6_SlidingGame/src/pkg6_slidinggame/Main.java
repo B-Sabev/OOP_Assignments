@@ -1,59 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg6_slidinggame;
 
-import java.util.Collection;
+
+import java.util.ArrayList;
 import java.util.List;
-import static pkg6_slidinggame.SlidingGame.N;
+
 
 /**
  *
- * @author Borislav
+ * @author Sjaak Smetsers
  */
-public class Main {
-
-    /**
-     * @param args the command line arguments
-     */
+public class Main
+{
     public static void main(String[] args) {
-       
-        int[] start = {1,4,7,
-                       2,5,6,
-                       3,9,8};
-        SlidingGame game = new SlidingGame(start);
-        System.out.println(game.toString());
+        int [] game = {1,2,9, 4,5,3, 7,8,6};
+
+        SlidingGame s = new SlidingGame (game);
+        System.out.println(s);
         
-        /*
-        for(int i=0; i<N; i++)
-            for(int j=0;j<N;j++)
-                System.out.println(game.getBoard()[i][j] + "at position " + "("+i+", "+j+")");
-        */
-        
-        
-        System.out.println();
-        System.out.println(game.eval());
-        
-        
-        /*
-        Solver solver = new Solver(game);
+
+        Solver solver = new Solver(s);
         System.out.println(solver.solve());
         List<Configuration> path = solver.getPath();
         
-        System.out.println("Print path");
         for(Configuration p : path)
-            System.out.println(p.toString());
-        */
-        
-        
+            System.out.println(p);
         /*
-            TODO
-                - Solver - keep track of visited to prevent cycles
-                - compare visited with a HashSet
-                - change the puzzle to 4x4
-        */ 
+        TODO
+            - add our names
+            - implement visited as a HashSet to speed up comparison
+            - maybe rework pathFromRoot to include the object itself
+            - write View class - print the start state, then solve and present the whole path
+            - re-organize methods
+            - add comments
+            - clear unused imports
+        */
     }
-    
 }

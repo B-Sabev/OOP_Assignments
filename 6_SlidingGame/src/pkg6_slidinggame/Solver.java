@@ -1,53 +1,62 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg6_slidinggame;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.PriorityQueue;
-import java.util.Queue;
+
+import java.util.*;
+
 
 /**
- *
- * @author Borislav
+ * A class that implements a breadth-first search algorithm
+ * for finding the Configurations for which the isSolution predicate holds
+ * @author Pieter Koopman, Sjaak Smetsers
+ * @version 1.5
+ * @date 25-02-2017
  */
-
-public class Solver {
-
+public class Solver
+{
+   // A queue for maintaining graphs that are not visited yet.
     Queue<Configuration> toExamine;
+    ArrayList<Configuration> visited;
     Configuration solution;
 
-    public Solver(Configuration g) {
+    public Solver( Configuration g ) {
         // init toExamine and add g as a start value
-        toExamine = new PriorityQueue<>(); // may need to change to PriorityQueue when going for best first
+        toExamine = new PriorityQueue<>();
         toExamine.add(g);
         solution = null;
+        visited = new ArrayList<>();
     }
-    
-    
-    // implementing the BFS
+
+    /**
+     * A skeleton implementation of the solver
+     *
+     * @return a string representation of the solution
+     */
     public String solve() {
-        while (!toExamine.isEmpty()) {
+        while ( ! toExamine.isEmpty() ) {
             Configuration next = toExamine.remove();
-            if (next.isSolution()) {
-                this.solution = next;
+            visited.add(next);
+            if ( next.isSolution() ) {
+                solution = next;
                 return "Success!";
             } else {
-                for (Configuration succ : next.successors()) {
-                    toExamine.add(succ);
+                for ( Configuration succ : next.successors() ) {
+                    // if the successor is not visited before, add for examination
+                    if ( !visited.contains(succ) )
+                        toExamine.add(succ);
                 }
             }
         }
         return "Failure!";
     }
     
+    
     public List<Configuration> getPath(){
-        List<Configuration> path = this.solution.pathFromRoot();
-        path.add(this.solution);
+        List<Configuration> path = new ArrayList<>();
+        if(this.solution != null){
+            path = this.solution.pathFromRoot();
+            path.add(this.solution);
+        } 
         return path;
     }
+    
 }
-
