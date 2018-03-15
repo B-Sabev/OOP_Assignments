@@ -240,9 +240,9 @@ public class SlidingGame implements Configuration {
     public int hashCode(){
         // implement the hashCode
         int code = 0;
-        for(int x=0; x<N; x++)
-            for(int y=0;y<N;y++)
-                code += this.board[x][y] * Math.pow(31, x + y*N);
+        for(int x=N-1; x>=0; x--)
+            for(int y=N-1; y>=0; y--)
+                code = 31*code + board[x][y];
         return code;
     }
 

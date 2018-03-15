@@ -16,28 +16,31 @@ public class Main
 
         //SlidingGame s = new SlidingGame (game);
         
-        SlidingGame s = randomGame(3);
-        System.out.println(s);
-        
+        for(int i=0; i<20; i++){
+            SlidingGame s = randomGame(3);
+            System.out.println(s);
 
-        Solver solver = new Solver(s);
-        System.out.println(solver.solve());
-        List<Configuration> path = solver.getPath();
+
+            Solver solver = new Solver(s);
+            System.out.println(solver.solve());
+            List<Configuration> path = solver.getPath();
+
+            System.out.println("Found solution of length " + path.size());
+        }
         
-        System.out.println("Found solution of length " + path.size());
+        
         
         
         //for(Configuration p : path)
         //   System.out.println(p);
         /*
         TODO
-            - still really slow !?! - HashSet - contains 68% of the time, rest for add
             - write View class - print the start state, then solve and present the whole path
                 - Give user the choice between hard-coded, random, or entering himself (optional)
                 - hard-code 1 solvable, 1 unsolvable
                 - measure the time
                 - (Optional) add parsing
-            - store Manhattan dist for all configurations to ease computing
+            - (Optional) store Manhattan dist for all configurations to ease computing
             - re-organize methods
             - add comments
             - clear unused imports

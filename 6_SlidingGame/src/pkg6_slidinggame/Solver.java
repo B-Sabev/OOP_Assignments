@@ -40,10 +40,10 @@ public class Solver
             Configuration next = toExamine.remove();
             visited.add(next);
       
-            if(visited.size() > 50000){
-                System.out.println("More than 5000 conf visited, breaking");
-                break;
-            }
+            //if(visited.size() > 50000){
+            //    System.out.println("More than 5000 conf visited, breaking");
+            //    break;
+            //}
             
             
             if ( next.isSolution() ) {
