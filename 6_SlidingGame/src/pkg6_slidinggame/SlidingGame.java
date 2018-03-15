@@ -2,6 +2,7 @@ package pkg6_slidinggame;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -181,18 +182,20 @@ public class SlidingGame implements Configuration {
     
     @Override
     public List<Configuration> pathFromRoot() {
-        List<Configuration> path;
-        if(this.parent.parent() == null){
-            // base case, parent is root
-            path = new ArrayList<>();
+        List<Configuration> path = new ArrayList<>();
+        
+        if(this.parent == null){
+            // base case, this is root
+        } else if(this.parent.parent() == null){
+            // base case, if parent is root
+            path.add(this.parent);
         } else {
-            // get the parent's path
+            // get the path of the parent
             path = this.parent.pathFromRoot();
         }
-        path.add(this.parent);
+        path.add(this);
         return path;
     }
-    
     
     
     @Override
@@ -216,11 +219,31 @@ public class SlidingGame implements Configuration {
         return Math.abs(x1-x2) + Math.abs(y1-y2); 
     }
     
+    public static SlidingGame randomGame(int N){
+        ArrayList<Integer> board = new ArrayList<>();
+        for(int i=1;i<=N*N;i++)
+            board.add(i);
+        // shuffle the filled board
+        Collections.shuffle(board);
+        
+        // covert arrayList of Integers into array of int
+        int[] board_arr = new int[board.size()]; 
+        for(int i=0;i<board.size();i++)
+            board_arr[i] = (int) board.get(i);
+        
+        // init a SlidingGame with the board
+        return new SlidingGame(board_arr);
+    }
+    
     
     @Override
     public int hashCode(){
         // implement the hashCode
-        return 0;
+        int code = 0;
+        for(int x=0; x<N; x++)
+            for(int y=0;y<N;y++)
+                code += this.board[x][y] * Math.pow(31, x + y*N);
+        return code;
     }
 
 }

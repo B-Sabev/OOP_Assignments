@@ -27,7 +27,7 @@ public class Solver
         toExamine = new PriorityQueue<>();
         toExamine.add(g);
         solution = null;
-        visited = new HashSet<>();
+        visited = new HashSet<>(181440, 1);
     }
 
     /**
@@ -39,6 +39,13 @@ public class Solver
         while ( ! toExamine.isEmpty() ) {
             Configuration next = toExamine.remove();
             visited.add(next);
+      
+            if(visited.size() > 50000){
+                System.out.println("More than 5000 conf visited, breaking");
+                break;
+            }
+            
+            
             if ( next.isSolution() ) {
                 solution = next;
                 return "Success!";
@@ -58,7 +65,6 @@ public class Solver
         List<Configuration> path = new ArrayList<>();
         if(this.solution != null){
             path = this.solution.pathFromRoot();
-            path.add(this.solution);
         } 
         return path;
     }
