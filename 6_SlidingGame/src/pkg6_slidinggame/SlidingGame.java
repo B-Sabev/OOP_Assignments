@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class SlidingGame implements Configuration {
 
-    public static final int N = 3, SIZE = N * N, HOLE = SIZE;
+    public static final int N = 4, SIZE = N * N, HOLE = SIZE;
     /**
      * The board is represented by a 2-dimensional array; the position of the
      * hole is kept in 2 variables holeX and holeY
@@ -126,7 +126,12 @@ public class SlidingGame implements Configuration {
         for (int row = 0; row < N; row++) {
             for (int col = 0; col < N; col++) {
                 int puzzel = board[col][row];
-                buf.append(puzzel == HOLE ? "  " : puzzel + " ");
+                if(puzzel == HOLE)
+                    buf.append("   ");
+                else if(puzzel < 10)
+                    buf.append(puzzel).append("  ");
+                else 
+                    buf.append(puzzel).append(" ");
             }
             buf.append("\n");
         }
@@ -150,7 +155,7 @@ public class SlidingGame implements Configuration {
     public boolean isSolution() {
         for(int row=0; row<N; row++)
             for(int col=0;col<N;col++)
-                if(board[row][col] != 3*col+row+1)
+                if(board[row][col] != N*col+row+1)
                     return false;       
         return true;
     }
@@ -205,8 +210,8 @@ public class SlidingGame implements Configuration {
         for(int row=0; row<N; row++){
             for(int col=0;col<N;col++){
                 num = this.board[row][col];
-                solve_row = (num-1) % 3; // get the position the number should be in
-                solve_col = (num-1) / 3;
+                solve_row = (num-1) % N; // get the position the number should be in
+                solve_col = (num-1) / N;
                 dist = manhattanDist(row,col,solve_row,solve_col); // compute dist
                 total_dist += dist;   
             }

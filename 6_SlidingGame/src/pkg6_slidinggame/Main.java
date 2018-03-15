@@ -17,7 +17,7 @@ public class Main
         //SlidingGame s = new SlidingGame (game);
         
         for(int i=0; i<20; i++){
-            SlidingGame s = randomGame(3);
+            SlidingGame s = randomGame(SlidingGame.N);
             System.out.println(s);
 
 
