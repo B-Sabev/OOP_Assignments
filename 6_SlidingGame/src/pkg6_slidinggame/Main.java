@@ -12,14 +12,20 @@ import static pkg6_slidinggame.SlidingGame.randomGame;
 public class Main
 {
     public static void main(String[] args) {
-        int [] game = {1,2,9, 4,5,3, 7,8,6};
+        int [] game = {1,2,3,4,
+                       5,6,7,8,
+                       9,11,10,12,
+                       14,13,15,16};
+        
+
 
         //SlidingGame s = new SlidingGame (game);
+        
         
         for(int i=0; i<20; i++){
             SlidingGame s = randomGame(SlidingGame.N);
             System.out.println(s);
-
+            System.out.println("Is solvable " + s.isSolvable());
 
             Solver solver = new Solver(s);
             System.out.println(solver.solve());
@@ -35,6 +41,8 @@ public class Main
         //   System.out.println(p);
         /*
         TODO
+            - check the isSolvable function
+            - if it is not solvable, it is very slow on 4x4
             - write View class - print the start state, then solve and present the whole path
                 - Give user the choice between hard-coded, random, or entering himself (optional)
                 - hard-code 1 solvable, 1 unsolvable
