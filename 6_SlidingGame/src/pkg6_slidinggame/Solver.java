@@ -27,7 +27,6 @@ public class Solver
      * @param g - root Configuration
      */
     public Solver( Configuration g ) {
-        // init toExamine and add g as a start value
         toExamine = new PriorityQueue<>();
         toExamine.add(g);
         solution = null;
@@ -37,19 +36,12 @@ public class Solver
     /**
      * Implements a best-first search to find the goal state of the configuration
      *
-     * @return a string representation of the solution
+     * @return Configuration that is solution to SlidingGame or null
      */
     public Configuration solve() {
         while ( ! toExamine.isEmpty() ) {
             Configuration next = toExamine.remove();
             visited.add(next);
-            
-            /*
-            if(visited.size() % 100000 == 0){
-                System.out.println("Visited configurations " + visited.size());
-            }
-            */
-            
             if ( next.isSolution() ) {
                 solution = next;
                 return solution;
