@@ -14,6 +14,10 @@ import static pkg6_slidinggame.SlidingGame.randomGame;
  */
 public class View {
     
+    public static final int HARD_CODED = 1, 
+                            RANDOM = 2, 
+                            PARSE_INPUT = 3, 
+                            QUIT = 4;
     private Scanner scan;
 
     public View() {
@@ -23,27 +27,26 @@ public class View {
     public void initGame() {
         System.out.println("Welcome to the Sliding Game!");
         Configuration game;
+        int choice;
         
         while(true){
             help();
-            int choice = scan.nextInt();
-            
-
+            choice = scan.nextInt();
             switch(choice) {
-                case 1:     
+                case HARD_CODED:     
                     game = getHardCodedGame();
                     showGameSolving(game);
                     break;
-                case 2:
+                case RANDOM:
                     game = getRandomGame();
                     showGameSolving(game);
                     break;
-                case 3:
+                case PARSE_INPUT:
                     game = parseGameFromInput();
                     showGameSolving(game);
                     break;
-                case 4:     
-                    System.out.println("Thank you for playing!");
+                case QUIT:     
+                    System.out.println("Quitting...");
                     System.exit(0);
                     break;
                 default:    
@@ -86,7 +89,7 @@ public class View {
         if(solution == null){
             System.out.println("The current game cannot be solved");
         } else {
-            System.out.println("Found path with " + solution.pathFromRoot().size() + " steps");
+            System.out.println("Found path with " + (solution.pathFromRoot().size()-1) + " steps");
             for(Configuration s : solution.pathFromRoot())
                 System.out.println(s.toString());
         }
