@@ -7,7 +7,6 @@ package pkg6_slidinggame;
 
 import java.util.Scanner;
 import static pkg6_slidinggame.SlidingGame.N;
-import static pkg6_slidinggame.SlidingGame.randomGame;
 
 /**
  *
@@ -58,6 +57,9 @@ public class View {
         }
     }
     
+    /*
+    * Prints help menu for the user to show available commands
+    */
     public void help() {
         System.out.print("Select command:\n"
                         +"pre-built boards        (1)\n"
@@ -66,9 +68,13 @@ public class View {
                         +"quit                    (4)\n");
         System.out.print("> ");
     }
-
+    
+    /*
+    * Parses a game board from the user input
+    * @return Configuration of the parsed input if successfull, else returns null
+    */
     private Configuration parseGameFromInput() {
-        System.out.println("Please enter 1-16 in the order you want them to appear starting from the top left, 16 is for the hole");
+        System.out.println("Please enter 1-" + N*N + " in the order you want them to appear starting from the top left");
         System.out.println("Seperate your numbers with a , (1,2,3,...) : ");
         
         int[] board = new int[N * N];
@@ -111,7 +117,11 @@ public class View {
         return new SlidingGame(board);
     }
     
-    
+    /*
+    * Given a game, present to the user how it is solved
+    * prints the path length, time the program took to solve it in milliseconds
+    * and the full path from root to solution
+    */
     public void showGameSolving(Configuration game){
         System.out.println(game.toString());
         Solver solver = new Solver(game);
@@ -128,7 +138,11 @@ public class View {
                 System.out.println(s.toString());
         }
     }
-
+    
+    /*
+    * Includes a hardcoded game
+    * @return Configuration of a hardcoded game
+    */
     private Configuration getHardCodedGame() {
         int [] game = {16, 15, 4, 5,
                         1, 10, 13, 11,
@@ -137,7 +151,11 @@ public class View {
         
         return new SlidingGame(game);
     }
-
+    
+    /*
+    * Gets a random board and initializes a game with it
+    * @return Configuration with a random board
+    */
     private Configuration getRandomGame() {
         return SlidingGame.randomGame(SlidingGame.N);
     }
