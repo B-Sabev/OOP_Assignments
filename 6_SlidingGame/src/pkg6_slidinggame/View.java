@@ -85,11 +85,15 @@ public class View {
     public void showGameSolving(Configuration game){
         System.out.println(game.toString());
         Solver solver = new Solver(game);
+        
+        long time = System.nanoTime();
         Configuration solution = solver.solve();
         if(solution == null){
-            System.out.println("The current game cannot be solved");
+            System.out.println("The current game cannot be solved."
+                            + "\nTime elapsed " + (System.nanoTime() - time) / 1000000 + " ms");
         } else {
-            System.out.println("Found path with " + (solution.pathFromRoot().size()-1) + " steps");
+            System.out.println("Found path with " + (solution.pathFromRoot().size()-1) + " steps" +
+                               "\nTime elapsed " + (System.nanoTime() - time) / 1000000 + " ms" );
             for(Configuration s : solution.pathFromRoot())
                 System.out.println(s.toString());
         }
