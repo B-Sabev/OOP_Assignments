@@ -24,11 +24,11 @@ public class Main
         
 
 
-        //SlidingGame s = new SlidingGame (game);
+        SlidingGame s = new SlidingGame (game);
         
         
         for(int i=0; i<20; i++){
-            SlidingGame s = new SlidingGame(game);//randomGame(SlidingGame.N);
+           
             System.out.println(s);
             //System.out.println("Is solvable " + s.isSolvable());
 

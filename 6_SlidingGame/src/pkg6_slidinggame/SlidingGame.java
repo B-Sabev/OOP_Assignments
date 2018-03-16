@@ -268,7 +268,6 @@ public class SlidingGame implements Configuration {
         return new SlidingGame(board_arr);
     }
     
-    
     @Override
     public int hashCode(){
         // implement the hashCode
@@ -279,49 +278,4 @@ public class SlidingGame implements Configuration {
         return code;
     }
     
-    
-        
-    /**
-     * UNDER DEVELOPMENT, DOESN'T WORK PROPERLY
-     * Check if the current sliding puzzle is solvable using the parity argument
-     * @return boolean true if solvable
-     */
-    public boolean isSolvable(){
-        int[] b = flattenBoard(this.board);
-        int inversions = 0;
-        
-        
-        for (int x = 0; x < b.length; x++) 
-            for (int y = 0; y < b.length; y++){
-                // an inversion is a pair of tiles (x,y) such that x appears before y, but a>b
-                if(x < y && b[x] > b[y] && b[x] != N*N)
-                    inversions++;
-            }
-        
-        
-        
-        /*
-        If the grid width is odd, then the number of inversions in a solvable situation is even.
-        If the grid width is even, and the blank is on an even row counting from the bottom (second-last, fourth-last etc), 
-            then the number of inversions in a solvable situation is odd.
-        If the grid width is even, and the blank is on an odd row counting from the bottom (last, third-last, fifth-last etc) 
-            then the number of inversions in a solvable situation is even.
-        */
-        System.out.println("Number of inversions is " + inversions);
-        boolean gridWidthIsOdd = N % 2 == 1;
-        boolean invAreOdd = inversions % 2 == 1;
-        boolean blankOnOddRow = holeX % 2 == 0; // counting from bottom
-
-        
-        
-        
-        return      ((gridWidthIsOdd && !invAreOdd) 
-                || 
-                        (!gridWidthIsOdd 
-                    && 
-                            ((blankOnOddRow && !invAreOdd) 
-                        || 
-                            (!blankOnOddRow && invAreOdd))));
-    }
-
 }
