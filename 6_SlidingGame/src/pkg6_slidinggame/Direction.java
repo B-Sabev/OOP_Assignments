@@ -5,8 +5,6 @@ package pkg6_slidinggame;
  * 
  * modified the provided code from:
  * author Sjaak Smetsers
- * @version 1.2
- * @date 28-02-2015
  * 
  * An enumeration type for the 4 points of the compass 
  * Each constant has 2 (final) int attributes indicating
@@ -15,7 +13,26 @@ package pkg6_slidinggame;
  */
 public enum Direction
 {
-    NORTH (0,-1), EAST (1,0), SOUTH(0,1), WEST(-1,0);
+
+    /**
+     *
+     */
+    NORTH (0,-1),
+
+    /**
+     *
+     */
+    EAST (1,0),
+
+    /**
+     *
+     */
+    SOUTH(0,1),
+
+    /**
+     *
+     */
+    WEST(-1,0);
     
     private final int dx, dy;
     private Direction (int dx, int dy) {
@@ -23,14 +40,26 @@ public enum Direction
         this.dy = dy;
     }
     
+    /**
+     *
+     * @return
+     */
     public int GetDX () {
         return dx;
     }
 
+    /**
+     *
+     * @return
+     */
     public int GetDY () {
         return dy;
     }
     
+    /**
+     *
+     * @return
+     */
     public static Direction[] getAllDirs(){
         return new Direction[] {NORTH, EAST, SOUTH, WEST};
     }

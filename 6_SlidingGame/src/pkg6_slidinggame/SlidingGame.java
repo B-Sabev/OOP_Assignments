@@ -13,11 +13,10 @@ import java.util.List;
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  * modified the provided code written by:
  * author Pieter Koopman, Sjaak Smetsers
- * @version 1.3
- * @date 07-03-2016
  * 
  */
 public class SlidingGame implements Configuration {
+
 
     public static final int N = 4, SIZE = N * N, HOLE = SIZE;
     /**
@@ -54,18 +53,16 @@ public class SlidingGame implements Configuration {
         this.parent = parent;
     }
     
-    
-    // CLEAN-UP methods from here...
-    
-    
-    
     public int[][] getBoard() {
         return board;
     }
   
+    /**
+     * Fill this.board with a 1d array, used only in the constructor
+     * @param start - 1d array of numbers 1 to N*N
+     */
     public final void fillBoard(int[] start){
         assert start.length == N * N : "Length of specified board incorrect";
-
         for (int p = 0; p < start.length; p++) {
             board[p % N][p / N] = start[p];
             if (start[p] == HOLE) {
@@ -75,6 +72,12 @@ public class SlidingGame implements Configuration {
         }
     }
     
+    /**
+     * From a 2d board, transform to its 1d representation
+     * flattenBoard(this.board) == start if fillBoard(start) called at the constructor
+     * @param b - 2d board
+     * @return - 1d representation of the board
+     */
     public static int[] flattenBoard(int[][] b){
         int[] flat = new int[N*N];
         int i = 0;
@@ -86,51 +89,23 @@ public class SlidingGame implements Configuration {
             }
         return flat;            
     }
-    
-    public boolean isSolvable(){
-        int[] b = flattenBoard(this.board);
-        int inversions = 0;
-        
-        
-        for (int x = 0; x < b.length; x++) 
-            for (int y = 0; y < b.length; y++){
-                // an inversion is a pair of tiles (x,y) such that x appears before y, but a>b
-                if(x < y && b[x] > b[y] && b[x] != N*N)
-                    inversions++;
-            }
-        
-        
-        
-        /*
-        If the grid width is odd, then the number of inversions in a solvable situation is even.
-        If the grid width is even, and the blank is on an even row counting from the bottom (second-last, fourth-last etc), 
-            then the number of inversions in a solvable situation is odd.
-        If the grid width is even, and the blank is on an odd row counting from the bottom (last, third-last, fifth-last etc) 
-            then the number of inversions in a solvable situation is even.
-        */
-     
-        boolean gridWidthIsOdd = N % 2 == 1;
-        boolean invAreOdd = inversions % 2 == 1;
-        boolean blankOnOddRow = (N-holeX) % 2 == 1; // counting from bottom
 
-        
-        
-        
-        return      ((gridWidthIsOdd && !invAreOdd) 
-                || 
-                        (!gridWidthIsOdd 
-                    && 
-                            ((blankOnOddRow && !invAreOdd) 
-                        || 
-                            (!blankOnOddRow && invAreOdd))));
-    }
     
+    /**
+     * Check if the given direction for moving the blank space is a valid move
+     * @param dir - the direction in which to move the hole
+     * @return - boolean true if the move is valid
+     */
     public boolean isValidMove(Direction dir){
         int x = holeX + dir.GetDX();
         int y = holeY + dir.GetDY();
         return x >= 0 && x < N && y >= 0 && y < N;
     }
     
+    /**
+     * Make a copy of this.board
+     * @return - copy of the board
+     */
     public int[][] copyBoard(){
         int[][] copy = new int[N][N];
         for (int row = 0; row < N; row++) 
@@ -139,7 +114,11 @@ public class SlidingGame implements Configuration {
         return copy;
     }   
     
-     // plays the move and returns an array as the start format
+    /**
+     * Play the move and return the resulting board
+     * @param dir - direction in which to move the empty space
+     * @return - updated 2d board
+     */
     public int[][] moveDir(Direction dir){
         // get new indecies
         int nextHoleX = this.holeX + dir.GetDX();
@@ -175,7 +154,10 @@ public class SlidingGame implements Configuration {
         }
         return buf.toString();
     }
-
+    
+    
+    // TODO clean up methods from here
+    
     @Override
     public boolean equals(Object o) {
         if(o.getClass() == this.getClass()){
@@ -240,7 +222,10 @@ public class SlidingGame implements Configuration {
         return path;
     }
     
-    
+    /**
+     *
+     * @return
+     */
     @Override
      public int eval() {
         int num, dist, total_dist=0;
@@ -262,6 +247,11 @@ public class SlidingGame implements Configuration {
         return Math.abs(x1-x2) + Math.abs(y1-y2); 
     }
     
+    /**
+     *
+     * @param N
+     * @return
+     */
     public static SlidingGame randomGame(int N){
         ArrayList<Integer> board = new ArrayList<>();
         for(int i=1;i<=N*N;i++)
@@ -287,6 +277,51 @@ public class SlidingGame implements Configuration {
             for(int y=N-1; y>=0; y--)
                 code = 31*code + board[x][y];
         return code;
+    }
+    
+    
+        
+    /**
+     * UNDER DEVELOPMENT, DOESN'T WORK PROPERLY
+     * Check if the current sliding puzzle is solvable using the parity argument
+     * @return boolean true if solvable
+     */
+    public boolean isSolvable(){
+        int[] b = flattenBoard(this.board);
+        int inversions = 0;
+        
+        
+        for (int x = 0; x < b.length; x++) 
+            for (int y = 0; y < b.length; y++){
+                // an inversion is a pair of tiles (x,y) such that x appears before y, but a>b
+                if(x < y && b[x] > b[y] && b[x] != N*N)
+                    inversions++;
+            }
+        
+        
+        
+        /*
+        If the grid width is odd, then the number of inversions in a solvable situation is even.
+        If the grid width is even, and the blank is on an even row counting from the bottom (second-last, fourth-last etc), 
+            then the number of inversions in a solvable situation is odd.
+        If the grid width is even, and the blank is on an odd row counting from the bottom (last, third-last, fifth-last etc) 
+            then the number of inversions in a solvable situation is even.
+        */
+        System.out.println("Number of inversions is " + inversions);
+        boolean gridWidthIsOdd = N % 2 == 1;
+        boolean invAreOdd = inversions % 2 == 1;
+        boolean blankOnOddRow = holeX % 2 == 0; // counting from bottom
+
+        
+        
+        
+        return      ((gridWidthIsOdd && !invAreOdd) 
+                || 
+                        (!gridWidthIsOdd 
+                    && 
+                            ((blankOnOddRow && !invAreOdd) 
+                        || 
+                            (!blankOnOddRow && invAreOdd))));
     }
 
 }
