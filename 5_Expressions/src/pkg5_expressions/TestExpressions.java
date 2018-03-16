@@ -68,6 +68,114 @@ public class TestExpressions {
         }
     }
     
+<<<<<<< Updated upstream
+=======
+    
+    public void runUserLoop() {
+        boolean run = true;
+        int choice;
+
+        while (run) {
+            System.out.print("\nWould you like to evaluate your own expression(1), see examples(2), or quit(3)?  ");
+            System.out.print("\n");
+            choice = this.scan.nextInt();
+
+            switch (choice) {
+                case 1:
+                    Expression e = parseExpression();
+                    System.out.println(printTestExpression(e));
+                    break;
+                case 2:
+                    test();
+                    break;
+                case 3:
+                    run = false;
+                    System.exit(0);
+                default:
+                    System.out.println("Invalid choice, please select 1-3");
+                    break;
+            }
+        }
+    }
+    
+    
+    public Expression parseExpression(){
+        //System.out.println("Example: add(mul(2, 3), x)\n");
+        System.out.println("Examples:");
+        System.out.println("add(2, 3)");
+        System.out.println("mul(2, 3)");
+        System.out.println("neg(2)\n");
+        System.out.print("Please input the expression you wish to evaluate:  ");
+        scan.nextLine();
+        String exp = scan.nextLine();
+        System.out.print(exp);
+        System.out.print("\n");
+        Scanner s = new Scanner(exp);
+        s.useDelimiter("\\s+|(?=\\()|(?=\\))|(?=,)|(?<=\\()|(?<=\\)|(?<=,))");
+        ArrayList<String> tokens = new ArrayList<>();
+        Expression result = null;
+        int arg1 = Integer.parseInt(s.findInLine("[0-9]*"));
+        int arg2 = Integer.parseInt(s.findInLine("[0-9]*"));
+        while (s.hasNext()) {
+            System.out.println(s.next());
+        }
+        
+        if (tokens.get(0).equals("add")) {
+//            //result = add();
+//            //result = firstValue + secondValue;  //not right
+            result = add(arg1, arg2);
+            return new Constant(add(arg1, arg2));
+            tokens.add( add(con(arg1), con(arg2)) );
+        }
+        
+        if (tokens.get(0).equals("mul")) {
+            result = mul(arg1, arg2);
+        }
+        
+        if (tokens.get(0).equals("neg")) {
+            result = neg(arg1);
+        }
+        
+//    public Add(Expression arg1, Expression arg2) {
+//        super(arg1, arg2);
+//    }
+//            if(tokens.get(tokens.indexOf("add"))) {
+//                
+//            }
+            //tokens.add(s.next());
+//            String target = tokens.get(0);
+//            
+//            for (Expression e : tokens) {
+//                if (target.equals("add")) {
+//                    result = tokens.add( add(tokens.get(0)));
+//                    break;
+//                }
+//            }
+//            
+
+        
+        //result = 
+
+//        ArrayList<Integer> arrayOfInts = new ArrayList<Integer>();
+//        for (Object str : tokens) {
+//            arrayOfInts.add(Integer.parseInt((String) str));
+//        }        
+//        if(tokens.get(2) instanceof String){
+//            int i = (int)tokens.get(2);
+//        }
+//        if (tokens.get(0) == "add") {
+//            result = tokens.get(2) + tokens.get(4);
+//        }
+        System.out.print("\n");
+//        expressions.add( mul(con(10), con(20)) );
+//        expressions.add( mul(con(1), var("x")) );
+        
+        
+        //return result;
+        return new Constant(10);
+    }
+    
+>>>>>>> Stashed changes
     public String printTestExpression(Expression e){
         return  "toString: " + e.toString() + "\n" +
                 "optimize: " + e.optimize() + "\n" + 

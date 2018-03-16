@@ -278,6 +278,11 @@ public class SlidingGame implements Configuration {
         return new SlidingGame(board_arr);
     }
     
+//    public static SlidingGame userGame(int N) {
+//        ArrayList<Integer> uBoard = new ArrayList<>();
+//        
+//    }
+    
     
     @Override
     public int hashCode(){

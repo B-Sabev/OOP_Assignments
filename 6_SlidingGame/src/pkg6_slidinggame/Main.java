@@ -4,6 +4,7 @@ package pkg6_slidinggame;
 import java.util.ArrayList;
 import java.util.List;
 import static pkg6_slidinggame.SlidingGame.randomGame;
+import static pkg6_slidinggame.View.initGame;
 
 
 /**
@@ -21,7 +22,7 @@ public class Main
 
         //SlidingGame s = new SlidingGame (game);
         
-        
+        View.initGame();
         for(int i=0; i<20; i++){
             SlidingGame s = randomGame(SlidingGame.N);
             System.out.println(s);
