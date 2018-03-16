@@ -6,14 +6,16 @@ package pkg6_slidinggame;
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  * modified the provided code from:
  * author Sjaak Smetsers
- * @version 1.3
- * @date 25-02-2017
  */
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ *
+ * @author Borislav
+ */
 public interface Configuration extends Comparable<Configuration> {
    /**
      * To obtain the parent of the current configuration, i.e.
@@ -46,8 +48,16 @@ public interface Configuration extends Comparable<Configuration> {
         return new ArrayList<>();
     }
     
+    /**
+     * Compute the heuristic value of the board using the Manhattan heuristic
+     * @return
+     */
     public abstract int eval();
     
+    /**
+     * Compute the hash code of the Configuration for fast HashSet check
+     * @return
+     */
     @Override
     public abstract int hashCode();
 }

@@ -12,21 +12,26 @@ import static pkg6_slidinggame.View.initGame;
  */
 public class Main
 {
+
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
-        int [] game = {1,2,3,4,
-                       5,6,7,8,
-                       9,11,10,12,
-                       14,13,15,16};
+        int [] game = {16, 15, 4, 5,
+                        1, 10, 13, 11,
+                        8, 12, 9, 2,
+                        6, 7, 3, 14};
         
 
 
-        //SlidingGame s = new SlidingGame (game);
+        SlidingGame s = new SlidingGame (game);
         
         View.initGame();
         for(int i=0; i<20; i++){
-            SlidingGame s = randomGame(SlidingGame.N);
+           
             System.out.println(s);
-            System.out.println("Is solvable " + s.isSolvable());
+            //System.out.println("Is solvable " + s.isSolvable());
 
             Solver solver = new Solver(s);
             System.out.println(solver.solve());

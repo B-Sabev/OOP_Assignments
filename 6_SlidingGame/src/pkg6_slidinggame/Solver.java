@@ -12,26 +12,30 @@ import java.util.*;
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  * modified the provided code from:
  * author Pieter Koopman, Sjaak Smetsers
- * @version 1.5
- * @date 25-02-2017
  */
 public class Solver
 {
    // A queue for maintaining graphs that are not visited yet.
     Queue<Configuration> toExamine;
+   // List to keep the all visited states
     Collection<Configuration> visited;
+   // Configuration object that is solution to the problem, used to return the path to root
     Configuration solution;
 
+    /**
+     * Constructor for the solver given root Configuration
+     * @param g - root Configuration
+     */
     public Solver( Configuration g ) {
         // init toExamine and add g as a start value
         toExamine = new PriorityQueue<>();
         toExamine.add(g);
         solution = null;
-        visited = new HashSet<>(181440, 1);
+        visited = new HashSet<>();
     }
 
     /**
-     * A skeleton implementation of the solver
+     * Implements a best-first search to find the goal state of the configuration
      *
      * @return a string representation of the solution
      */
@@ -39,12 +43,12 @@ public class Solver
         while ( ! toExamine.isEmpty() ) {
             Configuration next = toExamine.remove();
             visited.add(next);
-      
-            //if(visited.size() > 50000){
-            //    System.out.println("More than 5000 conf visited, breaking");
-            //    break;
-            //}
             
+            /*
+            if(visited.size() % 100000 == 0){
+                System.out.println("Visited configurations " + visited.size());
+            }
+            */
             
             if ( next.isSolution() ) {
                 solution = next;
@@ -60,7 +64,10 @@ public class Solver
         return "Failure!";
     }
     
-    
+    /**
+     * Gets a list of all Configuration from the solution to root
+     * @return
+     */
     public List<Configuration> getPath(){
         List<Configuration> path = new ArrayList<>();
         if(this.solution != null){
