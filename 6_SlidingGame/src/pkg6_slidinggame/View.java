@@ -61,7 +61,7 @@ public class View {
     * Prints help menu for the user to show available commands
     */
     public void help() {
-        System.out.print("Select command:\n"
+        System.out.print("\nSelect command:\n"
                         +"pre-built boards        (1)\n"
                         +"a random board          (2)\n"
                         +"create your own board   (3)\n"
@@ -132,10 +132,11 @@ public class View {
             System.out.println("The current game cannot be solved."
                             + "\nTime elapsed " + (System.nanoTime() - time) / 1000000 + " ms");
         } else {
-            System.out.println("Found path with " + (solution.pathFromRoot().size()-1) + " steps" +
-                               "\nTime elapsed " + (System.nanoTime() - time) / 1000000 + " ms" );
             for(Configuration s : solution.pathFromRoot())
                 System.out.println(s.toString());
+            System.out.println("Found path with " + (solution.pathFromRoot().size()-1) + " steps" +
+                               "\nTime elapsed " + (System.nanoTime() - time) / 1000000 + " ms" );
+            
         }
     }
     
@@ -144,34 +145,33 @@ public class View {
     * @return Configuration of a hardcoded game
     */
     private Configuration getHardCodedGame() {
-        int solve;
-        System.out.print("\nSolvable        (1), or\n"
-                        +"Unsolvable      (2)? ");
-        solve = scan.nextInt();
-        System.out.print("\n");
-        if (solve == 1) {
-            int [] game = {16, 15, 4, 5,
+        int[] gameSolvable ={16, 15, 4, 5,
                             1, 10, 13, 11,
                             8, 12, 9, 2,
                             6, 7, 3, 14};
-                    return new SlidingGame(game);
-        }
-
-        else if (solve == 2) {
-            int [] game = {3, 7, 12, 8,
-                            10, 1, 9, 6,
-                            5, 4, 13, 14,
-                            11, 15, 16, 2};   
-                    return new SlidingGame(game);
-        }
+        int[] gameUnsolvable = {3, 7, 12, 8,
+                                10, 1, 9, 6,
+                                5, 4, 13, 14,
+                                11, 15, 16, 2};
+        int solve;
+        System.out.print("\nSolvable        (1), or\n"
+                        +"Unsolvable      (2)? \n"
+                        );
         
-        else {
-            while(true) {
-                System.out.println("Please enter a valid choice between 1 and 2");
+        System.out.print("\n");
+        
+        while (true) {
+            System.out.print("> ");
+            solve = scan.nextInt();
+            switch (solve) {
+                case 1: 
+                    return new SlidingGame(gameSolvable);
+                case 2: 
+                    return new SlidingGame(gameUnsolvable);
+                default:
+                    System.out.println("Please enter a valid choice between 1 and 2");  
             }
-        }
-
-//        return new SlidingGame(game);
+        } 
     }
     
     /*
