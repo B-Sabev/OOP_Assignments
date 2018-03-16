@@ -6,7 +6,7 @@
 package pkg6_slidinggame;
 
 import java.util.Scanner;
-import static pkg6_slidinggame.SlidingGame.randomGame;
+import static pkg6_slidinggame.SlidingGame.N;
 
 /**
  *
@@ -43,7 +43,8 @@ public class View {
                     break;
                 case PARSE_INPUT:
                     game = parseGameFromInput();
-                    showGameSolving(game);
+                    if(game != null)
+                        showGameSolving(game);
                     break;
                 case QUIT:     
                     System.out.println("Quitting...");
@@ -56,6 +57,9 @@ public class View {
         }
     }
     
+    /*
+    * Prints help menu for the user to show available commands
+    */
     public void help() {
         System.out.print("Select command:\n"
                         +"pre-built boards        (1)\n"
@@ -64,37 +68,81 @@ public class View {
                         +"quit                    (4)\n");
         System.out.print("> ");
     }
-
+    
+    /*
+    * Parses a game board from the user input
+    * @return Configuration of the parsed input if successfull, else returns null
+    */
     private Configuration parseGameFromInput() {
-        System.out.println("Please enter 1-16 in the order you want them to appear starting from the top left, 16 is for the hole");
+        System.out.println("Please enter 1-" + N*N + " in the order you want them to appear starting from the top left");
         System.out.println("Seperate your numbers with a , (1,2,3,...) : ");
         
-        int[] board = new int[SlidingGame.N * SlidingGame.N];
+        int[] board = new int[N * N];
         // take the user input
         String  nums = scan.next();
         // split by ,
         String[] numbers = nums.trim().split(",");
+        if(numbers.length != N*N){ // interrupt if numbers are not the right number
+            System.out.println("Numbers should be exactly " + N*N +
+                               "Please try again\n");
+            return null;
+        }
         // parse to int
         for(int i=0; i<numbers.length; i++)
-            board[i] = Integer.parseInt(numbers[i]);
+            try{
+                board[i] = Integer.parseInt(numbers[i]);
+            } catch(Exception e){
+                System.out.println("You must enter only numbers, please try again\n");
+                return null;
+            }
+        
+        // check if the numbers are valid
+        for(int num=0; num<board.length; num++){
+            // check if number is in range
+            if (board[num] < 0 || board[num] > N*N){
+                System.out.println("There is a number too big or too small " +
+                                   "\nPlease enter numbers only from 1 to "+N*N);
+                return null;
+            }
+            // check that there are no duplicates
+            for(int i=0; i<board.length; i++){
+                if(num != i && board[num] == board[i]){
+                    System.out.println("No repeating numbers allowed ");
+                    return null;
+                }
+            }
+        }
+            
         // create new game out of it and return it
         return new SlidingGame(board);
     }
     
-    
+    /*
+    * Given a game, present to the user how it is solved
+    * prints the path length, time the program took to solve it in milliseconds
+    * and the full path from root to solution
+    */
     public void showGameSolving(Configuration game){
         System.out.println(game.toString());
         Solver solver = new Solver(game);
+        
+        long time = System.nanoTime();
         Configuration solution = solver.solve();
         if(solution == null){
-            System.out.println("The current game cannot be solved");
+            System.out.println("The current game cannot be solved."
+                            + "\nTime elapsed " + (System.nanoTime() - time) / 1000000 + " ms");
         } else {
-            System.out.println("Found path with " + (solution.pathFromRoot().size()-1) + " steps");
+            System.out.println("Found path with " + (solution.pathFromRoot().size()-1) + " steps" +
+                               "\nTime elapsed " + (System.nanoTime() - time) / 1000000 + " ms" );
             for(Configuration s : solution.pathFromRoot())
                 System.out.println(s.toString());
         }
     }
-
+    
+    /*
+    * Includes a hardcoded game
+    * @return Configuration of a hardcoded game
+    */
     private Configuration getHardCodedGame() {
         int solve;
         System.out.print("\nSolvable        (1), or\n"
@@ -125,7 +173,11 @@ public class View {
 
 //        return new SlidingGame(game);
     }
-
+    
+    /*
+    * Gets a random board and initializes a game with it
+    * @return Configuration with a random board
+    */
     private Configuration getRandomGame() {
         return SlidingGame.randomGame(SlidingGame.N);
     }

@@ -13,25 +13,9 @@ package pkg6_slidinggame;
  */
 public enum Direction
 {
-
-    /**
-     *
-     */
     NORTH (0,-1),
-
-    /**
-     *
-     */
     EAST (1,0),
-
-    /**
-     *
-     */
     SOUTH(0,1),
-
-    /**
-     *
-     */
     WEST(-1,0);
     
     private final int dx, dy;
@@ -40,25 +24,17 @@ public enum Direction
         this.dy = dy;
     }
     
-    /**
-     *
-     * @return
-     */
     public int GetDX () {
         return dx;
     }
 
-    /**
-     *
-     * @return
-     */
     public int GetDY () {
         return dy;
     }
     
     /**
-     *
-     * @return
+     * Get all available directions
+     * @return - array of Directions
      */
     public static Direction[] getAllDirs(){
         return new Direction[] {NORTH, EAST, SOUTH, WEST};

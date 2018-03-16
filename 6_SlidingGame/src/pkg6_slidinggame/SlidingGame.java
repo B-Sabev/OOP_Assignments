@@ -3,7 +3,6 @@ package pkg6_slidinggame;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -89,18 +88,6 @@ public class SlidingGame implements Configuration {
             }
         return flat;            
     }
-
-    
-    /**
-     * Check if the given direction for moving the blank space is a valid move
-     * @param dir - the direction in which to move the hole
-     * @return - boolean true if the move is valid
-     */
-    public boolean isValidMove(Direction dir){
-        int x = holeX + dir.GetDX();
-        int y = holeY + dir.GetDY();
-        return x >= 0 && x < N && y >= 0 && y < N;
-    }
     
     /**
      * Make a copy of this.board
@@ -113,6 +100,17 @@ public class SlidingGame implements Configuration {
                 copy[row][col] = this.board[row][col];
         return copy;
     }   
+    
+    /**
+     * Check if the given direction for moving the blank space is a valid move
+     * @param dir - the direction in which to move the hole
+     * @return - boolean true if the move is valid
+     */
+    public boolean isValidMove(Direction dir){
+        int x = holeX + dir.GetDX();
+        int y = holeY + dir.GetDY();
+        return x >= 0 && x < N && y >= 0 && y < N;
+    }
     
     /**
      * Play the move and return the resulting board
@@ -156,8 +154,11 @@ public class SlidingGame implements Configuration {
     }
     
     
-    // TODO clean up methods from here
-    
+    /*
+    * Checks if this is equal to Object o
+    * True only if the object is SlidingGame and the boards are the same
+    * @return if the object o equals this
+    */
     @Override
     public boolean equals(Object o) {
         if(o.getClass() == this.getClass()){
@@ -170,7 +171,11 @@ public class SlidingGame implements Configuration {
         }
         return false;
     }
-
+    
+    /*
+    * Checks if the given board is a solution to the SlidingGame
+    * @return boolean if it is a solution or not
+    */
     @Override
     public boolean isSolution() {
         for(int row=0; row<N; row++)
@@ -179,16 +184,20 @@ public class SlidingGame implements Configuration {
                     return false;       
         return true;
     }
-
+    
+    /*
+    * Finds all successors of this by executing all valid moves 
+    * @return Collection of all successors
+    */
     @Override
     public Collection<Configuration> successors() {
         Collection<Configuration> successors = new ArrayList<>();
         Direction[] dirs = Direction.getAllDirs();
         int[] new_start;
         
-        for(int i=0; i<dirs.length; i++){
-            if(isValidMove(dirs[i])){
-                new_start = flattenBoard(moveDir(dirs[i]));
+        for (Direction dir : dirs) {
+            if (isValidMove(dir)) {
+                new_start = flattenBoard(moveDir(dir));
                 successors.add(new SlidingGame(new_start, this));
             }
         }
@@ -205,6 +214,10 @@ public class SlidingGame implements Configuration {
         return this.parent;
     }
     
+    /*
+    * Get the path from this to the last configuration without partent
+    * @return Collection of the path between this and root
+    */
     @Override
     public List<Configuration> pathFromRoot() {
         List<Configuration> path = new ArrayList<>();
@@ -223,7 +236,7 @@ public class SlidingGame implements Configuration {
     }
     
     /**
-     *
+     * Evaluate the board on the Manhattan heuristic
      * @return
      */
     @Override
@@ -241,16 +254,16 @@ public class SlidingGame implements Configuration {
         }
         return total_dist;
     }
-
+     
     private static int manhattanDist(int x1, int y1, int x2, int y2) {
         // compute the manhattan dist 
         return Math.abs(x1-x2) + Math.abs(y1-y2); 
     }
     
     /**
-     *
-     * @param N
-     * @return
+     * Create a random game. Warning! Might not be solvable
+     * @param N - size of the board
+     * @return - a SlidingGame given the size
      */
     public static SlidingGame randomGame(int N){
         ArrayList<Integer> board = new ArrayList<>();
@@ -270,7 +283,6 @@ public class SlidingGame implements Configuration {
     
     @Override
     public int hashCode(){
-        // implement the hashCode
         int code = 0;
         for(int x=N-1; x>=0; x--)
             for(int y=N-1; y>=0; y--)
