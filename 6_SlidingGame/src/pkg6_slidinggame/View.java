@@ -21,22 +21,26 @@ public class View {
     }
 
     public void initGame() {
-        startMessage();
+        System.out.println("Welcome to the Sliding Game!");
+        Configuration game;
         
         while(true){
+            help();
             int choice = scan.nextInt();
-            System.out.print("\n");
+            
 
             switch(choice) {
                 case 1:     
-                    showHardCodedGames();
+                    game = getHardCodedGame();
+                    showGameSolving(game);
                     break;
                 case 2:
-                    showRandomGame();
+                    game = getRandomGame();
+                    showGameSolving(game);
                     break;
                 case 3:
-                    Configuration game = parseGameFromInput();
-                    
+                    game = parseGameFromInput();
+                    showGameSolving(game);
                     break;
                 case 4:     
                     System.out.println("Thank you for playing!");
@@ -49,18 +53,13 @@ public class View {
         }
     }
     
-    public void startMessage() {
-        System.out.println("Welcome to the Sliding Game!");
-        System.out.print("Would you like to be provided with pre-built boards(1), a random board(2), create your own(3), or quit(4)? ");
-        System.out.print("\n");
-    }
-
-    private void showHardCodedGames() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    private void showRandomGame() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void help() {
+        System.out.print("Select command:\n"
+                        +"pre-built boards        (1)\n"
+                        +"a random board          (2)\n"
+                        +"create your own board   (3)\n"
+                        +"quit                    (4)\n");
+        System.out.print("> ");
     }
 
     private Configuration parseGameFromInput() {
@@ -72,13 +71,10 @@ public class View {
         String  nums = scan.next();
         // split by ,
         String[] numbers = nums.trim().split(",");
+        // parse to int
         for(int i=0; i<numbers.length; i++)
             board[i] = Integer.parseInt(numbers[i]);
-        
-        for(int b : board){
-            System.out.println(b);
-        }
-        
+        // create new game out of it and return it
         return new SlidingGame(board);
     }
     
@@ -94,5 +90,18 @@ public class View {
             for(Configuration s : solution.pathFromRoot())
                 System.out.println(s.toString());
         }
+    }
+
+    private Configuration getHardCodedGame() {
+        int [] game = {16, 15, 4, 5,
+                        1, 10, 13, 11,
+                        8, 12, 9, 2,
+                        6, 7, 3, 14};
+        
+        return new SlidingGame(game);
+    }
+
+    private Configuration getRandomGame() {
+        return SlidingGame.randomGame(SlidingGame.N);
     }
 }

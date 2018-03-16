@@ -22,7 +22,7 @@ public class Main
                         1, 10, 13, 11,
                         8, 12, 9, 2,
                         6, 7, 3, 14};
-        (new View()).showGameSolving(new SlidingGame (game));
+        (new View()).initGame();
         
         /*
         
