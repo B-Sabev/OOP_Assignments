@@ -39,7 +39,7 @@ public class Solver
      *
      * @return a string representation of the solution
      */
-    public String solve() {
+    public Configuration solve() {
         while ( ! toExamine.isEmpty() ) {
             Configuration next = toExamine.remove();
             visited.add(next);
@@ -52,7 +52,7 @@ public class Solver
             
             if ( next.isSolution() ) {
                 solution = next;
-                return "Success!";
+                return solution;
             } else {
                 for ( Configuration succ : next.successors() ) {
                     // if the successor is not visited before, add for examination
@@ -61,7 +61,7 @@ public class Solver
                 }
             }
         }
-        return "Failure!";
+        return null;
     }
     
     /**

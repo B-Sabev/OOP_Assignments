@@ -36,6 +36,7 @@ public class View {
                     break;
                 case 3:
                     Configuration game = parseGameFromInput();
+                    
                     break;
                 case 4:     
                     System.out.println("Thank you for playing!");
@@ -63,25 +64,35 @@ public class View {
     }
 
     private Configuration parseGameFromInput() {
+        System.out.println("Please enter 1-16 in the order you want them to appear starting from the top left, 16 is for the hole");
+        System.out.println("Seperate your numbers with a , (1,2,3,...) : ");
         
-        //scan.useDelimiter(",");
-                        System.out.println("Please enter 1-15 in the order you want them to appear starting from the top left");
-                        System.out.println("Seperate your numbers with a , (1,2,3,...) : ");
-                        //int nums = scan.nextInt();
-                        int[] n = new int[15];
-                        String  nums = scan.next();
-                        System.out.print(nums);
-
-                        String[] numbers = nums.trim().split(",\\s+");
-
-//                        for (int i = 0; i < numbers.length; i++) {
-//                            n[i] = Integer.parseInt(numbers[i]);
-//                        }
-//                        
-//                        for (int x = n[0]; x < n.length; x++) {
-//                            
-//                        }
+        int[] board = new int[SlidingGame.N * SlidingGame.N];
+        // take the user input
+        String  nums = scan.next();
+        // split by ,
+        String[] numbers = nums.trim().split(",");
+        for(int i=0; i<numbers.length; i++)
+            board[i] = Integer.parseInt(numbers[i]);
         
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        for(int b : board){
+            System.out.println(b);
+        }
+        
+        return new SlidingGame(board);
+    }
+    
+    
+    public void showGameSolving(Configuration game){
+        System.out.println(game.toString());
+        Solver solver = new Solver(game);
+        Configuration solution = solver.solve();
+        if(solution == null){
+            System.out.println("The current game cannot be solved");
+        } else {
+            System.out.println("Found path with " + solution.pathFromRoot().size() + " steps");
+            for(Configuration s : solution.pathFromRoot())
+                System.out.println(s.toString());
+        }
     }
 }

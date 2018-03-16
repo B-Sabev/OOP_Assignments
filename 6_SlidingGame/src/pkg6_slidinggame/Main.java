@@ -18,8 +18,11 @@ public class Main
      * @param args
      */
     public static void main(String[] args) {
-        
-        (new View()).initGame();
+        int [] game = {16, 15, 4, 5,
+                        1, 10, 13, 11,
+                        8, 12, 9, 2,
+                        6, 7, 3, 14};
+        (new View()).showGameSolving(new SlidingGame (game));
         
         /*
         
@@ -56,14 +59,11 @@ public class Main
         //   System.out.println(p);
         /*
         TODO
-            - check the isSolvable function
-            - if it is not solvable, it is very slow on 4x4
             - write View class - print the start state, then solve and present the whole path
                 - Give user the choice between hard-coded, random, or entering himself (optional)
                 - hard-code 1 solvable, 1 unsolvable
                 - measure the time
-                - (Optional) add parsing
-            - (Optional) store Manhattan dist for all configurations to ease computing
+                - parsing - try error catching
             - re-organize methods
             - add comments
             - clear unused imports
