@@ -19,12 +19,5 @@ public class Main
      */
     public static void main(String[] args) {
         (new View()).initGame();
-        
-        /*
-        TODO
-            - In View
-                - measure the time
-                - parsing - try error catching
-        */
     }
 }

@@ -6,6 +6,7 @@
 package pkg6_slidinggame;
 
 import java.util.Scanner;
+import static pkg6_slidinggame.SlidingGame.N;
 import static pkg6_slidinggame.SlidingGame.randomGame;
 
 /**
@@ -43,7 +44,8 @@ public class View {
                     break;
                 case PARSE_INPUT:
                     game = parseGameFromInput();
-                    showGameSolving(game);
+                    if(game != null)
+                        showGameSolving(game);
                     break;
                 case QUIT:     
                     System.out.println("Quitting...");
@@ -69,14 +71,42 @@ public class View {
         System.out.println("Please enter 1-16 in the order you want them to appear starting from the top left, 16 is for the hole");
         System.out.println("Seperate your numbers with a , (1,2,3,...) : ");
         
-        int[] board = new int[SlidingGame.N * SlidingGame.N];
+        int[] board = new int[N * N];
         // take the user input
         String  nums = scan.next();
         // split by ,
         String[] numbers = nums.trim().split(",");
+        if(numbers.length != N*N){ // interrupt if numbers are not the right number
+            System.out.println("Numbers should be exactly " + N*N +
+                               "Please try again\n");
+            return null;
+        }
         // parse to int
         for(int i=0; i<numbers.length; i++)
-            board[i] = Integer.parseInt(numbers[i]);
+            try{
+                board[i] = Integer.parseInt(numbers[i]);
+            } catch(Exception e){
+                System.out.println("You must enter only numbers, please try again\n");
+                return null;
+            }
+        
+        // check if the numbers are valid
+        for(int num=0; num<board.length; num++){
+            // check if number is in range
+            if (board[num] < 0 || board[num] > N*N){
+                System.out.println("There is a number too big or too small " +
+                                   "\nPlease enter numbers only from 1 to "+N*N);
+                return null;
+            }
+            // check that there are no duplicates
+            for(int i=0; i<board.length; i++){
+                if(num != i && board[num] == board[i]){
+                    System.out.println("No repeating numbers allowed ");
+                    return null;
+                }
+            }
+        }
+            
         // create new game out of it and return it
         return new SlidingGame(board);
     }
