@@ -4,7 +4,7 @@ package pkg6_slidinggame;
 import java.util.ArrayList;
 import java.util.List;
 import static pkg6_slidinggame.SlidingGame.randomGame;
-import static pkg6_slidinggame.View.initGame;
+
 
 
 /**
@@ -18,6 +18,12 @@ public class Main
      * @param args
      */
     public static void main(String[] args) {
+        
+        (new View()).initGame();
+        
+        /*
+        
+        
         int [] game = {16, 15, 4, 5,
                         1, 10, 13, 11,
                         8, 12, 9, 2,
@@ -27,7 +33,10 @@ public class Main
 
         SlidingGame s = new SlidingGame (game);
         
-        View.initGame();
+        
+        
+        
+        
         for(int i=0; i<20; i++){
            
             System.out.println(s);
@@ -40,7 +49,7 @@ public class Main
             System.out.println("Found solution of length " + path.size());
         }
         
-        
+        */
         
         
         //for(Configuration p : path)
