@@ -50,7 +50,7 @@ public class View {
                     System.exit(0);
                     break;
                 default:    
-                    System.out.println("Please enter a valid choice between 1 and 4");
+                    System.out.print("Please enter a valid choice between 1 and 4 :");
                     break;
                 }
         }
@@ -96,12 +96,34 @@ public class View {
     }
 
     private Configuration getHardCodedGame() {
-        int [] game = {16, 15, 4, 5,
-                        1, 10, 13, 11,
-                        8, 12, 9, 2,
-                        6, 7, 3, 14};
+        int solve;
+        System.out.print("\nSolvable        (1), or\n"
+                        +"Unsolvable      (2)? ");
+        solve = scan.nextInt();
+        System.out.print("\n");
+        if (solve == 1) {
+            int [] game = {16, 15, 4, 5,
+                            1, 10, 13, 11,
+                            8, 12, 9, 2,
+                            6, 7, 3, 14};
+                    return new SlidingGame(game);
+        }
+
+        else if (solve == 2) {
+            int [] game = {3, 7, 12, 8,
+                            10, 1, 9, 6,
+                            5, 4, 13, 14,
+                            11, 15, 16, 2};   
+                    return new SlidingGame(game);
+        }
         
-        return new SlidingGame(game);
+        else {
+            while(true) {
+                System.out.println("Please enter a valid choice between 1 and 2");
+            }
+        }
+
+//        return new SlidingGame(game);
     }
 
     private Configuration getRandomGame() {
