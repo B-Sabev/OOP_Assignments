@@ -25,6 +25,7 @@ public class Bitmap {
      * Gets a bit at the specified position
      * @param x: x coordinate
      * @param y: y coordinate
+     * @return : truth value of the given coordinate
      */
     public boolean getBit( int x, int y ) {
         return raster[x][y];
