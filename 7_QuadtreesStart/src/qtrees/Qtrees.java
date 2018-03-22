@@ -1,16 +1,22 @@
 package qtrees;
 
+import java.io.IOException;
 import java.io.StringReader;
+import java.nio.CharBuffer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Qtrees {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String test_tekst = "10011010001010010001010101100011000101000000";
         StringReader input = new StringReader(test_tekst);
-        //QTree qt = new QTree( input );
-        Bitmap bitmap = new Bitmap(8, 8);
-        //qt.fillBitmap( bitmap );
+        QTree qt = new QTree( input );
+        Bitmap bitmap = new Bitmap(8);
+        qt.fillBitmap( bitmap );
         System.out.println(bitmap.toString());
+        
+        
         /*
         Implement the QTNode interface
             - BlackLeaf, WhiteLeaf, GrayNode

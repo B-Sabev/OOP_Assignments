@@ -5,10 +5,25 @@
  */
 package qtrees;
 
+import java.io.Writer;
+
 /**
  *
  * @author Borislav
  */
-public class BlackLeaf {
+public class BlackLeaf implements QTNode{
+    
+    private int size;
+
+    @Override
+    public void fillBitmap(int x, int y, int width, Bitmap bitmap) {
+        bitmap.fillArea(x, y, width, false);
+    }
+
+    @Override
+    public void writeNode(Writer out) {
+        // fill the size of the leaf with 0s
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

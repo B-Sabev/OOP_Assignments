@@ -8,17 +8,15 @@ package qtrees;
 public class Bitmap {
     // each bit is stored into an two dimensional array
     private final boolean[][] raster;
-    private final int bmWidth, bmHeight;
+    private final int size;
     
     /**
-     * Creates an empty bitmap of size width * height
-     * @param width
-     * @param height 
+     * Creates an empty bitmap of size * size
+     * @param size - size of the square map
      */
-    public Bitmap( int width, int height ) {
-        raster   = new boolean[width][height];
-        bmWidth  = width;
-        bmHeight = height;
+    public Bitmap( int size ) {
+        raster   = new boolean[size][size];
+        this.size = size;
     }
 
     /**
@@ -49,29 +47,20 @@ public class Bitmap {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        for (int y = 0; y < bmHeight; y++) {
-            for (int x = 0; x < bmWidth; x++) {
+        for (int y = 0; y < size; y++) {
+            for (int x = 0; x < size; x++) {
                sb.append( raster[x][y] ?  '*' : 'O' );
             }
             sb.append( '\n' );
         }
         return sb.toString();
     }
-    
-    /**
-     * @return the width of the bitmap
-     */
-    public int getWidth() {
-        return bmWidth;
+
+    public int getSize() {
+        return size;
     }
 
-    /**
-     * @return the height of the bitmap
-     */
-    public int getHeight() {
-        return bmHeight;
-    }
-    
+ 
     /**
      * Fills a square area of a bitmap with value val
      * @param x: x coordinate of upper-left corner
@@ -85,6 +74,24 @@ public class Bitmap {
                 setBit(x+i, y+j, val);
             }
         }
+    }
+    
+    public boolean isVal( int x, int y, int size, boolean val){
+        for (int i = 0; i < size; i++)
+            for (int j = 0; j < size; j++) 
+                if(raster[x+i][y+j] != val)
+                    return false;
+        return true;
+    }
+    
+    public Bitmap copyPart(int x1, int y1, int size){
+        Bitmap map = new Bitmap( size );
+        for(int i=0; i<size-x1; i++){
+            for(int j=0; j<size-y1; j++){
+                map.setBit(i, j, this.getBit(i+x1, j+y1));
+            }
+        }
+        return map;
     }
     
 
