@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package qtrees;
 
 import java.io.IOException;
@@ -19,18 +14,9 @@ public class GrayNode implements QTNode{
     private final QTNode[] children;
     private int numChildren;
     
-
-    public GrayNode(QTNode[] children) {
-        this.children = children;
-        this.numChildren = 0;
-    }
-
     public GrayNode() {
         this.children = new QTNode[MAX_CHILDREN];
-    }
-    
-    public QTNode[] getChildren(){
-        return this.children;
+        this.numChildren = 0;
     }
     
     public void addChild(QTNode child){
@@ -42,11 +28,10 @@ public class GrayNode implements QTNode{
     
     @Override
     public void fillBitmap(int x, int y, int width, Bitmap bitmap) {
-        // TODO - can you do this smarter ??
-        this.children[0].fillBitmap(x,y,width/2,bitmap);
-        this.children[1].fillBitmap(x + width/2,y,width/2,bitmap);
-        this.children[2].fillBitmap(x + width/2,y + width/2,width/2,bitmap);
-        this.children[3].fillBitmap(x,y + width/2,width/2,bitmap);
+        this.children[0].fillBitmap(x,           y,           width/2, bitmap);
+        this.children[1].fillBitmap(x + width/2, y,           width/2, bitmap);
+        this.children[2].fillBitmap(x + width/2, y + width/2, width/2, bitmap);
+        this.children[3].fillBitmap(x,           y + width/2, width/2, bitmap);
     }
 
     @Override

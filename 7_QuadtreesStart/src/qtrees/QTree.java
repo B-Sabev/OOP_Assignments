@@ -3,7 +3,6 @@ package qtrees;
 import java.io.IOException;
 import java.io.Reader;
 import java.io.Writer;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -65,8 +64,6 @@ public class QTree {
         return null; // should happen only if reader is empty
     }
     
-    
-    // TODO - finish this method DOES NOT WORK
     public static QTNode bitmap2QTree( int x, int y, int size, Bitmap bitmap ) {
         if(bitmap.isVal(true)){ // if all pixels in the map are white
             return Leaf.WHITE;

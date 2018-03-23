@@ -13,6 +13,8 @@ import java.io.Writer;
 public class Qtrees {
 
     public static void main(String[] args) throws IOException {
+        (new View()).demo();
+        /*
         String test_tekst = "10011010001010010001010101100011000101000000";
         StringReader input = new StringReader(test_tekst);
         // Make QTree from reader and fill bitmap with it
@@ -32,7 +34,7 @@ public class Qtrees {
         qt.writeQTree(output);
         System.out.println(output.toString());
         System.out.println(test_tekst);
-        
+        */
     }
 
 }

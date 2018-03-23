@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package qtrees;
 
 import java.io.IOException;
@@ -11,8 +6,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public enum Leaf implements QTNode {
 
@@ -35,5 +29,4 @@ public enum Leaf implements QTNode {
             Logger.getLogger(Leaf.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }
