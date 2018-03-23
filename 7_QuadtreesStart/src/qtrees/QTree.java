@@ -14,10 +14,13 @@ import java.util.logging.Logger;
  *  Sjaak Smetsers
  */
 
-
 public class QTree {
     QTNode root;
     
+    /**
+     * Init a QTree from Reader String
+     * @param input - a Reader
+     */
     public QTree( Reader input ) {
         try {
             root = readQTree( input );
@@ -26,18 +29,36 @@ public class QTree {
         }
     }
     
+    /**
+     * Init a QTree from a Bitmap
+     * @param bitmap - bitmap to be converted to tree
+     */
     public QTree( Bitmap bitmap ) {
         root = bitmap2QTree( 0, 0,  bitmap.getSize(), bitmap );
     }
 
+    /**
+     * Fill a bitmap with the tree representation
+     * @param bitmap
+     */
     public void fillBitmap ( Bitmap bitmap ) {
         root.fillBitmap(0, 0, bitmap.getSize(), bitmap);
     }
 
+    /**
+     * Write a QTree to writer as String
+     * @param sb - an initialized Writer object
+     */
     public void writeQTree( Writer sb ) {
         root.writeNode( sb );
     }
     
+    
+    
+    /**
+     * Read a QTree from reader
+     * @param input - reader with sample string to create a tree from
+     */
     private static QTNode readQTree( Reader input ) throws IOException {
         // Read the first bit
         int bit = input.read();
@@ -64,6 +85,14 @@ public class QTree {
         return null; // should happen only if reader is empty
     }
     
+    /**
+     * Create a QTree from a bitmap
+     * @param x - upper left coordinate
+     * @param y - upper left coordinate
+     * @param size - size of the bitmap
+     * @param bitmap - the given bitmap
+     * @return - the root node
+     */
     public static QTNode bitmap2QTree( int x, int y, int size, Bitmap bitmap ) {
         if(bitmap.isVal(true)){ // if all pixels in the map are white
             return Leaf.WHITE;
@@ -72,16 +101,18 @@ public class QTree {
             return Leaf.BLACK;
         }
         // If the code reaches here, the bitmap is gray
-        // TODO - is there prettier way to do that ???
-        Bitmap[] parts4 = {bitmap.copyPart(0,       0,      size/2),
-                           bitmap.copyPart(size/2,  0,      size/2),
-                           bitmap.copyPart(size/2,  size/2, size/2),
-                           bitmap.copyPart(0,       size/2, size/2)};
+        //System.out.println(x);
+        //System.out.println(y);
+        int[] xs = {0, 0+size/2, 0+size/2, 0};
+        int[] ys = {0, 0,        0+size/2, 0+size/2};
+        
+        Bitmap bm;
         QTNode gray = new GrayNode();
-        ((GrayNode) gray).addChild(bitmap2QTree(0, 0, size/2, parts4[0] ));
-        ((GrayNode) gray).addChild(bitmap2QTree(size/2,  0, size/2, parts4[1] ));
-        ((GrayNode) gray).addChild(bitmap2QTree(size/2,  size/2, size/2, parts4[2] ));
-        ((GrayNode) gray).addChild(bitmap2QTree(0, size/2, size/2, parts4[3] ));
+        for(int i=0; i<GrayNode.MAX_CHILDREN; i++){
+            bm = bitmap.copyPart(xs[i], ys[i], size/2);
+            ((GrayNode) gray).addChild(bitmap2QTree(xs[i], ys[i], size/2, bm));
+            
+        }
         return gray;
     }
 
@@ -89,6 +120,4 @@ public class QTree {
         return root;
     }
 
-    
-    
 }

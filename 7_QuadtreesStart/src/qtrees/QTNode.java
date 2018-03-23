@@ -10,6 +10,19 @@ import java.io.Writer;
  *  Sjaak Smetsers
  */
 public interface QTNode {
-    public void fillBitmap( int x, int y, int width, Bitmap bitmap );
+
+    /**
+     * Fill a bitmap given the node value
+     * @param x - upper left coordinate
+     * @param y - upper left coordinate
+     * @param size - size of the map
+     * @param bitmap - the given map
+     */
+    public void fillBitmap( int x, int y, int size, Bitmap bitmap );
+
+    /**
+     * Write the given node to a writer
+     * @param out - an initialized writer
+     */
     public void writeNode( Writer out );
 }

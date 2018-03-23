@@ -78,6 +78,14 @@ public class Bitmap {
         }
     }
     
+    /**
+     * Checks if a square part of the bitmap is a equal to a given value
+     * @param x - upper left coordinate
+     * @param y - upper left coordinate
+     * @param size - size of the square
+     * @param val - boolean value to check for 
+     * @return - true if all bits in this part of the map are equal to val, false otherwise
+     */
     public boolean isVal( int x, int y, int size, boolean val){
         for (int i = 0; i < size; i++)
             for (int j = 0; j < size; j++) 
@@ -86,15 +94,27 @@ public class Bitmap {
         return true;
     }
     
+    /**
+     * Checks if every bit in the map is equal to val
+     * @param val - boolean value to check for 
+     * @return true if all bits in the map are equal to val, false otherwise
+     */
     public boolean isVal(boolean val){
         return isVal(0, 0, this.size, val);
     }
     
-    public Bitmap copyPart(int x1, int y1, int size){
+    /**
+     * Copy a part of this into new Bitmap
+     * @param x - upper left coordinate
+     * @param y - upper left coordinate
+     * @param size - size of the new map
+     * @return - a new map, which is an exact copy of the part in the map
+     */
+    public Bitmap copyPart(int x, int y, int size){
         Bitmap map = new Bitmap( size );
         for(int i=0; i<size; i++){
             for(int j=0; j<size; j++){
-                map.setBit(i, j, this.getBit(i+x1, j+y1));
+                map.setBit(i, j, this.getBit(i+x, j+y));
             }
         }
         return map;
