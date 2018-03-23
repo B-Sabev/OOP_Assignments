@@ -40,6 +40,7 @@ public class GrayNode implements QTNode{
     
     @Override
     public void fillBitmap(int x, int y, int width, Bitmap bitmap) {
+        // TODO - can you do this smarter ??
         this.children[0].fillBitmap(x,y,width/2,bitmap);
         this.children[1].fillBitmap(x + width/2,y,width/2,bitmap);
         this.children[2].fillBitmap(x + width/2,y + width/2,width/2,bitmap);

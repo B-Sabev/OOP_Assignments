@@ -84,10 +84,14 @@ public class Bitmap {
         return true;
     }
     
+    public boolean isVal(boolean val){
+        return isVal(0, 0, this.size, val);
+    }
+    
     public Bitmap copyPart(int x1, int y1, int size){
         Bitmap map = new Bitmap( size );
-        for(int i=0; i<size-x1; i++){
-            for(int j=0; j<size-y1; j++){
+        for(int i=0; i<size; i++){
+            for(int j=0; j<size; j++){
                 map.setBit(i, j, this.getBit(i+x1, j+y1));
             }
         }

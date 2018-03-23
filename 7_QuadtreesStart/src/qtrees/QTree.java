@@ -57,23 +57,26 @@ public class QTree {
     }
     
     
-    // TODO - finish this method
+    // TODO - finish this method DOES NOT WORK
     public static QTNode bitmap2QTree( int x, int y, int size, Bitmap bitmap ) {
-        // Split the bitmap into 4 parts
-        // if in the split are one color use Leaf, else Node
-        if(bitmap.getSize() == 1){
-            // return the root node
-        } else {
-            Bitmap[] parts4 = {bitmap.copyPart(0,       0,      size/2),
-                               bitmap.copyPart(size/2,  0,      size/2),
-                               bitmap.copyPart(0,       size/2, size/2),
-                               bitmap.copyPart(size/2,  size/2, size/2)};
-            QTNode gray = new GrayNode();
+        if(bitmap.isVal(true)){ // if all pixels in the map are white
+            return new WhiteLeaf();
         }
-        
-        
-       
-        return null;
+        if(bitmap.isVal(false)){ // if all pixels in the map are black
+            return new BlackLeaf();
+        }
+        // If the code reaches here, the bitmap is gray
+        // TODO - is there prettier way to do that ???
+        Bitmap[] parts4 = {bitmap.copyPart(0,       0,      size/2),
+                           bitmap.copyPart(size/2,  0,      size/2),
+                           bitmap.copyPart(size/2,  size/2, size/2),
+                           bitmap.copyPart(0,       size/2, size/2)};
+        QTNode gray = new GrayNode();
+        ((GrayNode) gray).addChild(bitmap2QTree(0, 0, size/2, parts4[0] ));
+        ((GrayNode) gray).addChild(bitmap2QTree(size/2,  0, size/2, parts4[1] ));
+        ((GrayNode) gray).addChild(bitmap2QTree(size/2,  size/2, size/2, parts4[2] ));
+        ((GrayNode) gray).addChild(bitmap2QTree(0, size/2, size/2, parts4[3] ));
+        return gray;
     }
 
     public QTNode getRoot() {
