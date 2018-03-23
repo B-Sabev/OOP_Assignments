@@ -11,21 +11,28 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ *
+ * @author Borislav
  */
-public class BlackLeaf implements QTNode{
+public enum Leaf implements QTNode {
+
+    BLACK, WHITE;
+    
+    public boolean toVal(){
+        return this == WHITE;
+    }
 
     @Override
     public void fillBitmap(int x, int y, int width, Bitmap bitmap) {
-        bitmap.fillArea(x, y, width, false);
+        bitmap.fillArea(x, y, width, this.toVal());
     }
 
     @Override
     public void writeNode(Writer out) {
         try {
-            out.write("00");
+            out.write(this.toVal() ? "01" : "00");            
         } catch (IOException ex) {
-            Logger.getLogger(WhiteLeaf.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Leaf.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

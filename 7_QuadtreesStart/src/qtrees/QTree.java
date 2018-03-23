@@ -54,10 +54,10 @@ public class QTree {
                 // bit is 0, take next bit to determine white or black leaf
                 bit = input.read();
                 if(bit == '1'){
-                    return new WhiteLeaf();
+                    return Leaf.WHITE;
                 }
                 if(bit == '0'){
-                    return new BlackLeaf();
+                    return Leaf.BLACK;
                 }
             }
             bit = input.read();
@@ -69,10 +69,10 @@ public class QTree {
     // TODO - finish this method DOES NOT WORK
     public static QTNode bitmap2QTree( int x, int y, int size, Bitmap bitmap ) {
         if(bitmap.isVal(true)){ // if all pixels in the map are white
-            return new WhiteLeaf();
+            return Leaf.WHITE;
         }
         if(bitmap.isVal(false)){ // if all pixels in the map are black
-            return new BlackLeaf();
+            return Leaf.BLACK;
         }
         // If the code reaches here, the bitmap is gray
         // TODO - is there prettier way to do that ???
