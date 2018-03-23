@@ -5,11 +5,13 @@
  */
 package qtrees;
 
+import java.io.IOException;
 import java.io.Writer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class GrayNode implements QTNode{
     
@@ -49,7 +51,15 @@ public class GrayNode implements QTNode{
 
     @Override
     public void writeNode(Writer out) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            out.write('1'); // write that the node is not leaf node
+            // recusrivly call all the children of this node 
+            for(QTNode child : children){
+                child.writeNode(out);
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(GrayNode.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

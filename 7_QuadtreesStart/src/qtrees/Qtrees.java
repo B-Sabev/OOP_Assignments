@@ -2,9 +2,13 @@ package qtrees;
 
 import java.io.IOException;
 import java.io.StringReader;
-import java.nio.CharBuffer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.io.StringWriter;
+import java.io.Writer;
+
+
+/**
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ */
 
 public class Qtrees {
 
@@ -24,17 +28,11 @@ public class Qtrees {
         qtFromBit.fillBitmap( bm );
         System.out.println("\n"+bm.toString());  // this should be the same as the previous bitmap
         
-        /*
-        Implement the QTNode interface
-            - BlackLeaf, WhiteLeaf, GrayNode
+        Writer output = new StringWriter();
+        qt.writeQTree(output);
+        System.out.println(output.toString());
+        System.out.println(test_tekst);
         
-        (1) as a bitmap, (2) as a quad tree and (3) string of 1s and 0s.
-        implement conversions between ( (1) <-> (3) is already defined ): 
-            -  (1) -> (2), (2) -> (1)
-            -  (2) -> (3), (3) -> (2)
-        
-        Add student names and numbers in every file
-        */
     }
 
 }

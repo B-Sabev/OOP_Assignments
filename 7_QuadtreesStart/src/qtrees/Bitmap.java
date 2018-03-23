@@ -2,8 +2,10 @@ package qtrees;
 
 /**
  * Bitmap: A class for representing bitmap;
- * @author Sjaak Smetsers
- * @version 15-03-2016
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ * 
+ * adapted from: 
+ *  Sjaak Smetsers
  */
 public class Bitmap {
     // each bit is stored into an two dimensional array

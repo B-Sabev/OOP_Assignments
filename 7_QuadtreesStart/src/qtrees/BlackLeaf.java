@@ -5,11 +5,13 @@
  */
 package qtrees;
 
+import java.io.IOException;
 import java.io.Writer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
- *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class BlackLeaf implements QTNode{
 
@@ -20,8 +22,11 @@ public class BlackLeaf implements QTNode{
 
     @Override
     public void writeNode(Writer out) {
-        // fill the size of the leaf with 0s
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            out.write("00");
+        } catch (IOException ex) {
+            Logger.getLogger(WhiteLeaf.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }

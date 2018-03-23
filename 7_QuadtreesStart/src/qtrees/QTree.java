@@ -7,6 +7,15 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ * Bitmap: A class for representing bitmap;
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ * 
+ * adapted from: 
+ *  Sjaak Smetsers
+ */
+
+
 public class QTree {
     QTNode root;
     
