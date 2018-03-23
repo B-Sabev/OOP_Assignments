@@ -12,8 +12,6 @@ import java.io.Writer;
  * @author Borislav
  */
 public class BlackLeaf implements QTNode{
-    
-    private int size;
 
     @Override
     public void fillBitmap(int x, int y, int width, Bitmap bitmap) {

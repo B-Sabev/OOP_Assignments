@@ -13,8 +13,10 @@ import java.io.Writer;
  */
 public class GrayNode implements QTNode{
     
+    public static final int MAX_CHILDREN = 4;
     private final QTNode[] children;
     private int numChildren;
+    
 
     public GrayNode(QTNode[] children) {
         this.children = children;
@@ -22,7 +24,7 @@ public class GrayNode implements QTNode{
     }
 
     public GrayNode() {
-        this.children = new QTNode[4];
+        this.children = new QTNode[MAX_CHILDREN];
     }
     
     public QTNode[] getChildren(){
@@ -30,7 +32,7 @@ public class GrayNode implements QTNode{
     }
     
     public void addChild(QTNode child){
-        if(numChildren < 4){
+        if(numChildren < MAX_CHILDREN){
             children[numChildren] = child;
             numChildren++;
         }       
@@ -38,7 +40,6 @@ public class GrayNode implements QTNode{
     
     @Override
     public void fillBitmap(int x, int y, int width, Bitmap bitmap) {
-        // With what params to call each of the children ????
         this.children[0].fillBitmap(x,y,width/2,bitmap);
         this.children[1].fillBitmap(x + width/2,y,width/2,bitmap);
         this.children[2].fillBitmap(x + width/2,y + width/2,width/2,bitmap);

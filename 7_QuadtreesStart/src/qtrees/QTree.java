@@ -37,10 +37,9 @@ public class QTree {
             if(bit == '1'){ // if not leaf
                 // create a gray node and fill it with 4 children
                 QTNode node = new GrayNode();
-                ((GrayNode) node).addChild(readQTree(input));
-                ((GrayNode) node).addChild(readQTree(input));
-                ((GrayNode) node).addChild(readQTree(input));
-                ((GrayNode) node).addChild(readQTree(input));
+                for(int i=0; i<GrayNode.MAX_CHILDREN; i++){
+                    ((GrayNode) node).addChild(readQTree(input));
+                }
                 return node;
             } else {
                 // bit is 0, take next bit to determine white or black leaf
@@ -54,10 +53,11 @@ public class QTree {
             }
             bit = input.read();
         }
-        return null;
+        return null; // should happen only if reader is empty
     }
     
     
+    // TODO - finish this method
     public static QTNode bitmap2QTree( int x, int y, int size, Bitmap bitmap ) {
         // Split the bitmap into 4 parts
         // if in the split are one color use Leaf, else Node
