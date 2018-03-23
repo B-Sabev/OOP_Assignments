@@ -4,6 +4,7 @@ import java.io.Writer;
 
 
 /**
+ * QTNode interface to be implemented by all node is QTree
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  * 
  * adapted from: 

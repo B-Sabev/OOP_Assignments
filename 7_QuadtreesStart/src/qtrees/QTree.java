@@ -7,7 +7,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- * Bitmap: A class for representing bitmap;
+ * QTree: A class for representing QTrees;
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  * 
  * adapted from: 
@@ -94,24 +94,19 @@ public class QTree {
      * @return - the root node
      */
     public static QTNode bitmap2QTree( int x, int y, int size, Bitmap bitmap ) {
-        if(bitmap.isVal(true)){ // if all pixels in the map are white
+        if(bitmap.isVal(x,y,size,true)){ // if all pixels in the map are white
             return Leaf.WHITE;
         }
-        if(bitmap.isVal(false)){ // if all pixels in the map are black
+        if(bitmap.isVal(x,y,size,false)){ // if all pixels in the map are black
             return Leaf.BLACK;
         }
         // If the code reaches here, the bitmap is gray
-        //System.out.println(x);
-        //System.out.println(y);
-        int[] xs = {0, 0+size/2, 0+size/2, 0};
-        int[] ys = {0, 0,        0+size/2, 0+size/2};
-        
-        Bitmap bm;
+        // Define the left upper coord for all 4 squares
+        int[] xs = {x, x+size/2, x+size/2, x};
+        int[] ys = {y, y,        y+size/2, y+size/2};
         QTNode gray = new GrayNode();
         for(int i=0; i<GrayNode.MAX_CHILDREN; i++){
-            bm = bitmap.copyPart(xs[i], ys[i], size/2);
-            ((GrayNode) gray).addChild(bitmap2QTree(xs[i], ys[i], size/2, bm));
-            
+            ((GrayNode) gray).addChild(bitmap2QTree(xs[i], ys[i], size/2, bitmap));
         }
         return gray;
     }

@@ -5,6 +5,8 @@ import java.io.StringWriter;
 import java.io.Writer;
 
 /**
+ * View class: demonstrate the functionality of QTrees
+ * 
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class View {

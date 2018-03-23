@@ -47,10 +47,11 @@ public class GrayNode implements QTNode{
      */
     @Override
     public void fillBitmap(int x, int y, int size, Bitmap bitmap) {
-        this.children[0].fillBitmap(x,          y,          size/2, bitmap);
-        this.children[1].fillBitmap(x + size/2, y,          size/2, bitmap);
-        this.children[2].fillBitmap(x + size/2, y + size/2, size/2, bitmap);
-        this.children[3].fillBitmap(x,          y + size/2, size/2, bitmap);
+        // define the upper coord for each of the 4 squares
+        int[] xs = {x, x+size/2, x+size/2, x};
+        int[] ys = {y, y,        y+size/2, y+size/2};
+        for(int i=0; i<GrayNode.MAX_CHILDREN; i++)
+            this.children[i].fillBitmap(xs[i], ys[i], size/2, bitmap);
     }
 
     /**

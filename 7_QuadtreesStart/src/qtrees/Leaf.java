@@ -6,19 +6,13 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
+ * Leaf class to represent Black and White leafs in QTree, implements QTNode
+ * 
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public enum Leaf implements QTNode {
-
-    /**
-     * A leaf with false bit value
-     */
-    BLACK,
-
-    /**
-     * A leaf with true bit value
-     */
-    WHITE;
+    
+    BLACK, WHITE;
     
     /**
      * Converts the enum to boolean
