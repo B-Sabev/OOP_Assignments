@@ -70,11 +70,12 @@ public class PolynomialTest {
     @Test
     public void testMinus() {
         System.out.println("minus");
-        Polynomial b = null;
-        Polynomial instance = new Polynomial();
+        Polynomial b = new Polynomial("2 2");
+        Polynomial instance = new Polynomial("2 2");
         instance.minus(b);
+        assertEquals("Substract 2 equal polynomials and check if it is emtpy", instance, new Polynomial());
         // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        //fail("The test case is a prototype.");
     }
 
     /**
