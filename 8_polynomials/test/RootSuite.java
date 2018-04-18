@@ -12,11 +12,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 /**
- *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({polynomial.PolynomialSuite.class, term.TermSuite.class})
+@Suite.SuiteClasses({polynomial.PolynomialSuite.class})
 public class RootSuite {
 
     @BeforeClass

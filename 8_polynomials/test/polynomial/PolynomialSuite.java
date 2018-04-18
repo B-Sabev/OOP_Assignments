@@ -13,8 +13,10 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 /**
- *
- * @author Sjaak Smetsers <s.smetsers@cs.ru.nl>
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ * 
+ * adapted from:
+ * author Sjaak Smetsers <s.smetsers@cs.ru.nl>
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({PolynomialTest.class})

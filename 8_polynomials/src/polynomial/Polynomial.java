@@ -79,7 +79,7 @@ public class Polynomial {
 
     public void plus(Polynomial b) {
         ListIterator<Term> lita = terms.listIterator(),
-                litb = b.terms.listIterator();
+                           litb = b.terms.listIterator();
         while (lita.hasNext() && litb.hasNext()) {
             Term ta = lita.next(), tb = litb.next();
             if (ta.getExp() == tb.getExp()) {
@@ -128,7 +128,9 @@ public class Polynomial {
             }
         }
     }
+    
 
+    /*
     public Polynomial divide (Polynomial b) {
         if ( b.terms.isEmpty( )) {
             throw new ArithmeticException( "Division by zero" );
@@ -155,7 +157,7 @@ public class Polynomial {
             return a;
         }
     }
-
+    */
     @Override
     public boolean equals(Object other_poly) {
         if (other_poly instanceof Polynomial ) {

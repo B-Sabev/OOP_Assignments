@@ -105,11 +105,15 @@ public class Term {
     @Override
     public String toString() {
         if (exponent == 0) {
-            return String.format("%f", coefficient, exponent);
+            return String.format("%.2f", coefficient, exponent);
         } else if (exponent == 1) {
-            return String.format("%fx", coefficient, exponent);
+            return String.format("%.2fx", coefficient, exponent);
+        } else if (coefficient == 1) {
+            return String.format("x^%d", exponent);
+        } else if (coefficient == -1) {
+            return String.format("-x^%d", exponent);
         } else {
-            return String.format("%fx^%d", coefficient, exponent);
+            return String.format("%.2fx^%d", coefficient, exponent);
         }
     }
 
