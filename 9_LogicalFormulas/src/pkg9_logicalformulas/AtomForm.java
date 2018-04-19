@@ -17,8 +17,17 @@ class AtomForm implements Form {
     }
 
     @Override
-    public void accept(FormVisitor v) {
-        v.visit(this);
+    public boolean accept(FormVisitor v) {
+        return v.visit(this);
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+    
+    @Override
+    public String toString(){
+        return symbol;
     }
     
     

@@ -21,12 +21,20 @@ public class BinOpForm implements Form {
         this.rightOperand = rightOperand;
     }
     
-    
-    
-    
-    @Override
-    public void accept(FormVisitor v) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean accept(FormVisitor v) {
+        return v.visit(this);
+    }
+
+    public BinOp getOp() {
+        return op;
+    }
+
+    public Form getLeftOperand() {
+        return leftOperand;
+    }
+
+    public Form getRightOperand() {
+        return rightOperand;
     }
     
     

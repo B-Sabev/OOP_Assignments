@@ -15,16 +15,22 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
         /*
-        bool eval( Form f)
+        TODO
         
-            check the type of f and recursivly eval
+            -class and sequence diagram
         
-        Try not to use instanceOf 
+            - Add a number of static methods to your main class, each of which construct a tree
+of a logic formula. Think up a few interesting cases on your own. You will use these
+to test your operations
         
-        Bonus :: make a factory for the classes
+            - Implement PrintFormVisitor, try to use the least amount of brackets
+       
+            - use generics in the interfaces and adjust the classes
+
+            - Implement an EvalFormVisitor and test it on different valuations and formulas.
+        
+        Bonus - make a factory for the classes
         
         
         */

@@ -14,36 +14,35 @@ import java.util.Map;
 public class EvalFromVisitor implements FormVisitor {
     
     
-    private Map<String, Boolean> e;  //: assignment from the name of the atomic prop to its value
+    private Map<String, Boolean> atomicAssignment;  //: assignment from the name of the atomic prop to its value
 
-    public EvalFromVisitor(Map<String, Boolean> e) {
-        this.e = e;
+    public EvalFromVisitor(Map<String, Boolean> atomicAssignment) {
+        this.atomicAssignment = atomicAssignment;
     }
-    
-    
-    
-    
-    /// Evalue the 
     
     // apply operator and accept the arguments 
     @Override
-    public void visit(BinOpForm form) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean visit(BinOpForm form) {
+        return  form.getOp().apply( 
+                    form.getLeftOperand().accept(this), 
+                    form.getRightOperand().accept(this));
     }
 
     @Override
-    public void visit(NotForm form) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean visit(NotForm form) {
+        return ! form.getOperand().accept(this);
     }
 
     @Override
-    public void visit(AtomForm form) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean visit(AtomForm form) {
+        // return the truth value of the atomic given the map
+        return atomicAssignment.get(form.getSymbol());
     }
 
     @Override
-    public void visit(ConstForm form) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public boolean visit(ConstForm form) {
+        // return the value of the ConstForm
+        return form == ConstForm.TRUE;
     }
     
 }

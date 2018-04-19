@@ -11,4 +11,18 @@ package pkg9_logicalformulas;
  */
 class NotForm {
     
+    private Form operand;
+
+    public NotForm(Form operand) {
+        this.operand = operand;
+    }
+   
+    public boolean accept(FormVisitor v) {
+        return v.visit(this);
+    }
+
+    public Form getOperand() {
+        return operand;
+    }
+    
 }

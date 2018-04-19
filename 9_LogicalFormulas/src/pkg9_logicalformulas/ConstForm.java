@@ -12,15 +12,14 @@ package pkg9_logicalformulas;
 public enum ConstForm implements Form {
     
     TRUE {
-        @Override
-        public void accept(FormVisitor v) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public boolean accept(FormVisitor v) {
+            return v.visit(this);
         }
     },
     FALSE {
         @Override
-        public void accept(FormVisitor v) {
-            throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        public boolean accept(FormVisitor v) {
+            return v.visit(this);
         }
     };
 }
