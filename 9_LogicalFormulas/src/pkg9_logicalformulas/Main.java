@@ -16,6 +16,18 @@ public class Main {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        
+        /*
+        bool eval( Form f)
+        
+            check the type of f and recursivly eval
+        
+        Try not to use instanceOf 
+        
+        Bonus :: make a factory for the classes
+        
+        
+        */
     }
     
 }
