@@ -42,6 +42,13 @@ public enum BinOp implements BinaryOperator<Boolean>{
         this.string = string;
     }
 
+    public String getString() {
+        return string;
+    }
+
+    
+    
+
     
     
 }

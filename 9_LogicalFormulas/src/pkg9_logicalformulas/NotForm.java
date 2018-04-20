@@ -9,7 +9,7 @@ package pkg9_logicalformulas;
  *
  * @author Borislav
  */
-class NotForm {
+class NotForm implements Form{
     
     private Form operand;
 
@@ -17,7 +17,7 @@ class NotForm {
         this.operand = operand;
     }
    
-    public boolean accept(FormVisitor v) {
+    public <R> R accept ( FormVisitor<R> v) {
         return v.visit(this);
     }
 

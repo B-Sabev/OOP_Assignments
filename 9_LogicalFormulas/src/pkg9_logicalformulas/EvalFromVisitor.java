@@ -11,7 +11,7 @@ import java.util.Map;
  *
  * @author Borislav
  */
-public class EvalFromVisitor implements FormVisitor {
+public class EvalFromVisitor implements FormVisitor<Boolean>{
     
     
     private Map<String, Boolean> atomicAssignment;  //: assignment from the name of the atomic prop to its value
@@ -22,27 +22,27 @@ public class EvalFromVisitor implements FormVisitor {
     
     // apply operator and accept the arguments 
     @Override
-    public boolean visit(BinOpForm form) {
+    public Boolean visit(BinOpForm form) {
         return  form.getOp().apply( 
                     form.getLeftOperand().accept(this), 
                     form.getRightOperand().accept(this));
     }
 
     @Override
-    public boolean visit(NotForm form) {
+    public Boolean visit(NotForm form) {
         return ! form.getOperand().accept(this);
     }
 
     @Override
-    public boolean visit(AtomForm form) {
+    public Boolean visit(AtomForm form) {
         // return the truth value of the atomic given the map
-        return atomicAssignment.get(form.getSymbol());
+        return atomicAssignment.get(form.toString());
     }
 
     @Override
-    public boolean visit(ConstForm form) {
+    public Boolean visit(ConstForm form) {
         // return the value of the ConstForm
-        return form == ConstForm.TRUE;
+        return form.isValue();
     }
-    
+
 }

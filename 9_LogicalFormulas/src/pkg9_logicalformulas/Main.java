@@ -5,6 +5,9 @@
  */
 package pkg9_logicalformulas;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  *
  * @author Borislav
@@ -17,23 +20,38 @@ public class Main {
     public static void main(String[] args) {
         /*
         TODO
-        
-            -class and sequence diagram
-        
-            - Add a number of static methods to your main class, each of which construct a tree
-of a logic formula. Think up a few interesting cases on your own. You will use these
-to test your operations
-        
-            - Implement PrintFormVisitor, try to use the least amount of brackets
-       
+            - class and sequence diagram
+            - add more static methods that return Form to test EvalFormVisitor and PrintFormVisitor
             - use generics in the interfaces and adjust the classes
+            - PrintFormVisitor when to use brackets ??
 
-            - Implement an EvalFormVisitor and test it on different valuations and formulas.
         
         Bonus - make a factory for the classes
-        
-        
         */
+        
+        Map<String, Boolean> m = new HashMap<>();
+        m.put("A", Boolean.FALSE);
+        m.put("B", Boolean.TRUE);
+        EvalFromVisitor eval = new EvalFromVisitor(m);
+        Form f = f1();
+        ///eval.visit(f);
+        System.out.println(f.accept(eval));
+        
+        System.out.println(BinOp.AndOp);
+        
+        PrintFormVisitor printForm = new PrintFormVisitor();
+        f.accept(printForm);
+        
+    }
+    
+    
+    
+    public static Form f1(){
+        return new BinOpForm(BinOp.AndOp, 
+                        new BinOpForm(BinOp.ImpliesOp,
+                                new NotForm(new ConstForm(true)), new ConstForm(false)), 
+                        new BinOpForm(BinOp.OrOp,
+                                new AtomForm("A"), new AtomForm("B")));
     }
     
 }

@@ -9,11 +9,10 @@ package pkg9_logicalformulas;
  *
  * @author Borislav
  */
-interface FormVisitor {
+interface FormVisitor<R>{
 
-    // instead of void, return a generic evaluating the form
-    boolean visit( BinOpForm form );
-    boolean visit( NotForm form);
-    boolean visit( AtomForm form);
-    boolean visit( ConstForm form);
+    R visit( BinOpForm form );
+    R visit( NotForm form);
+    R visit( AtomForm form);
+    R visit( ConstForm form);
 }

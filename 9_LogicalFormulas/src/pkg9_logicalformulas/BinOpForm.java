@@ -21,7 +21,7 @@ public class BinOpForm implements Form {
         this.rightOperand = rightOperand;
     }
     
-    public boolean accept(FormVisitor v) {
+    public <R> R accept ( FormVisitor<R> v) {
         return v.visit(this);
     }
 

@@ -9,17 +9,19 @@ package pkg9_logicalformulas;
  *
  * @author Borislav
  */
-public enum ConstForm implements Form {
+public class ConstForm implements Form{
+    private boolean value; 
+
+    public ConstForm(boolean value) {
+        this.value = value;
+    }
+
+    public boolean isValue() {
+        return value;
+    }
     
-    TRUE {
-        public boolean accept(FormVisitor v) {
-            return v.visit(this);
-        }
-    },
-    FALSE {
-        @Override
-        public boolean accept(FormVisitor v) {
-            return v.visit(this);
-        }
-    };
+    @Override
+    public <R> R accept ( FormVisitor<R> v) {
+        return v.visit(this);
+    }
 }

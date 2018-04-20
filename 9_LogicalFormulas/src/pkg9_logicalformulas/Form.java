@@ -12,5 +12,5 @@ package pkg9_logicalformulas;
 
 
 public interface Form {
-    public boolean accept ( FormVisitor v); 
+    public <R> R accept ( FormVisitor<R> v); 
 }
