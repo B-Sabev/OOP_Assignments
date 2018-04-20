@@ -24,4 +24,5 @@ public class ConstForm implements Form{
     public <R> R accept ( FormVisitor<R> v) {
         return v.visit(this);
     }
+
 }
