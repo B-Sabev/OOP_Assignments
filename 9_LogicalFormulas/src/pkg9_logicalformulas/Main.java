@@ -27,9 +27,8 @@ public class Main {
     public static void main(String[] args) {
         /*
         TODO
-            - finidh sequence diagram
-            - add more static methods that return Form to test EvalFormVisitor and PrintFormVisitor
-            - PrintFormVisitor when to use brackets ??
+            - finish the sequence diagram
+            - clean the code and add comments
         */
         
         Map<String, Boolean> m = new HashMap<>();
@@ -41,8 +40,8 @@ public class Main {
         PrintFormVisitor printForm = new PrintFormVisitor();
 
         
-        
-        Form[] testCases = {f1(), f2(), f3(), f4(), f5()};
+        System.out.println("All formulas should be true, checked by hand\n");
+        Form[] testCases = {f1(), f2(), f3(), f4(), f5(), f6()};
          
         for(Form f : testCases){
             // Print the formula and its evaluation
@@ -65,29 +64,55 @@ public class Main {
     
     
     public static Form f2(){
-        return and(atom("A"), and(atom("B"), and(atom("C"), atom("D"))));
+        return or(atom("A"), and(atom("B"), or(atom("C"), atom("D"))));
     }
-    
+
     
     public static Form f3(){
-        return and(atom("A"), or(atom("B"), and(atom("C"), atom("D"))));
-    }
-    
-    public static Form f4(){
         return  
                    implies(
                            and(atom("A"), or(atom("B"), and(atom("C"), atom("D")))), 
                            and(atom("A"), and(atom("B"), and(atom("C"), atom("D")))));
     }
     
-    public static Form f5(){
-        return and( 
-                   implies(
-                           not(True()), 
-                           False()), 
-                   or(
+    public static Form f4(){
+        return implies(
+                        and(
+                            atom("A"), 
+                            atom("B")), 
+                        or(
                             atom("A"), 
                             atom("B")));
     }
+    
+    
+    public static Form f5(){
+        return implies(
+                    atom("A"),
+                    implies(
+                        atom("B"),
+                        implies(
+                            atom("C"),
+                            not(atom("D"))))
+                    );
+    }
+    
+    
+    public static Form f6(){
+        return or(
+                    implies(
+                        and(
+                            True(), 
+                            False()), 
+                        True()),
+                    implies(
+                        True(),
+                        False())
+                );
+    }
+    
+    
+    
+    
     
 }

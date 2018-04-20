@@ -53,7 +53,7 @@ public class PrintFormVisitor implements FormVisitor<Void>{
         
         boolean printBrackets = form.getOperand().accept(priorityVisitor) < form.accept(priorityVisitor);
         
-        System.out.print(" ~");
+        System.out.print("~");
         if(printBrackets)
             System.out.print("(");
         form.getOperand().accept(this);

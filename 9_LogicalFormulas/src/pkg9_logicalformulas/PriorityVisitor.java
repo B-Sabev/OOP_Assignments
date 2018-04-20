@@ -7,7 +7,7 @@ package pkg9_logicalformulas;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class PriorityVisitor implements FormVisitor<Integer> {
 
