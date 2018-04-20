@@ -36,14 +36,18 @@ public class Main {
         m.put("A", Boolean.FALSE);
         m.put("B", Boolean.TRUE);
         EvalFromVisitor eval = new EvalFromVisitor(m);
-        Form f = f1();
-        ///eval.visit(f);
-        System.out.println(f.accept(eval));
-        
-        System.out.println(BinOp.AndOp);
-        
         PrintFormVisitor printForm = new PrintFormVisitor();
-        f.accept(printForm);
+
+        
+        
+        Form[] testCases = {f1()};
+         
+        for(Form f : testCases){
+            // Print the formula and its evaluation
+            f.accept(printForm);
+            System.out.print(" = " + f.accept(eval) + "\n");
+        }
+        
         
     }
     
