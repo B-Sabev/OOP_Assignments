@@ -7,10 +7,17 @@ package pkg9_logicalformulas;
 
 import java.util.HashMap;
 import java.util.Map;
+import static pkg9_logicalformulas.FormFactory.False;
+import static pkg9_logicalformulas.FormFactory.True;
+import static pkg9_logicalformulas.FormFactory.and;
+import static pkg9_logicalformulas.FormFactory.atom;
+import static pkg9_logicalformulas.FormFactory.implies;
+import static pkg9_logicalformulas.FormFactory.not;
+import static pkg9_logicalformulas.FormFactory.or;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class Main {
 
@@ -22,11 +29,7 @@ public class Main {
         TODO
             - class and sequence diagram
             - add more static methods that return Form to test EvalFormVisitor and PrintFormVisitor
-            - use generics in the interfaces and adjust the classes
             - PrintFormVisitor when to use brackets ??
-
-        
-        Bonus - make a factory for the classes
         */
         
         Map<String, Boolean> m = new HashMap<>();
@@ -44,14 +47,14 @@ public class Main {
         
     }
     
-    
-    
     public static Form f1(){
-        return new BinOpForm(BinOp.AndOp, 
-                        new BinOpForm(BinOp.ImpliesOp,
-                                new NotForm(new ConstForm(true)), new ConstForm(false)), 
-                        new BinOpForm(BinOp.OrOp,
-                                new AtomForm("A"), new AtomForm("B")));
+        return and( 
+                   implies(
+                           not(True()), 
+                           False()), 
+                   or(
+                            atom("A"), 
+                            atom("B")));
     }
     
 }
