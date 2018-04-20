@@ -1,26 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg9_logicalformulas;
 
 import java.util.Map;
 
 /**
- *
+ * Visitor that evaluates the truth of a given Form
+ * 
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class EvalFromVisitor implements FormVisitor<Boolean>{
     
-    
-    private Map<String, Boolean> atomicAssignment;  //: assignment from the name of the atomic prop to its value
+     // maps from the name of the atomic proposition to its truth value
+    private Map<String, Boolean> atomicAssignment; 
 
     public EvalFromVisitor(Map<String, Boolean> atomicAssignment) {
         this.atomicAssignment = atomicAssignment;
     }
-    
-    // apply operator and accept the arguments 
+ 
     @Override
     public Boolean visit(BinOpForm form) {
         return  form.getOp().apply( 
@@ -35,13 +30,12 @@ public class EvalFromVisitor implements FormVisitor<Boolean>{
 
     @Override
     public Boolean visit(AtomForm form) {
-        // return the truth value of the atomic given the map
+        // return the truth value of the atomic formula from the map
         return atomicAssignment.get(form.toString());
     }
 
     @Override
     public Boolean visit(ConstForm form) {
-        // return the value of the ConstForm
         return form.isValue();
     }
 

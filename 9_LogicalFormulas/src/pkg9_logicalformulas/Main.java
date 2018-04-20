@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package pkg9_logicalformulas;
 
 import java.util.HashMap;
@@ -25,12 +21,7 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*
-        TODO
-            - finish the sequence diagram
-            - clean the code and add comments
-        */
-        
+        // init visitors
         Map<String, Boolean> m = new HashMap<>();
         m.put("A", Boolean.FALSE);
         m.put("B", Boolean.TRUE);
@@ -38,7 +29,6 @@ public class Main {
         m.put("D", Boolean.FALSE);
         EvalFromVisitor eval = new EvalFromVisitor(m);
         PrintFormVisitor printForm = new PrintFormVisitor();
-
         
         System.out.println("All formulas should be true, checked by hand\n");
         Form[] testCases = {f1(), f2(), f3(), f4(), f5(), f6()};
@@ -47,9 +37,7 @@ public class Main {
             // Print the formula and its evaluation
             f.accept(printForm);
             System.out.print(" = " + f.accept(eval) + "\n");
-        }
-        
-        
+        } 
     }
     
     public static Form f1(){
@@ -61,20 +49,35 @@ public class Main {
                             atom("A"), 
                             atom("B")));
     }
-    
-    
+
     public static Form f2(){
-        return or(atom("A"), and(atom("B"), or(atom("C"), atom("D"))));
+        return or(
+                    atom("A"), 
+                    and(
+                        atom("B"), 
+                        or(
+                            atom("C"), 
+                            atom("D"))));
     }
 
-    
     public static Form f3(){
-        return  
-                   implies(
-                           and(atom("A"), or(atom("B"), and(atom("C"), atom("D")))), 
-                           and(atom("A"), and(atom("B"), and(atom("C"), atom("D")))));
+        return  implies(
+                    and(
+                        atom("A"), 
+                        or(
+                            atom("B"), 
+                            and(
+                                atom("C"),
+                                atom("D")))), 
+                    and(
+                        atom("A"), 
+                        and(
+                            atom("B"), 
+                            and(
+                                atom("C"), 
+                                atom("D")))));
     }
-    
+
     public static Form f4(){
         return implies(
                         and(
@@ -84,8 +87,7 @@ public class Main {
                             atom("A"), 
                             atom("B")));
     }
-    
-    
+
     public static Form f5(){
         return implies(
                     atom("A"),
@@ -96,8 +98,7 @@ public class Main {
                             not(atom("D"))))
                     );
     }
-    
-    
+
     public static Form f6(){
         return or(
                     implies(
@@ -107,12 +108,7 @@ public class Main {
                         True()),
                     implies(
                         True(),
-                        False())
-                );
+                        False()));
     }
-    
-    
-    
-    
-    
+      
 }
