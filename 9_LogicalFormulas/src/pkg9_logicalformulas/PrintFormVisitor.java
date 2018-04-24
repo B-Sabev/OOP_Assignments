@@ -19,7 +19,6 @@ public class PrintFormVisitor implements FormVisitor<Void>{
 
     @Override
     public Void visit(BinOpForm form) {
-
         // get the priority of the formula and its operants
         Integer formPriority = form.accept(priorityVisitor);
         Integer leftPriority = form.getLeftOperand().accept(priorityVisitor);
