@@ -12,7 +12,8 @@ package pkg10_icecream;
 public class VanillaIce extends Ice {
 
     public VanillaIce() {
-        super("vanilla ice");
+        super();
+        description = "vanilla ice";
     }
     
     @Override

@@ -20,4 +20,10 @@ public class Sprinkles extends Topping{
         return ice.getPrice();
     }
     
+     @Override
+    public String getDescription(){
+        return ice.getDescription() + " with sprinkles";
+    }
+    
+    
 }

@@ -20,4 +20,9 @@ public class WhippedCream extends Topping {
         return ice.getPrice() + 50;
     }
     
+    @Override
+    public String getDescription(){
+        return "whipped " + ice.getDescription();
+    }
+    
 }

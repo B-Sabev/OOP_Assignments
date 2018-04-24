@@ -13,7 +13,6 @@ public abstract class Topping extends Ice {
     protected Ice ice;
 
     public Topping(Ice ice) {
-        super();
         this.ice = ice;
     }
     

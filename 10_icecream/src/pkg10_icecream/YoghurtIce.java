@@ -12,7 +12,7 @@ package pkg10_icecream;
 public class YoghurtIce extends Ice{
 
     public YoghurtIce() {
-        super("vanilla ice");
+        super();
     }
     
     @Override

@@ -20,4 +20,10 @@ public class ChocolateDip extends Topping {
         return ice.getPrice() + 30;
     }
     
+     @Override
+    public String getDescription(){
+        return "chocolate dip " + ice.getDescription();
+    }
+    
+    
 }

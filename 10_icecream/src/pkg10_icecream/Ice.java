@@ -18,11 +18,14 @@ public abstract class Ice {
             this.description = "unknown ice";
         }
         
-        public Ice(String description) {
-            this.description = description;
-        }
-        
         public String getDescription(){
             return description;
+        }
+        
+        public String toString(){
+            int euro = getPrice() / 100;
+            int cents = getPrice() % 100;
+            return String.format("Description: " + getDescription() + "\n" +
+                                 "price: %d,%d euro",euro, cents);
         }
 }
