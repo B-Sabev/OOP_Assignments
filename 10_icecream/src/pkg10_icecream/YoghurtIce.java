@@ -1,22 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg10_icecream;
+
+import static pkg10_icecream.Price.YOGHURT_ICE;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class YoghurtIce extends Ice{
 
     public YoghurtIce() {
         super();
+        description = "yoghurt ice";
     }
     
     @Override
     public int getPrice() {
-        return 200;
+        return YOGHURT_ICE.price();
     }
 }

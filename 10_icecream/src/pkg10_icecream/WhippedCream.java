@@ -5,9 +5,11 @@
  */
 package pkg10_icecream;
 
+import static pkg10_icecream.Price.WHIPPED_CREAM;
+
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class WhippedCream extends Topping {
 
@@ -17,7 +19,7 @@ public class WhippedCream extends Topping {
 
     @Override
     public int getPrice() {
-        return ice.getPrice() + 50;
+        return ice.getPrice() + WHIPPED_CREAM.price();
     }
     
     @Override

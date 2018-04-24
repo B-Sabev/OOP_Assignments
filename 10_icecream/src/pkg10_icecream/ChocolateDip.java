@@ -1,23 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg10_icecream;
+
+import static pkg10_icecream.Price.CHOCO_DIP;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class ChocolateDip extends Topping {
-
+    
     public ChocolateDip(Ice ice) {
         super(ice);
     }
 
     @Override
     public int getPrice() {
-        return ice.getPrice() + 30;
+        return ice.getPrice() + CHOCO_DIP.price();
     }
     
      @Override

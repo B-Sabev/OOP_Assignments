@@ -5,22 +5,24 @@
  */
 package pkg10_icecream;
 
-import static pkg10_icecream.Price.VANILLA_ICE;
-
 /**
- *
+ * Enum to hold the price list of all items
+ * 
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
-public class VanillaIce extends Ice {
+public enum Price {
+
+    VANILLA_ICE (150),
+    YOGHURT_ICE (200),
+    WHIPPED_CREAM (50),
+    CHOCO_DIP (30);
     
-    public VanillaIce() {
-        super();
-        description = "vanilla ice";
+    private int price;
+    private Price (int price){
+        this.price = price;
+    } 
+    
+    public int price(){
+        return price;
     }
-    
-    @Override
-    public int getPrice() {
-        return VANILLA_ICE.price();
-    }
-    
 }
