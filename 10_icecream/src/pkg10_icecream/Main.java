@@ -17,28 +17,15 @@ public class Main {
     public static void main(String[] args) {
         /*
         Exercise description:
-            abstact class Ice
-                protected String description - give "unknow ice" by default
-                abstract getPrice()
-            VanillaIce and YoghurtIce derived from Ice
-                add suitable desription
-                VI is 150 cents, YIis 200 cents
-            
-            abstract Topping extends Ice
-                    attribute Ice - store the garnished ice
-            Toppings derived from Topping - 
-                       WhippedCream (50 cents), 
-                       ChocolateDip(30 cents), 
-                       Sprinkles (0 cents , free)
+            Ice - is it the right way to implement the description ??
+            Toppings - should I add their price to the ice cream price ???
         
-        generate example icecreams, printing their description and price (class with static methods, or in main)
-                       
-        
-        
-        
-        
+        use decorator pattern
+        generate example icecreams, printing their description and price (class with static methods, or in main)                   
         
         */
+        Ice whippedVanillaIce = new WhippedCream(new VanillaIce());
+        System.out.println(whippedVanillaIce.getDescription());
     }
     
 }
