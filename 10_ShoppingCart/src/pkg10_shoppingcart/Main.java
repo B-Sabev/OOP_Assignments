@@ -5,6 +5,7 @@
  */
 package pkg10_shoppingcart;
 
+//import static pkg10_shoppingcart.ShoppingCart;
 /**
  *
  * @author Borislav
@@ -48,7 +49,7 @@ public class Main {
                     
             Add a suitable constructor to each class.
             You only have to implement one of the concrete items and payment methods. Design
-            the methods as simple as possible. It is for instance suWcient for the method
+            the methods as simple as possible. It is for instance sufficient for the method
             pay to print out the payment method and the total price.    
                 
         
