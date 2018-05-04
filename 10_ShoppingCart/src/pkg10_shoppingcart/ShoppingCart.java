@@ -13,14 +13,11 @@ import java.util.List;
  * @author Austin
  */
 public abstract class ShoppingCart {
-//public class ShoppingCart extends Item {
-//    String description;
-//    Double price;
     
     List<Item> items;
     
     public ShoppingCart() {
-        this.items = new ArrayList<Item>();
+        this.items = new ArrayList<>();
     }
     
     public void addItem(Item item) {
@@ -32,12 +29,25 @@ public abstract class ShoppingCart {
     }
     
     public double computeCost() {
-        double sum = 0.0;
+        // item price + shipping
+        double totalPrice = 0;
+        double totalShipping = 0;
+        double shipping;
+        ArrayList<Double> shippingCosts = new ArrayList<>();
+        
+        
         for(Item item : items){
-            sum += item.getPrice();
+            totalPrice += item.getPrice();
+            shipping = item.shippingCost();
+            if(!shippingCosts.contains(shipping))
+                shippingCosts.add(shipping);
         }
         
-        return sum;
+        for(Double s : shippingCosts)
+            totalShipping += s;
+        
+        
+        return totalPrice + totalShipping;
     }
     
     public double pay(Payment paymentMethod) {
@@ -45,10 +55,5 @@ public abstract class ShoppingCart {
         paymentMethod.pay(amount);
         return amount;
     }
-
-//    @Override
-//    public double shippingCost() {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     
 }

@@ -13,7 +13,6 @@ public abstract class Item {
     
     private String description;
     private double price;
-    //private double shipping;
     
     public Item(String description, double price) {
         this.description = description;
