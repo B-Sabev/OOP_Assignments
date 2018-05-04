@@ -24,11 +24,5 @@ public class CreditCardStrategy implements Payment {
         System.out.println(amount + " paid with a Credit Card.");
         return true;
     }
-
-    @Override
-    public String changePaymentMethod(String paymentMethod) {
-        paymentMethod = "CreditCard";
-        return paymentMethod;
-    }
-    
+  
 }

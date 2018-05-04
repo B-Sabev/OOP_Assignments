@@ -26,11 +26,5 @@ public class IdealStrategy implements Payment {
         System.out.println(amount + " paid using iDeal.");
         return true;
     }
-
-    @Override
-    public String changePaymentMethod(String paymentMethod) {
-        paymentMethod = "iDeal";
-        return paymentMethod;
-    }
     
 }

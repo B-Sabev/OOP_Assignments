@@ -1,8 +1,7 @@
 package pkg10_shoppingcart;
 
 /**
- *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class WashingMachine extends Item{
 

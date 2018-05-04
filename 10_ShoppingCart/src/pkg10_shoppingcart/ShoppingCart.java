@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg10_shoppingcart;
 
 import java.util.ArrayList;
@@ -10,14 +5,18 @@ import java.util.List;
 
 /**
  *
- * @author Austin
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
-public abstract class ShoppingCart {
+public class ShoppingCart {
     
-    List<Item> items;
+    private List<Item> items;
+    private Payment paymentMethod;
     
     public ShoppingCart() {
         this.items = new ArrayList<>();
+        paymentMethod = new IdealStrategy("Default bank",
+                                     "999-999-999",
+                                     "0000");
     }
     
     public void addItem(Item item) {
@@ -39,6 +38,8 @@ public abstract class ShoppingCart {
         for(Item item : items){
             totalPrice += item.getPrice();
             shipping = item.shippingCost();
+            
+            // add only the shipping costs that have not occured yet
             if(!shippingCosts.contains(shipping))
                 shippingCosts.add(shipping);
         }
@@ -50,10 +51,16 @@ public abstract class ShoppingCart {
         return totalPrice + totalShipping;
     }
     
-    public double pay(Payment paymentMethod) {
+    public double checkOut() {
         double amount = computeCost();
         paymentMethod.pay(amount);
+        items.clear();
         return amount;
+    }
+    
+    
+    public void changePaymentMethod(Payment newPaymentMethod) {
+        this.paymentMethod = newPaymentMethod;
     }
     
 }
