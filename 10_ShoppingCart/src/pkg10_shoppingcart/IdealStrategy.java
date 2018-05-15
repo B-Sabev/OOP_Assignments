@@ -7,7 +7,7 @@ package pkg10_shoppingcart;
 
 /**
  *
- * @author Austin
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class IdealStrategy implements Payment {
     
