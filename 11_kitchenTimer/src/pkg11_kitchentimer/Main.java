@@ -1,20 +1,6 @@
 package pkg11_kitchentimer;
 
 
-/*
-TODO 
-
-Split into MVC
-
-fix the layout
-
-ProgressBar - reset the progress bar if the totalTime is changed
-
-When ProgressBar is empty - background changes from white to red
-
-
-*/
-
 import javafx.application.Application;
 import javafx.stage.Stage;
 

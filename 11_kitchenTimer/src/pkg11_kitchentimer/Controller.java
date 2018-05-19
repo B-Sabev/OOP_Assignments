@@ -47,6 +47,11 @@ public class Controller implements EventHandler<ActionEvent>{
             ellapsedTime = 0; // reset ellapsed
             timeline.pause();
             timebar.setProgress(0.0);
+            
+            // set the background to RED
+            
+            
+            
         }
             
       
@@ -63,14 +68,18 @@ public class Controller implements EventHandler<ActionEvent>{
             if(value1 > 0){
                totalTime = value1;
             } else {
+                
                 Alert alert = new Alert(Alert.AlertType.ERROR, 
                                         "Enter integer time in seconds");
                 alert.showAndWait().filter(response -> response == ButtonType.OK); 
+               
             }
         }catch(Exception e){
+           
             Alert alert = new Alert(Alert.AlertType.ERROR, 
                                         "Please enter a valid number in the text field before pressing start");
             alert.showAndWait().filter(response -> response == ButtonType.OK);
+            
         }
     }
   
