@@ -4,6 +4,8 @@ package pkg12_stringofbeads;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.beans.property.DoubleProperty;
+import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
@@ -35,9 +37,17 @@ public class Main extends Application {
                              MIN_RGB_VAL = 0;
     private int numBeads = 0;
     
+
+    
     
     @Override
     public void start(Stage primaryStage) {
+        
+        SimpleDoubleProperty MAX_RGB = new SimpleDoubleProperty(255);
+        SimpleIntegerProperty numberOfBeads = new SimpleIntegerProperty(1);
+        SimpleDoubleProperty gradient = new SimpleDoubleProperty();
+        gradient.bind(MAX_RGB.divide(numberOfBeads));
+     
         
         Group group = new Group();
         Pane pane = new Pane(group);
@@ -59,11 +69,17 @@ public class Main extends Application {
         pane.setOnMouseMoved(e -> {
             group.getChildren().get(0).setLayoutX(e.getX());
             group.getChildren().get(0).setLayoutY(e.getY());
+            e.consume();
         });
         
         pane.setOnMouseClicked(e -> {
             numBeads++;
-            colorAndAlignBeads(group, e.getX(), e.getY());
+            numberOfBeads.set(numberOfBeads.get() + 1);
+            System.out.println(numberOfBeads.getValue() + " " + gradient.doubleValue());
+            
+            repaintBeads(gradient.doubleValue());
+            
+            ///colorAndAlignBeads(group, e.getX(), e.getY());
             
             /*
             group.getChildren().add(new Circle(e.getX(), //+ group.getLayoutX(),
@@ -111,6 +127,10 @@ public class Main extends Application {
         }
         group.getChildren().add(new Line(START_X, START_Y, mouseX, mouseY));
     
+    }
+
+    private void repaintBeads(double doubleValue) {
+        
     }
     
 }
