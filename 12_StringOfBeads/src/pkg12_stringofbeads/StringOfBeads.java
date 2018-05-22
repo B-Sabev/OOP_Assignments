@@ -3,26 +3,20 @@ package pkg12_stringofbeads;
 import java.util.List;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
-import javafx.beans.property.DoubleProperty;
-import javafx.beans.property.SimpleDoubleProperty;
-import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
 /**
  *
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
-public class Main extends Application {
+public class StringOfBeads extends Application {
     
     private static final double BEAD_SIZE = 10, // radius of the bead in pixels
                                 START_X = 50,  // starting position of the bead
