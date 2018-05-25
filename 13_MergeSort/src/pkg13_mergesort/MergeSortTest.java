@@ -9,26 +9,55 @@ import java.util.Random;
 public class MergeSortTest {
 
     public static void main(String[] args) {
-        /*
-        TODO:
-            implement the sortMultiThread()
-        
-            Include timing results and number of cores in comments
-            Expectation: number of processors, with 4 cores - x2 speed up
-            Huge time varition between 2 consequtive runs,
-                Maybe run it multiple times and average the result
-        */
+        // test sequential and multi-thread sort on 
+        // random array with size 10^7, runtime averaged over 10 runs
         testMergeSort((int) 1e7, 10);
         
+        /*
+        Number of cores/processors: 4
+        Size of the array sorted: 10 000 000
+        Measured time is averaged over 10 runs
+        Over the 2 sorting algorithms and the 10 runs, the same random array (its copy) is sorted
+        
+        Threshold for creating a thread: 10 000
+        Sequential merge sort time: 3243.2 ms
+        Multi-thread merge sort time: 2375.1 ms
+        
+        Threshold for creating a thread: 50 000
+        Sequential merge sort time: 3213.1 ms
+        Multi-thread merge sort time: 1598.6 ms
+
+        Threshold for creating a thread: 100 000
+        Sequential merge sort time: 3298.6 ms
+        Multi-thread merge sort time: 1460.9 ms
+
+        Threshold for creating a thread: 500 000
+        Sequential merge sort time: 2837.1 ms
+        Multi-thread merge sort time: 1262.4 ms
+
+        Conclusion:
+            threshold in range 50k - 500k, up to x2.26 speed up with multi-threading on 4 cores
+            threshold = 10k, speed up is less than x2 
+        
+            wierdly, during the first 3 measurements and the last 2 of the time
+            for sequential merge sort differ, which shouldn't happen, probably explained
+            by other processes that run on the PC during testing
+        */
     }
     
+    /**
+     * Test and compare the 2 mergeSort classes
+     * print execution time for each sort in the console
+     * @param N - size of a pseudo-random array to sort
+     * @param numRuns - how many times sort the same array to get more stable 
+     *                  measurement results
+     */
     public static void testMergeSort(int N, int numRuns){
         int[] array = randomArray(N);
         int[] arrayCopy = new int[N];
         System.out.println("\nNumber of cores/processors: " + Runtime.getRuntime().availableProcessors() +
                            "\nSize of the array sorted: " + array.length +
-                           "\nThreshold for creating a thread: " + MergeSortMultiThread.THRESHOLD + 
-                           "\nTime averaged over " + numRuns + " runs");
+                           "\nThreshold for creating a thread: " + MergeSortMultiThread.THRESHOLD);
         
         long seqTime = 0;
         long parallelTime = 0;
@@ -53,11 +82,13 @@ public class MergeSortTest {
         }
      
         System.out.println("Sequential merge sort time: " +
-                            ((double)seqTime / (double) numRuns) + " ms");
+                            ((double)seqTime / (double) numRuns) + " ms, average over " +
+                            numRuns + " runs");
         
       
-        System.out.println("Parallel merge sort time: " +
-                            ((double) parallelTime / (double) numRuns) + " ms");
+        System.out.println("Multi-thread merge sort time: " +
+                            ((double) parallelTime / (double) numRuns) + " ms, average over " + 
+                            numRuns + " runs");
        
     }
     

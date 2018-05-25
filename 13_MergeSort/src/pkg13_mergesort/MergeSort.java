@@ -23,9 +23,6 @@ public class MergeSort {
     }
   }
   
-  
-
-  
   /**
    * merge two sorted arrays: O(N)
    * @param part1 a sorted array

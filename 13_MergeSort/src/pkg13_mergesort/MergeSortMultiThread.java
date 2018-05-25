@@ -1,27 +1,29 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg13_mergesort;
 
 import java.util.Arrays;
 import static pkg13_mergesort.MergeSort.merge;
-import static pkg13_mergesort.MergeSort.sort;
+
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863, Austin Atchley s1016930
  */
 public class MergeSortMultiThread implements Runnable{
     
     private final int[] array;
-    public static final int THRESHOLD = 10000;
+    public static final int THRESHOLD = 500000;
 
     public MergeSortMultiThread(int[] array) {
         this.array = array;
     }
     
+    /**
+    * sort the given array in O(N log N) time
+    * The array is split in two parts of equal size. 
+    * These parts are sort recursively and merged.
+    * If the parts size is larger than threshold, each gets its own new thread
+    * @param array 
+    */
     public static void sort(int [] array) {
         MergeSortMultiThread msmt = new MergeSortMultiThread(array);
         msmt.run();
