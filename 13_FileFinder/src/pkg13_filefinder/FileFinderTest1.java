@@ -6,22 +6,22 @@ import java.io.IOException;
  * @author Borislav Sabev s4726863, Austin Atchley s1016930
  * adapted from: pieterkoopman
  */
-public class FileFinderTest {
+public class FileFinderTest1 {
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
         //OO15FileFinderTest fft = new OO15FileFinderTest();
-         FileFinderTest();
+         FileFinderTest1();
     }
 
-    public static void FileFinderTest() {
+    public static void FileFinderTest1() {
         try {
             String goal = "FileFinder.java";
             //String root = "C://";
             //String root = "/Users/Austin/Documents";
-            String root = "/Users/Austin";
+            String root = "/Users/Borislav/GoogleDrive/Radboud";
             FileFinder ff = new FileFinder(root);
             //FileFinder f2 = new FileFinder(root);
             //Thread t1 = new Thread(ff);
