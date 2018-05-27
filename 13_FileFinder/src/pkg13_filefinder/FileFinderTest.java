@@ -19,10 +19,16 @@ public class FileFinderTest {
     public static void FileFinderTest() {
         try {
             String goal = "FileFinder.java";
-            String root = "/Users/pieterkoopman/Documents";
+            //String root = "C://";
+            //String root = "/Users/Austin/Documents";
+            String root = "/Users/Austin";
             FileFinder ff = new FileFinder(root);
+            //FileFinder f2 = new FileFinder(root);
+            //Thread t1 = new Thread(ff);
+            //t1.start();
 //            FileFinderSeq ff = new FileFinderSeq(root);
             ff.findFile(goal);
+            //f2.findFile(goal);
 //            System.out.println(goal + " not found");
         } catch (IOException e) {
             //System.err.println( e );
