@@ -5,6 +5,9 @@
  */
 package pkg14_primenumbergenerator;
 
+import java.util.Iterator;
+import java.util.List;
+
 /**
  *
  * @author Borislav
@@ -15,7 +18,21 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Generator gen = new Generator();
+        /*
+        List<Buffer<Integer>> buffers = gen.getBuffers();
+        for(int i=0; i<20; i++){
+            System.out.println(buffers.get(0).get());
+        }
+        */
+        
+        for(int i=0; i<20; i++){
+            System.out.println(gen.genPrime());
+        }
+        
+        
+        
+        //(new GeneratorSeq()).genPrimes();
     }
     
 }

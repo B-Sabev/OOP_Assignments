@@ -1,7 +1,9 @@
 package pkg14_primenumbergenerator;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -15,14 +17,13 @@ import java.util.logging.Logger;
 public class Buffer<E> {
     
     private int size;
-    private List<E> elements;
+    private Queue<E> elements;
     private Lock lock;
-    private Condition bufferFull;
-    private Condition bufferEmpty;
+    private Condition bufferFull, bufferEmpty;
     
     public Buffer(int size){
         this.size = size;
-        elements = new ArrayList<>();
+        elements = new LinkedList<>();
         lock = new ReentrantLock(); 
         bufferFull = lock.newCondition();
         bufferEmpty = lock.newCondition();
@@ -59,8 +60,7 @@ public class Buffer<E> {
         }
         // get an element and notify that the buffer is no longer full
         try {  
-            E element = elements.get(0);
-            elements.remove(0);
+            E element = elements.poll();
             bufferFull.signalAll();
             return element;
         } finally {
@@ -68,4 +68,8 @@ public class Buffer<E> {
         }
        
     }    
+    
+    public boolean isEmpty(){
+        return elements.isEmpty();
+    }
 }
