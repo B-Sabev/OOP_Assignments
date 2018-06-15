@@ -1,8 +1,6 @@
 package pkg14_primenumbergenerator;
 
-import java.util.ArrayList;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Queue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -12,23 +10,25 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Borislav Sabev s4726863, Austin Atchley s1016930
+ * @author Borislav Sabev s4726863
  */
 public class Buffer<E> {
     
     private int size;
-    private Queue<E> elements;
-    private Lock lock;
-    private Condition bufferFull, bufferEmpty;
+    private Queue<E> elements = new LinkedList<>();
+    private final Lock lock = new ReentrantLock();;
+    private final Condition bufferFull = lock.newCondition(), 
+                            bufferEmpty = lock.newCondition();
     
     public Buffer(int size){
         this.size = size;
-        elements = new LinkedList<>();
-        lock = new ReentrantLock(); 
-        bufferFull = lock.newCondition();
-        bufferEmpty = lock.newCondition();
     }
     
+    /**
+     * Put an element into the buffer, 
+     * if the buffer is full, wait until an element is taken with get()
+     * @param element - element to put
+     */
     public void put(E element){
         lock.lock();
         // the producer waits if the buffer is full
@@ -48,6 +48,11 @@ public class Buffer<E> {
         }
     }
     
+    /**
+     * Get element from the buffer,
+     * if the buffer is empty, wait until element is put
+     * @return the first element in the elements queue
+     */
     public E get(){
         lock.lock();
         // consumer waits if the buffer is empty
@@ -69,7 +74,5 @@ public class Buffer<E> {
        
     }    
     
-    public boolean isEmpty(){
-        return elements.isEmpty();
-    }
+
 }

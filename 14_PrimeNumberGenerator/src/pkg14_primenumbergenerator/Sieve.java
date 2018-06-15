@@ -1,28 +1,30 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pkg14_primenumbergenerator;
 
 /**
  *
- * @author Borislav
+ * @author Borislav Sabev s4726863
  */
 public class Sieve implements Runnable{
     private final int prime;
     private Buffer<Integer> in, out;
 
-    public Sieve(int prime, Buffer predecessor, Buffer successor) {
+    public Sieve(int prime, Buffer in, Buffer out) {
         this.prime = prime;
-        this.in = predecessor;
-        this.out = successor;
+        this.in = in;
+        this.out = out;
     }
     
+    /**
+     * Takes every element from the in buffer and
+     * copies all elements not divisible by the prime
+     */
     public void filter(){
-        int num = in.get();
-        if(num % prime != 0)
-            out.put(num);
+        while(true){
+            int num = in.get();
+            if(num % prime != 0)
+                out.put(num);
+        }
+        
     }
 
     @Override
