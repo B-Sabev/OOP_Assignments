@@ -4,6 +4,8 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Taxi for the Simulation.
@@ -44,14 +46,17 @@ public class Taxi implements Runnable {
             int passengersWaiting = station.getWaitingPassengers();
             if ( passengersWaiting > 0 ) {
                 int nrOfPassengers = Math.min(passengersWaiting, maxNrOfPassengers);
+                // don't take more passengers then the ones that are waiting
+                if(nrOfPassengers > passengersWaiting)
+                    nrOfPassengers = passengersWaiting;   
                 station.leaveStation(nrOfPassengers);
                 totalNrOfPassengers += nrOfPassengers;
                 nrOfRides++;
                 System.out.println("Taxi " + taxiId + " takes " + nrOfPassengers + " passengers");
             } 
-//            else {  
+//          else {  
 //                System.out.println("There are no passengers for taxi " + taxiId);
-//            }
+//          }
         } finally {
             lock.unlock();
         }
@@ -70,7 +75,6 @@ public class Taxi implements Runnable {
         
     }
     
-
     public int getTotalNrOfPassengers() {   
         lock.lock();
         try{
@@ -81,16 +85,10 @@ public class Taxi implements Runnable {
     }
 
     @Override
-    public void run() {
-        takePassengers(); 
+    public void run() {   
+        takePassengers();
         try {
-            int passengersWaiting = station.getWaitingPassengers();
-            while(passengersWaiting < 0) {
-                ExecutorService executor = Executors.newCachedThreadPool();
-                executor.execute(this);
-                Thread.sleep(Util.getRandomNumber(10, 100));
-                executor.shutdown();
-            }
-        } catch (InterruptedException e) {}
+            Thread.sleep(Util.getRandomNumber(50, 100));
+        } catch (InterruptedException e) {} 
     }
 }    

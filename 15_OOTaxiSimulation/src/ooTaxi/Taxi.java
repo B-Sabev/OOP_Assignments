@@ -80,10 +80,12 @@ public class Taxi implements Runnable{
     @Override
     public void run() {
         takePassengers();
+        
         try {
             Thread.sleep(Util.getRandomNumber(10, 100));
         } catch (InterruptedException ex) {
             Logger.getLogger(Taxi.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     }
 }
