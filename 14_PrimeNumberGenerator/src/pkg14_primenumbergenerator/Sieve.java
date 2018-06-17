@@ -23,8 +23,7 @@ public class Sieve implements Runnable{
             int num = in.get();
             if(num % prime != 0)
                 out.put(num);
-        }
-        
+        }    
     }
 
     @Override

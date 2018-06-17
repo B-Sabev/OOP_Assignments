@@ -11,7 +11,7 @@ import java.util.concurrent.Executors;
  */
 public class Generator {
     
-    public static final int BUFFER_SIZE = 10;
+    public static final int BUFFER_SIZE = 5;
     
     private List<Buffer<Integer>> buffers = new ArrayList<>();
     private List<Sieve> sieves = new ArrayList<>();
@@ -39,8 +39,9 @@ public class Generator {
         return prime;
     }
     
-    public void showPrimes(){
+    public void showPrimes() {
         showPrimes(100); // show the first 100 numbers as asked in the assignment
+        executor.shutdown();
     }
     
     public void showPrimes(int numOfPrimes){
